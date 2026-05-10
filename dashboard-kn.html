@@ -552,6 +552,37 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
     <div class="admin-content" id="panel-headerfooter">
       <div style="padding:2rem">
 
+        <!-- ── PROFILE PHOTO ── -->
+        <div class="card">
+          <div class="card-title">Profile Photo</div>
+          <div class="card-sub">Upload your photo — it replaces the KN initials in the sidebar</div>
+          <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
+
+            <!-- Preview -->
+            <div style="flex-shrink:0;text-align:center">
+              <div id="photoPreviewWrap" style="width:90px;height:90px;border-radius:50%;border:2px solid var(--gold);padding:3px;overflow:hidden;margin-bottom:0.75rem">
+                <div id="photoPreview" style="width:100%;height:100%;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold)">KN</div>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.1em">PREVIEW</div>
+            </div>
+
+            <!-- Controls -->
+            <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.75rem">
+              <div>
+                <label for="photoUploadInput" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:var(--gold);color:var(--bg);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background 0.2s">
+                  📷 Upload Photo
+                </label>
+                <input type="file" id="photoUploadInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(this)"/>
+              </div>
+              <div style="font-size:0.78rem;color:var(--muted);line-height:1.6">
+                Supports JPG, PNG, WEBP. Recommended: square photo, at least 200×200px. Photo is stored locally on this device.
+              </div>
+              <div id="photoStatus" style="font-family:var(--font-mono);font-size:0.7rem;color:var(--green);display:none">✓ Photo saved</div>
+              <button class="btn btn-danger" onclick="removePhoto()" id="removePhotoBtn" style="display:none;width:fit-content">Remove Photo</button>
+            </div>
+          </div>
+        </div>
+
         <div class="card">
           <div class="card-title">Site Header — Browser Tab</div>
           <div class="card-sub">What appears in the browser tab and search engine results</div>
@@ -579,6 +610,53 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
           </div>
           <div class="field"><label class="field-label">Title Line 2</label>
             <input type="text" id="hf-title2" value="BI &amp; AI Engineering"/>
+          </div>
+          <!-- Name Color Pickers per theme -->
+          <div class="field">
+            <label class="field-label">Name Color <span class="optional">Per theme — fixes readability issues</span></label>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-top:0.4rem">
+              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
+                <span style="font-size:0.85rem">🌙</span>
+                <div style="flex:1">
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">DARK THEME</div>
+                  <div style="display:flex;align-items:center;gap:0.5rem">
+                    <input type="color" id="nc-dark" value="#ffffff" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('dark',this.value)"/>
+                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-dark-val">#ffffff</span>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
+                <span style="font-size:0.85rem">☀️</span>
+                <div style="flex:1">
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">LIGHT THEME</div>
+                  <div style="display:flex;align-items:center;gap:0.5rem">
+                    <input type="color" id="nc-light" value="#1a1f35" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('light',this.value)"/>
+                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-light-val">#1a1f35</span>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
+                <span style="font-size:0.85rem">🌊</span>
+                <div style="flex:1">
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">OCEAN THEME</div>
+                  <div style="display:flex;align-items:center;gap:0.5rem">
+                    <input type="color" id="nc-ocean" value="#e8f8f5" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('ocean',this.value)"/>
+                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-ocean-val">#e8f8f5</span>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
+                <span style="font-size:0.85rem">🌅</span>
+                <div style="flex:1">
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">SUNSET THEME</div>
+                  <div style="display:flex;align-items:center;gap:0.5rem">
+                    <input type="color" id="nc-sunset" value="#fdecea" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('sunset',this.value)"/>
+                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-sunset-val">#fdecea</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--muted)">💡 Default colors are already set correctly for each theme. Only change if you want a custom color.</div>
           </div>
           <div class="field-row">
             <div class="field"><label class="field-label">Availability Badge</label>
@@ -1178,6 +1256,65 @@ function toggleNav(id) {
 }
 
 // ── HEADER & FOOTER SAVE/LOAD ────────────────────────────────
+// ── PROFILE PHOTO ─────────────────────────────────────────────
+function handlePhotoUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  // Validate size (max 2MB)
+  if (file.size > 2 * 1024 * 1024) {
+    alert('Photo is too large. Please use an image under 2MB.');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const base64 = ev.target.result;
+    // Resize to max 300x300 to keep storage small
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const size = Math.min(img.width, img.height, 300);
+      canvas.width = size; canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      // Center-crop to square
+      const sx = (img.width - size) / 2;
+      const sy = (img.height - size) / 2;
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size/2, 0, Math.PI*2);
+      ctx.clip();
+      ctx.drawImage(img, sx, sy, size, size, 0, 0, size, size);
+      const compressed = canvas.toDataURL('image/jpeg', 0.85);
+      // Save to localStorage
+      localStorage.setItem('kn_profile_photo', compressed);
+      // Update preview
+      document.getElementById('photoPreview').innerHTML = `<img src="${compressed}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block"/>`;
+      document.getElementById('photoStatus').style.display = 'block';
+      document.getElementById('removePhotoBtn').style.display = 'inline-flex';
+      setTimeout(() => { document.getElementById('photoStatus').style.display = 'none'; }, 3000);
+    };
+    img.src = base64;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePhoto() {
+  if (!confirm('Remove profile photo? The KN initials will show instead.')) return;
+  localStorage.removeItem('kn_profile_photo');
+  document.getElementById('photoPreview').innerHTML = `<div style="width:100%;height:100%;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold)">KN</div>`;
+  document.getElementById('removePhotoBtn').style.display = 'none';
+}
+
+function loadPhotoPreview() {
+  const saved = localStorage.getItem('kn_profile_photo');
+  if (saved) {
+    document.getElementById('photoPreview').innerHTML = `<img src="${saved}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block"/>`;
+    document.getElementById('removePhotoBtn').style.display = 'inline-flex';
+  }
+}
+
+function previewNameColor(theme, val) {
+  document.getElementById('nc-'+theme+'-val').textContent = val;
+}
+
 function saveHeaderFooter() {
   DATA.hf = {
     pageTitle:     document.getElementById('hf-pageTitle')?.value,
@@ -1196,10 +1333,17 @@ function saveHeaderFooter() {
     github:        document.getElementById('hf-github')?.value,
     email:         document.getElementById('hf-email')?.value,
     phone:         document.getElementById('hf-phone')?.value,
+    nameColors: {
+      dark:   document.getElementById('nc-dark')?.value   || '#ffffff',
+      light:  document.getElementById('nc-light')?.value  || '#1a1f35',
+      ocean:  document.getElementById('nc-ocean')?.value  || '#e8f8f5',
+      sunset: document.getElementById('nc-sunset')?.value || '#fdecea',
+    }
   };
   DATA.defaultTheme = document.getElementById('defaultTheme')?.value || 'dark';
 }
 function loadHeaderFooter() {
+  loadPhotoPreview();
   const hf = DATA.hf || {};
   const sv = (id,v) => { const el=document.getElementById(id); if(el&&v) el.value=v; };
   sv('hf-pageTitle', hf.pageTitle); sv('hf-metaDesc', hf.metaDesc);
@@ -1211,6 +1355,18 @@ function loadHeaderFooter() {
   sv('hf-email', hf.email);         sv('hf-phone', hf.phone);
   if(hf.badgeVisible === false)  { const el=document.getElementById('badgeOff');  if(el) el.checked=true; }
   if(hf.footerVisible === false) { const el=document.getElementById('footerOff'); if(el) el.checked=true; }
+  // Load name colors
+  const nc = hf.nameColors || {};
+  const setColor = (id, val) => {
+    const el = document.getElementById(id);
+    const valEl = document.getElementById(id+'-val');
+    if(el && val) { el.value = val; }
+    if(valEl && val) { valEl.textContent = val; }
+  };
+  setColor('nc-dark',   nc.dark   || '#ffffff');
+  setColor('nc-light',  nc.light  || '#1a1f35');
+  setColor('nc-ocean',  nc.ocean  || '#e8f8f5');
+  setColor('nc-sunset', nc.sunset || '#fdecea');
   renderThemeToggles();
   renderNavToggles();
 }
