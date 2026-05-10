@@ -865,6 +865,20 @@ document.addEventListener('keydown', e => {
   if (_sb === 'knadmin') { window.location.href = '/dashboard-kn.html'; _sb = ''; }
 });
 
+// ── Mobile: triple tap name OR footer to open admin ──────────
+let _taps = 0, _tapTimer;
+function handleSecretTap() {
+  _taps++;
+  clearTimeout(_tapTimer);
+  if (_taps >= 3) {
+    _taps = 0;
+    window.location.href = '/dashboard-kn.html';
+  }
+  _tapTimer = setTimeout(() => { _taps = 0; }, 1500);
+}
+document.querySelector('.l-name')?.addEventListener('click', handleSecretTap);
+document.querySelector('.footer')?.addEventListener('click', handleSecretTap);
+
 // ── THEME SWITCHER ────────────────────────────────────────────
 const THEMES = {
   dark:   { emoji:'🌙', label:'Dark'   },
