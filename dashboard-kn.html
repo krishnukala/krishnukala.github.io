@@ -348,6 +348,10 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
       </a>
 
       <div class="nav-section-label">Appearance</div>
+      <a onclick="showPanel('headerfooter')" id="nav-headerfooter">
+        <svg viewBox="0 0 24 24"><path d="M4 5h16v2H4zm0 12h16v2H4zm0-6h16v2H4z"/></svg>
+        Header & Footer
+      </a>
       <a onclick="showPanel('theme')" id="nav-theme">
         <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
         Theme & Colors
@@ -406,6 +410,7 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
             <button class="btn btn-secondary" onclick="showPanel('projects')">Add Project</button>
             <button class="btn btn-secondary" onclick="showPanel('certifications')">Update Certs</button>
             <button class="btn btn-secondary" onclick="showPanel('theme')">Change Colors</button>
+            <button class="btn btn-secondary" onclick="importData()">📥 Import Data</button>
             <button class="btn btn-primary" onclick="exportSite()">Export & Download</button>
           </div>
         </div>
@@ -543,14 +548,147 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
       </div>
     </div>
 
+    <!-- ── HEADER & FOOTER ── -->
+    <div class="admin-content" id="panel-headerfooter">
+      <div style="padding:2rem">
+
+        <div class="card">
+          <div class="card-title">Site Header — Browser Tab</div>
+          <div class="card-sub">What appears in the browser tab and search engine results</div>
+          <div class="field"><label class="field-label">Page Title <span class="optional">Shows in browser tab</span></label>
+            <input type="text" id="hf-pageTitle" value="Krish Nukala — BI &amp; AI Engineer"/>
+          </div>
+          <div class="field"><label class="field-label">Meta Description <span class="optional">Shows in Google search results</span></label>
+            <textarea id="hf-metaDesc" style="min-height:55px">Sr. Application Engineer specializing in Business Intelligence and AI Engineering. 9+ years healthcare IT experience.</textarea>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Profile Header — Left Sidebar</div>
+          <div class="card-sub">The name, title and badge shown at the top of your sidebar</div>
+          <div class="field-row">
+            <div class="field"><label class="field-label">First Name</label>
+              <input type="text" id="hf-firstName" value="Krish"/>
+            </div>
+            <div class="field"><label class="field-label">Last Name</label>
+              <input type="text" id="hf-lastName" value="Nukala"/>
+            </div>
+          </div>
+          <div class="field"><label class="field-label">Title Line 1</label>
+            <input type="text" id="hf-title1" value="Sr. Application Engineer"/>
+          </div>
+          <div class="field"><label class="field-label">Title Line 2</label>
+            <input type="text" id="hf-title2" value="BI &amp; AI Engineering"/>
+          </div>
+          <div class="field-row">
+            <div class="field"><label class="field-label">Availability Badge</label>
+              <input type="text" id="hf-badge" value="Open to Work"/>
+            </div>
+            <div class="field"><label class="field-label">Location</label>
+              <input type="text" id="hf-location" value="Nashville, TN"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Badge Visibility</label>
+            <div style="display:flex;gap:0.75rem;margin-top:0.3rem">
+              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
+                <input type="radio" name="badgeVisible" id="badgeOn" value="on" checked style="accent-color:var(--gold)"/> Show badge
+              </label>
+              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
+                <input type="radio" name="badgeVisible" id="badgeOff" value="off" style="accent-color:var(--gold)"/> Hide badge
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Navigation Links</div>
+          <div class="card-sub">Show or hide sections in the left sidebar navigation</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem" id="navToggles">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Footer</div>
+          <div class="card-sub">Text shown at the very bottom of your portfolio</div>
+          <div class="field"><label class="field-label">Footer Line 1</label>
+            <input type="text" id="hf-footer1" value="Designed &amp; built by Krish Nukala · Inspired by Brittany Chiang"/>
+          </div>
+          <div class="field"><label class="field-label">Footer Line 2</label>
+            <input type="text" id="hf-footer2" value="Built with HTML · CSS · Vanilla JS · Hosted on GitHub Pages · AI powered by Anthropic Claude"/>
+          </div>
+          <div class="field">
+            <label class="field-label">Footer Visibility</label>
+            <div style="display:flex;gap:0.75rem;margin-top:0.3rem">
+              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
+                <input type="radio" name="footerVisible" id="footerOn" value="on" checked style="accent-color:var(--gold)"/> Show footer
+              </label>
+              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
+                <input type="radio" name="footerVisible" id="footerOff" value="off" style="accent-color:var(--gold)"/> Hide footer
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Social Links</div>
+          <div class="card-sub">Links shown as icons at the bottom of the sidebar</div>
+          <div class="field"><label class="field-label">LinkedIn URL</label>
+            <input type="url" id="hf-linkedin" value="https://www.linkedin.com/in/vamshinukala"/>
+          </div>
+          <div class="field"><label class="field-label">GitHub URL</label>
+            <input type="url" id="hf-github" value="https://github.com/krishnukala"/>
+          </div>
+          <div class="field"><label class="field-label">Email</label>
+            <input type="email" id="hf-email" value="vamshinukala@gmail.com"/>
+          </div>
+          <div class="field"><label class="field-label">Phone <span class="optional">Shown in contact section</span></label>
+            <input type="tel" id="hf-phone" value="(203) 543-2452"/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ── THEME ── -->
     <div class="admin-content" id="panel-theme">
       <div style="padding:2rem">
+
         <div class="card">
-          <div class="card-title">Color Palette</div>
-          <div class="card-sub">Click any color to change it. Changes preview instantly on export.</div>
+          <div class="card-title">Theme Switcher — Enable / Disable</div>
+          <div class="card-sub">Control which themes visitors can choose on your portfolio. At least one must stay enabled.</div>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.25rem" id="themeToggles">
+            <!-- Rendered by JS -->
+          </div>
+          <div class="field">
+            <label class="field-label">Default Theme <span class="optional">What visitors see on first load</span></label>
+            <select id="defaultTheme" style="background:var(--bg3);border:1px solid var(--border);color:var(--white);padding:0.6rem 0.85rem;width:100%;outline:none">
+              <option value="dark">🌙 Dark (Navy & Gold)</option>
+              <option value="light">☀️ Light (Clean White)</option>
+              <option value="ocean">🌊 Ocean (Deep Teal)</option>
+              <option value="sunset">🌅 Sunset (Dark Red)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Custom Color Palette</div>
+          <div class="card-sub">Fine-tune the Dark theme colors. Click any swatch to change it.</div>
           <div class="theme-grid" id="colorGrid"></div>
         </div>
+
+        <div class="card">
+          <div class="card-title">Quick Preset Themes</div>
+          <div class="card-sub">One-click presets to reset the Dark theme colors</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+            <button class="btn btn-secondary" onclick="applyPreset('gold')">🌟 Gold & Dark</button>
+            <button class="btn btn-secondary" onclick="applyPreset('teal')">🌊 Teal & Navy</button>
+            <button class="btn btn-secondary" onclick="applyPreset('purple')">💜 Purple & Dark</button>
+            <button class="btn btn-secondary" onclick="applyPreset('green')">🌿 Green & Dark</button>
+          </div>
+        </div>
+
         <div class="card">
           <div class="card-title">Typography</div>
           <div class="card-sub">Choose your heading font style</div>
@@ -569,16 +707,7 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-title">Preset Themes</div>
-          <div class="card-sub">One-click theme presets</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-            <button class="btn btn-secondary" onclick="applyPreset('gold')">🌟 Gold & Dark (Current)</button>
-            <button class="btn btn-secondary" onclick="applyPreset('teal')">🌊 Teal & Navy</button>
-            <button class="btn btn-secondary" onclick="applyPreset('purple')">💜 Purple & Dark</button>
-            <button class="btn btn-secondary" onclick="applyPreset('green')">🌿 Green & Dark</button>
-          </div>
-        </div>
+
       </div>
     </div>
 
@@ -610,8 +739,14 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
           <div class="card-title">Data Management</div>
           <div class="card-sub">Import or reset your admin data</div>
           <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
-            <button class="btn btn-secondary" onclick="exportData()">Export Data (JSON)</button>
+            <button class="btn btn-secondary" onclick="exportData()">📤 Export Data (JSON)</button>
+            <button class="btn btn-secondary" onclick="importData()">📥 Import Data (JSON)</button>
             <button class="btn btn-danger" onclick="resetData()">Reset to Defaults</button>
+          </div>
+          <div style="margin-top:1rem;font-size:0.78rem;color:var(--muted);line-height:1.7;padding:0.75rem;background:var(--bg3);border:1px solid var(--border)">
+            💡 <strong style="color:var(--white)">Using on multiple devices?</strong><br/>
+            Export your data as JSON on your main computer → save the file → Import it on any other device or browser. 
+            Your data stays in sync this way. The admin panel saves data locally per device.
           </div>
         </div>
       </div>
@@ -758,8 +893,23 @@ const DEFAULT_DATA = {
 let DATA = {};
 
 function loadData() {
-  const saved = localStorage.getItem('kn_admin_data');
-  DATA = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_DATA));
+  try {
+    const saved = localStorage.getItem('kn_admin_data');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Merge with defaults to ensure all keys exist
+      DATA = {
+        ...JSON.parse(JSON.stringify(DEFAULT_DATA)),
+        ...parsed
+      };
+    } else {
+      DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+      // Auto-save defaults so they persist
+      localStorage.setItem('kn_admin_data', JSON.stringify(DATA));
+    }
+  } catch(e) {
+    DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  }
 }
 
 function saveData() {
@@ -771,6 +921,29 @@ function showToast() {
   const t = document.getElementById('saveToast');
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function importData() {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = '.json';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const imported = JSON.parse(ev.target.result);
+        DATA = { ...JSON.parse(JSON.stringify(DEFAULT_DATA)), ...imported };
+        saveData();
+        initAdmin();
+        alert('✅ Data imported successfully! Your content is now loaded.');
+      } catch(err) {
+        alert('❌ Invalid file. Please use a JSON file exported from this admin panel.');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
 }
 
 // ── EXPERIENCE LIST ───────────────────────────
@@ -936,6 +1109,112 @@ function renderPubs() {
 function addPub() { DATA.publications.push({title:'Publication Title',journal:'Journal Name',year:'2026',org:'Organization',desc:'Description of the research.',link:''}); renderPubs(); }
 function delPub(i) { if(confirm('Delete this publication?')){ DATA.publications.splice(i,1); renderPubs(); } }
 
+function delPub(i) { if(confirm('Delete this publication?')){ DATA.publications.splice(i,1); renderPubs(); } }
+
+// ── THEME ENABLE/DISABLE TOGGLES ──────────────────────────────
+const ALL_THEMES = [
+  { id:'dark',   emoji:'🌙', label:'Dark',   desc:'Navy & Gold — Professional default' },
+  { id:'light',  emoji:'☀️', label:'Light',  desc:'Clean white — Easy on the eyes' },
+  { id:'ocean',  emoji:'🌊', label:'Ocean',  desc:'Deep teal — Calm & distinctive' },
+  { id:'sunset', emoji:'🌅', label:'Sunset', desc:'Dark red — Bold & creative' },
+];
+function renderThemeToggles() {
+  const enabled = DATA.enabledThemes || ['dark','light','ocean','sunset'];
+  const c = document.getElementById('themeToggles'); if(!c) return;
+  c.innerHTML = ALL_THEMES.map(t => {
+    const on = enabled.includes(t.id);
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:var(--bg3);border:1px solid ${on?'var(--border-gold)':'var(--border)'};transition:all 0.2s">
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <span style="font-size:1.2rem">${t.emoji}</span>
+        <div><div style="font-family:var(--font-head);font-size:0.88rem;font-weight:600;color:var(--white)">${t.label}</div>
+        <div style="font-size:0.72rem;color:var(--muted)">${t.desc}</div></div>
+      </div>
+      <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer">
+        <span style="font-family:var(--font-mono);font-size:0.6rem;color:${on?'var(--gold)':'var(--muted)'};letter-spacing:0.1em;text-transform:uppercase">${on?'On':'Off'}</span>
+        <div onclick="toggleThemeOpt('${t.id}')" style="width:38px;height:20px;border-radius:10px;background:${on?'var(--gold)':'var(--dim)'};cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0">
+          <div style="position:absolute;top:2px;left:${on?'20px':'2px'};width:16px;height:16px;border-radius:50%;background:#fff;transition:left 0.3s;pointer-events:none"></div>
+        </div>
+      </label>
+    </div>`;
+  }).join('');
+  const def = document.getElementById('defaultTheme');
+  if(def) def.value = DATA.defaultTheme || 'dark';
+}
+function toggleThemeOpt(id) {
+  if(!DATA.enabledThemes) DATA.enabledThemes = ['dark','light','ocean','sunset'];
+  const idx = DATA.enabledThemes.indexOf(id);
+  if(idx >= 0) {
+    if(DATA.enabledThemes.length <= 1){ alert('At least one theme must stay enabled.'); return; }
+    DATA.enabledThemes.splice(idx,1);
+  } else { DATA.enabledThemes.push(id); }
+  renderThemeToggles();
+}
+
+// ── NAV SECTION TOGGLES ───────────────────────────────────────
+const NAV_SECTIONS = [
+  {id:'about',label:'About'},{id:'experience',label:'Experience'},
+  {id:'skills',label:'Skills'},{id:'projects',label:'Projects'},
+  {id:'publications',label:'Publications'},{id:'certifications',label:'Certifications'},
+  {id:'ai-assistant',label:'AI Assistant'},{id:'contact',label:'Contact'},
+];
+function renderNavToggles() {
+  const hidden = DATA.hiddenSections || [];
+  const c = document.getElementById('navToggles'); if(!c) return;
+  c.innerHTML = NAV_SECTIONS.map(s => {
+    const on = !hidden.includes(s.id);
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.85rem;background:var(--bg3);border:1px solid ${on?'var(--border-gold)':'var(--border)'}">
+      <span style="font-size:0.82rem;color:${on?'var(--white)':'var(--muted)'}">${s.label}</span>
+      <div onclick="toggleNav('${s.id}')" style="width:34px;height:18px;border-radius:9px;background:${on?'var(--gold)':'var(--dim)'};cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0">
+        <div style="position:absolute;top:2px;left:${on?'16px':'2px'};width:14px;height:14px;border-radius:50%;background:#fff;transition:left 0.3s;pointer-events:none"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function toggleNav(id) {
+  if(!DATA.hiddenSections) DATA.hiddenSections = [];
+  const idx = DATA.hiddenSections.indexOf(id);
+  if(idx >= 0) DATA.hiddenSections.splice(idx,1); else DATA.hiddenSections.push(id);
+  renderNavToggles();
+}
+
+// ── HEADER & FOOTER SAVE/LOAD ────────────────────────────────
+function saveHeaderFooter() {
+  DATA.hf = {
+    pageTitle:     document.getElementById('hf-pageTitle')?.value,
+    metaDesc:      document.getElementById('hf-metaDesc')?.value,
+    firstName:     document.getElementById('hf-firstName')?.value,
+    lastName:      document.getElementById('hf-lastName')?.value,
+    title1:        document.getElementById('hf-title1')?.value,
+    title2:        document.getElementById('hf-title2')?.value,
+    badge:         document.getElementById('hf-badge')?.value,
+    location:      document.getElementById('hf-location')?.value,
+    badgeVisible:  document.getElementById('badgeOn')?.checked !== false,
+    footer1:       document.getElementById('hf-footer1')?.value,
+    footer2:       document.getElementById('hf-footer2')?.value,
+    footerVisible: document.getElementById('footerOn')?.checked !== false,
+    linkedin:      document.getElementById('hf-linkedin')?.value,
+    github:        document.getElementById('hf-github')?.value,
+    email:         document.getElementById('hf-email')?.value,
+    phone:         document.getElementById('hf-phone')?.value,
+  };
+  DATA.defaultTheme = document.getElementById('defaultTheme')?.value || 'dark';
+}
+function loadHeaderFooter() {
+  const hf = DATA.hf || {};
+  const sv = (id,v) => { const el=document.getElementById(id); if(el&&v) el.value=v; };
+  sv('hf-pageTitle', hf.pageTitle); sv('hf-metaDesc', hf.metaDesc);
+  sv('hf-firstName', hf.firstName); sv('hf-lastName', hf.lastName);
+  sv('hf-title1', hf.title1);      sv('hf-title2', hf.title2);
+  sv('hf-badge', hf.badge);         sv('hf-location', hf.location);
+  sv('hf-footer1', hf.footer1);     sv('hf-footer2', hf.footer2);
+  sv('hf-linkedin', hf.linkedin);   sv('hf-github', hf.github);
+  sv('hf-email', hf.email);         sv('hf-phone', hf.phone);
+  if(hf.badgeVisible === false)  { const el=document.getElementById('badgeOff');  if(el) el.checked=true; }
+  if(hf.footerVisible === false) { const el=document.getElementById('footerOff'); if(el) el.checked=true; }
+  renderThemeToggles();
+  renderNavToggles();
+}
+
 // ── THEME ─────────────────────────────────────
 const COLORS = [
   {key:'gold',label:'Accent Color',desc:'Gold highlights'},
@@ -1000,6 +1279,7 @@ function saveAll() {
   };
   const apiKey = document.getElementById('apiKey')?.value;
   if (apiKey) DATA.apiKey = apiKey;
+  saveHeaderFooter();
   saveData();
 }
 
@@ -1377,6 +1657,7 @@ function initAdmin() {
   renderCerts();
   renderPubs();
   renderColors();
+  loadHeaderFooter();
   // Fill about fields
   const a = DATA.about || {};
   const fields = {firstName:'Krish',lastName:'Nukala',fullName:'Vamshi (Krish) Nukala',titleLine1:'Sr. Application Engineer',titleLine2:'BI & AI Engineering',location:'Brentwood, TN',availBadge:'Open to Work',bio1:'',bio2:'',bio3:'',bio4:'',sidebarBio:''};
