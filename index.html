@@ -856,6 +856,15 @@ navLinks.forEach(a => a.addEventListener('click', e => {
   document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
 }));
 
+// ── Secret admin shortcut: type "knadmin" anywhere on page ──
+let _sb = '';
+document.addEventListener('keydown', e => {
+  if (['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
+  _sb += e.key.toLowerCase();
+  if (_sb.length > 7) _sb = _sb.slice(-7);
+  if (_sb === 'knadmin') { window.location.href = '/dashboard-kn.html'; _sb = ''; }
+});
+
 // ── THEME SWITCHER ────────────────────────────────────────────
 const THEMES = {
   dark:   { emoji:'🌙', label:'Dark'   },
