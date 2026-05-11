@@ -357,8 +357,10 @@ section{margin-bottom:5.5rem;scroll-margin-top:5rem}
 </div>
 
 <script>
-// ── CONFIG ─────────────────────────────────────────────────
-const API_KEY = 'YOUR_API_KEY_HERE';
+// ── CONFIG — Google Gemini (Free) ──────────────────────────
+// Get your FREE key at: aistudio.google.com → Get API Key
+const GEMINI_KEY = 'YOUR_GEMINI_KEY_HERE';
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 const STORAGE_KEY = 'kn_site_data';
 
 // ── DEFAULT DATA ───────────────────────────────────────────
@@ -538,16 +540,32 @@ function rmTyping(){document.getElementById('typing')?.remove();}
 
 async function sendMsg(){
   const txt=chatInp.value.trim();if(!txt)return;
-  const key=D.apiKey||API_KEY;
-  if(key==='YOUR_API_KEY_HERE'){addMsg('assistant','⚠️ AI key not set. Add it in Admin → Settings.');return;}
+  const key=D.apiKey||GEMINI_KEY;
+  if(key==='YOUR_GEMINI_KEY_HERE'){
+    addMsg('assistant','⚠️ Add your free Gemini API key. Get one free at aistudio.google.com');
+    return;
+  }
   chatInp.value='';sendBtn.disabled=true;
-  addMsg('user',txt);hist.push({role:'user',content:txt});addTyping();
+  addMsg('user',txt);hist.push({role:'user',parts:[{text:txt}]});addTyping();
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,system:SYS,messages:hist})});
+    const res=await fetch(`${GEMINI_URL}?key=${key}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        system_instruction:{parts:[{text:SYS}]},
+        contents:hist,
+        generationConfig:{maxOutputTokens:400,temperature:0.7}
+      })
+    });
     const data=await res.json();
-    const reply=data.content?.[0]?.text||'Connection issue. Please try again.';
-    rmTyping();hist.push({role:'assistant',content:reply});addMsg('assistant',reply);
-  }catch{rmTyping();addMsg('assistant','Connection error. Please email vamshinukala@gmail.com directly.');}
+    const reply=data.candidates?.[0]?.content?.parts?.[0]?.text||'Connection issue. Please try again.';
+    rmTyping();
+    hist.push({role:'model',parts:[{text:reply}]});
+    addMsg('assistant',reply);
+  }catch{
+    rmTyping();
+    addMsg('assistant','Connection error. Please email vamshinukala@gmail.com directly.');
+  }
   sendBtn.disabled=false;chatInp.focus();
 }
 function sendSugg(btn){chatInp.value=btn.textContent;sendMsg();}
