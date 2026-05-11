@@ -540,7 +540,7 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
           <div class="field"><label class="field-label">Email Address</label><input type="email" id="contactEmail" value="vamshinukala@gmail.com"/></div>
           <div class="field"><label class="field-label">Phone Number</label><input type="tel" id="contactPhone" value="(203) 543-2452"/></div>
           <div class="field"><label class="field-label">Location</label><input type="text" id="contactLocation" value="Brentwood, TN 37027"/></div>
-          <div class="field"><label class="field-label">LinkedIn URL</label><input type="url" id="contactLinkedIn" value="https://www.linkedin.com/in/vamshinukala"/></div>
+          <div class="field"><label class="field-label">LinkedIn URL</label><input type="url" id="contactLinkedIn" value="https://www.linkedin.com/in/krish-nukala-8bb5b729"/></div>
           <div class="field"><label class="field-label">GitHub URL</label><input type="url" id="contactGitHub" value="https://github.com/krishnukala"/></div>
           <div class="field"><label class="field-label">Contact Section Heading <span class="optional">e.g. "Let's work together."</span></label><input type="text" id="contactHeading" value="Let's work together."/></div>
           <div class="field"><label class="field-label">Contact Intro Text</label><textarea id="contactText">I'm currently open to Sr. BI Engineer, AI Application Engineer, and Data Engineering roles. I-140 approved — H-1B transfer only, no lottery needed. If you have an opportunity or want to connect, I'd love to hear from you.</textarea></div>
@@ -713,7 +713,7 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
           <div class="card-title">Social Links</div>
           <div class="card-sub">Links shown as icons at the bottom of the sidebar</div>
           <div class="field"><label class="field-label">LinkedIn URL</label>
-            <input type="url" id="hf-linkedin" value="https://www.linkedin.com/in/vamshinukala"/>
+            <input type="url" id="hf-linkedin" value="https://www.linkedin.com/in/krish-nukala-8bb5b729"/>
           </div>
           <div class="field"><label class="field-label">GitHub URL</label>
             <input type="url" id="hf-github" value="https://github.com/krishnukala"/>
@@ -1110,24 +1110,25 @@ function renderSkills() {
       <div class="list-item-header">
         <div class="list-item-title">${g.group}</div>
         <div class="list-item-actions">
-          <button class="icon-btn del" onclick="delSkillGroup(${i})"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
+          <button class="icon-btn del" onclick="delSkillGroup(${i})" title="Delete group"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
         </div>
       </div>
-      <div class="field"><label class="field-label">Group Name</label><input type="text" value="${g.group}" oninput="DATA.skills[${i}].group=this.value"/></div>
-      <div class="field"><label class="field-label">Skills <span class="optional">Press Enter to add</span></label>
-        <div class="tags-input-wrap">
-          ${g.items.map((s,si)=>`<span class="tag-chip">${s}<button onclick="delSkillItem(${i},${si})">×</button></span>`).join('')}
-          <input type="text" placeholder="Add skill..." onkeydown="addSkillItem(event,${i})"/>
-        </div>
+      <div class="field">
+        <label class="field-label">Group Name</label>
+        <input type="text" value="${g.group}" oninput="DATA.skills[${i}].group=this.value"/>
       </div>
-    </div>
-  `).join('');
+      <div class="field">
+        <label class="field-label">Skills <span class="optional">One per line — just paste or type them in</span></label>
+        <textarea rows="6" style="resize:vertical" oninput="DATA.skills[${i}].items=this.value.split('\\n').map(s=>s.trim()).filter(s=>s)">${g.items.join('\n')}</textarea>
+      </div>
+    </div>`).join('');
   document.getElementById('stat-skills').textContent = DATA.skills.length;
 }
-function addSkillGroup() { DATA.skills.push({group:'New Group',items:[]}); renderSkills(); }
+function addSkillGroup() {
+  DATA.skills.push({group:'New Skill Group',items:['Skill 1','Skill 2','Skill 3']});
+  renderSkills();
+}
 function delSkillGroup(i) { if(confirm('Delete this skill group?')){ DATA.skills.splice(i,1); renderSkills(); } }
-function addSkillItem(e,i) { if(e.key==='Enter'&&e.target.value.trim()){DATA.skills[i].items.push(e.target.value.trim());renderSkills();} }
-function delSkillItem(i,si) { DATA.skills[i].items.splice(si,1); renderSkills(); }
 
 // ── CERTIFICATIONS ────────────────────────────
 function renderCerts() {
@@ -1180,7 +1181,14 @@ function renderPubs() {
       </div>
       <div class="field"><label class="field-label">Organization</label><input type="text" value="${p.org}" oninput="DATA.publications[${i}].org=this.value"/></div>
       <div class="field"><label class="field-label">Description</label><textarea oninput="DATA.publications[${i}].desc=this.value">${p.desc}</textarea></div>
-      <div class="field"><label class="field-label">Link / DOI</label><input type="url" value="${p.link}" oninput="DATA.publications[${i}].link=this.value"/></div>
+      <div class="field"><label class="field-label">Online URL <span class="optional">Link to journal/website</span></label><input type="url" value="${p.link||''}" placeholder="https://..." oninput="DATA.publications[${i}].link=this.value"/></div>
+      <div class="field">
+        <label class="field-label">PDF Filename <span class="optional">Upload PDF to GitHub repo, then enter filename here</span></label>
+        <input type="text" value="${p.pdfFile||''}" placeholder="e.g. syndromic-surveillance-paper.pdf" oninput="DATA.publications[${i}].pdfFile=this.value"/>
+        <div style="margin-top:0.4rem;font-size:0.75rem;color:var(--muted)">
+          📋 How: Upload your PDF to GitHub → Add file → Upload → name it something simple. Then type that filename here. Both URL and PDF buttons will show on your site.
+        </div>
+      </div>
     </div>
   `).join('');
 }
