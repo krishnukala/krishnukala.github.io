@@ -809,9 +809,28 @@ input[type=color]{opacity:0;position:absolute;width:0;height:0}
         </div>
         <div class="card">
           <div class="card-title">AI Assistant</div>
-          <div class="card-sub">Configure the portfolio chatbot</div>
-          <div class="field"><label class="field-label">Google Gemini API Key <span class="optional">Free at aistudio.google.com</span></label><input type="password" id="apiKey" placeholder="AIzaSy..."/></div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:0.25rem">Get a <strong style="color:var(--white)">100% free</strong> key at <a href="https://aistudio.google.com" target="_blank" style="color:var(--gold)">aistudio.google.com</a> → Get API Key. No credit card needed. 1,500 free requests/day.</div>
+          <div class="card-sub">Floating chat bubble that lets visitors ask questions about you</div>
+
+          <!-- Enable / Disable Toggle -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem;background:var(--bg3);border:1px solid var(--border);margin-bottom:1rem">
+            <div>
+              <div style="font-family:var(--font-head);font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:0.2rem">Enable AI Chat Bubble</div>
+              <div style="font-size:0.78rem;color:var(--muted)">Shows a floating chat icon on your portfolio. Disabled by default.</div>
+            </div>
+            <div onclick="toggleAI()" id="aiToggleTrack" style="width:46px;height:24px;border-radius:12px;background:var(--dim);cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0;margin-left:1rem">
+              <div id="aiToggleThumb" style="position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left 0.3s"></div>
+            </div>
+          </div>
+          <div id="aiConfigSection" style="display:none">
+            <div class="field">
+              <label class="field-label">Cloudflare Worker Proxy URL <span class="optional">Keeps your API key hidden</span></label>
+              <input type="url" id="proxyUrl" placeholder="https://krish-ai-proxy.YOUR-NAME.workers.dev"/>
+              <div style="font-size:0.75rem;color:var(--muted);margin-top:0.4rem">
+                Set up a free Cloudflare Worker proxy to keep your API key secure. 
+                See setup guide: <a href="https://workers.cloudflare.com" target="_blank" style="color:var(--gold)">workers.cloudflare.com</a>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card">
           <div class="card-title">Data Management</div>
@@ -1417,6 +1436,27 @@ const PRESETS = {
 function applyPreset(name) { DATA.theme = {...PRESETS[name]}; renderColors(); showToast(); }
 
 // ── SAVE ALL ──────────────────────────────────
+// ── AI TOGGLE ─────────────────────────────────────────────────
+function toggleAI() {
+  DATA.aiEnabled = !DATA.aiEnabled;
+  updateAIToggleUI();
+}
+function updateAIToggleUI() {
+  var track = document.getElementById('aiToggleTrack');
+  var thumb = document.getElementById('aiToggleThumb');
+  var config = document.getElementById('aiConfigSection');
+  if (!track) return;
+  if (DATA.aiEnabled) {
+    track.style.background = 'var(--gold)';
+    thumb.style.left = '24px';
+    if(config) config.style.display = 'block';
+  } else {
+    track.style.background = 'var(--dim)';
+    thumb.style.left = '2px';
+    if(config) config.style.display = 'none';
+  }
+}
+
 function saveAll() {
   DATA.about = {
     firstName: document.getElementById('firstName')?.value || 'Krish',
@@ -1443,6 +1483,10 @@ function saveAll() {
   };
   const apiKey = document.getElementById('apiKey')?.value;
   if (apiKey) DATA.apiKey = apiKey;
+  // AI Assistant
+  const proxyUrl = document.getElementById('proxyUrl')?.value;
+  if (proxyUrl !== undefined) DATA.proxyUrl = proxyUrl;
+  // aiEnabled already set by toggleAI()
   saveHeaderFooter();
   saveData();
 }
@@ -1824,12 +1868,23 @@ function initAdmin() {
   loadHeaderFooter();
   // Fill about fields
   const a = DATA.about || {};
-  const fields = {firstName:'Krish',lastName:'Nukala',fullName:'Vamshi (Krish) Nukala',titleLine1:'Sr. Application Engineer',titleLine2:'BI & AI Engineering',location:'Brentwood, TN',availBadge:'Open to Work',bio1:'',bio2:'',bio3:'',bio4:'',sidebarBio:''};
+  const fields = {firstName:'Krish',lastName:'Nukala',fullName:'Vamshi (Krish) Nukala',titleLine1:'Sr. Application Engineer',titleLine2:'BI & AI Engineering',location:'Nashville, TN',availBadge:'Open to Work',bio1:'',bio2:'',bio3:'',bio4:'',sidebarBio:''};
   Object.keys(fields).forEach(k => { const el = document.getElementById(k); if(el) el.value = a[k] || el.value || fields[k]; });
   const c = DATA.contact || {};
-  const cFields = {contactEmail:'vamshinukala@gmail.com',contactPhone:'(203) 543-2452',contactLocation:'Brentwood, TN 37027',contactLinkedIn:'https://www.linkedin.com/in/vamshinukala',contactGitHub:'https://github.com/krishnukala',contactHeading:"Let's work together.",contactText:''};
+  const cFields = {contactEmail:'vamshinukala@gmail.com',contactPhone:'(203) 543-2452',contactLocation:'Nashville, TN 37027',contactLinkedIn:'https://www.linkedin.com/in/krish-nukala-8bb5b729',contactGitHub:'https://github.com/krishnukala',contactHeading:"Let's work together.",contactText:''};
   Object.keys(cFields).forEach(k => { const el = document.getElementById(k); if(el) el.value = c[k.replace('contact','').toLowerCase()] || c[k] || el.value || cFields[k]; });
   if(DATA.apiKey) { const ak = document.getElementById('apiKey'); if(ak) ak.value = DATA.apiKey; }
+  // AI Assistant toggle
+  if(DATA.aiEnabled === undefined) DATA.aiEnabled = false;
+  updateAIToggleUI();
+  // Proxy URL
+  const pu = document.getElementById('proxyUrl');
+  if(pu && DATA.proxyUrl) pu.value = DATA.proxyUrl;
+  // Update stats
+  document.getElementById('stat-exp').textContent = DATA.experience ? DATA.experience.length : 4;
+  document.getElementById('stat-proj').textContent = DATA.projects ? DATA.projects.length : 4;
+  document.getElementById('stat-skills').textContent = DATA.skills ? DATA.skills.length : 6;
+  document.getElementById('stat-certs').textContent = DATA.certifications ? DATA.certifications.length : 6;
 }
 
 // ── Enter key on login ────────────────────────

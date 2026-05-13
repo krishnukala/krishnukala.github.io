@@ -22,162 +22,64 @@ a{color:inherit;text-decoration:none}
 ::selection{background:rgba(230,168,23,0.2)}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--dim)}
 
-/* ── THEME BAR — top right fixed ── */
-.theme-bar{
-  position:fixed;top:1.25rem;right:1.5rem;z-index:200;
-  display:flex;align-items:center;gap:0.35rem;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  padding:0.3rem 0.4rem;
-  box-shadow:0 4px 20px rgba(0,0,0,0.25);
-  transition:background .4s,border-color .4s;
-}
-.th-pill{
-  display:flex;align-items:center;justify-content:center;
-  width:28px;height:28px;
-  border-radius:2px;
-  border:1px solid transparent;
-  cursor:pointer;font-size:0.85rem;
-  transition:all .2s ease;
-  background:transparent;
-}
+/* ── THEME BAR top-right ── */
+.theme-bar{position:fixed;top:1.25rem;right:1.5rem;z-index:200;display:flex;align-items:center;gap:0.35rem;background:var(--bg2);border:1px solid var(--border);padding:0.3rem 0.4rem;box-shadow:0 4px 20px rgba(0,0,0,0.25);transition:background .4s,border-color .4s}
+.th-pill{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:2px;border:1px solid transparent;cursor:pointer;font-size:0.85rem;transition:all .2s;background:transparent;touch-action:manipulation}
 .th-pill:hover{background:var(--glt);border-color:var(--border)}
 .th-pill.active{background:var(--glt);border-color:var(--gold)}
-.th-pill title{display:none}
 
-/* ── AI CHAT BUBBLE — floating bottom right ── */
-.chat-bubble{
-  position:fixed;bottom:1.75rem;right:1.75rem;z-index:300;
-}
-.chat-bubble-btn{
-  width:52px;height:52px;border-radius:50%;
-  background:var(--gold);
-  border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 24px rgba(230,168,23,0.4);
-  transition:all .3s ease;
-  position:relative;
-}
+/* ── AI CHAT BUBBLE bottom-right ── */
+.chat-bubble{position:fixed;bottom:1.75rem;right:1.75rem;z-index:300}
+.chat-bubble-btn{width:52px;height:52px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(230,168,23,0.4);transition:all .3s;position:relative;touch-action:manipulation}
 .chat-bubble-btn:hover{transform:scale(1.08);box-shadow:0 6px 30px rgba(230,168,23,0.5)}
 .chat-bubble-btn svg{width:24px;height:24px;fill:var(--bg)}
-.chat-badge{
-  position:absolute;top:-3px;right:-3px;
-  width:16px;height:16px;border-radius:50%;
-  background:#6ee7b7;border:2px solid var(--bg);
-  animation:pulse 2s ease infinite;
-}
+.chat-badge{position:absolute;top:-3px;right:-3px;width:16px;height:16px;border-radius:50%;background:#6ee7b7;border:2px solid var(--bg)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* Chat window */
-.chat-window{
-  position:absolute;bottom:66px;right:0;
-  width:340px;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  box-shadow:0 8px 40px rgba(0,0,0,.4);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
-  transform:translateY(10px);
-  opacity:0;
-  transition:transform .25s ease,opacity .25s ease;
-}
-.chat-window.open{display:flex;transform:translateY(0);opacity:1}
-.chat-window::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-}
-
-.cw-header{
-  padding:0.9rem 1rem;
-  border-bottom:1px solid var(--border2);
-  display:flex;align-items:center;gap:0.75rem;
-  flex-shrink:0;
-}
-.cw-av{
-  width:32px;height:32px;border-radius:50%;
-  background:var(--glt);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
+.chat-badge{animation:pulse 2s infinite}
+.chat-window{position:absolute;bottom:66px;right:0;width:340px;background:var(--bg2);border:1px solid var(--border);box-shadow:0 8px 40px rgba(0,0,0,.4);display:none;flex-direction:column;overflow:hidden}
+.chat-window.open{display:flex}
+.chat-window::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.cw-header{padding:0.9rem 1rem;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:0.75rem;flex-shrink:0}
+.cw-av{width:32px;height:32px;border-radius:50%;background:var(--glt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .cw-av svg{width:16px;height:16px;fill:var(--gold)}
 .cw-name{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:600;color:var(--white)}
 .cw-sub{font-family:'DM Mono',monospace;font-size:.55rem;color:var(--muted)}
 .cw-online{display:flex;align-items:center;gap:.35rem;font-family:'DM Mono',monospace;font-size:.55rem;color:#6ee7b7;margin-left:auto}
 .cw-dot{width:5px;height:5px;border-radius:50%;background:#6ee7b7;animation:pulse 2s infinite}
-.cw-close{
-  width:24px;height:24px;border-radius:50%;
-  background:var(--bg3);border:1px solid var(--border2);
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  color:var(--muted);font-size:0.9rem;transition:all .2s;
-  margin-left:0.5rem;flex-shrink:0;
-}
+.cw-close{width:24px;height:24px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.9rem;transition:all .2s;margin-left:0.5rem;flex-shrink:0;touch-action:manipulation}
 .cw-close:hover{border-color:var(--gold);color:var(--gold)}
-
-.cw-msgs{
-  height:280px;overflow-y:auto;padding:1rem;
-  display:flex;flex-direction:column;gap:.75rem;
-  scrollbar-width:thin;scrollbar-color:var(--dim) transparent;
-  flex-shrink:0;
-}
+.cw-msgs{height:280px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;flex-shrink:0}
 .msg{display:flex;gap:.6rem;align-items:flex-start}
 .msg.user{flex-direction:row-reverse}
-.msg-bub{
-  max-width:82%;padding:.55rem .85rem;font-size:.8rem;line-height:1.6;border-radius:2px;
-}
+.msg-bub{max-width:82%;padding:.55rem .85rem;font-size:.8rem;line-height:1.6;border-radius:2px}
 .msg.assistant .msg-bub{background:var(--bg3);color:var(--white);border:1px solid var(--border2);border-left:2px solid var(--gold)}
 .msg.user .msg-bub{background:var(--glt);color:var(--white);border:1px solid var(--border)}
-.msg-ico{
-  width:24px;height:24px;border-radius:50%;
-  border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-family:'Syne',sans-serif;font-size:.6rem;
-  font-weight:700;color:var(--gold);background:var(--bg3);
-}
+.msg-ico{width:24px;height:24px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;color:var(--gold);background:var(--bg3)}
 .msg-ico.ai{background:var(--glt)}
-.msg-ico.ai svg{width:11px;height:11px;fill:var(--gold)}
-.typing-row{display:flex;gap:3px;align-items:center;padding:3px 0}
+.msg-ico.ai svg{width:12px;height:12px;fill:var(--gold)}
 @keyframes ty{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
-.td{width:4px;height:4px;border-radius:50%;background:var(--muted);animation:ty 1.2s ease infinite}
+.td{width:4px;height:4px;border-radius:50%;background:var(--muted);animation:ty 1.2s ease infinite;display:inline-block}
 .td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
-
-.cw-sugg{
-  padding:.6rem 1rem;border-top:1px solid var(--border2);
-  display:flex;gap:.4rem;flex-wrap:wrap;flex-shrink:0;
-}
-.sugg-btn{
-  font-family:'DM Mono',monospace;font-size:.58rem;
-  color:var(--muted);border:1px solid var(--dim);
-  padding:.22rem .55rem;cursor:pointer;
-  transition:all .2s;background:transparent;white-space:nowrap;
-}
+.cw-sugg{padding:.6rem 1rem;border-top:1px solid var(--border2);display:flex;gap:.4rem;flex-wrap:wrap;flex-shrink:0}
+.sugg-btn{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);border:1px solid var(--dim);padding:.22rem .55rem;cursor:pointer;transition:all .2s;background:transparent;white-space:nowrap;touch-action:manipulation}
 .sugg-btn:hover{color:var(--gold);border-color:var(--gold)}
-
-.cw-inp-row{
-  padding:.7rem 1rem;border-top:1px solid var(--border2);
-  display:flex;gap:.6rem;align-items:center;flex-shrink:0;
-}
-.cw-inp{
-  flex:1;background:var(--bg3);border:1px solid var(--dim);
-  color:var(--white);font-family:'DM Sans',sans-serif;
-  font-size:.8rem;padding:.5rem .85rem;outline:none;transition:border-color .2s;
-}
+.cw-inp-row{padding:.7rem 1rem;border-top:1px solid var(--border2);display:flex;gap:.6rem;align-items:center;flex-shrink:0}
+.cw-inp{flex:1;background:var(--bg3);border:1px solid var(--dim);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.8rem;padding:.5rem .85rem;outline:none;transition:border-color .2s}
 .cw-inp::placeholder{color:var(--dim)}
 .cw-inp:focus{border-color:var(--gold)}
-.cw-send{
-  width:32px;height:32px;background:var(--gold);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;transition:background .2s;
-}
+.cw-send{width:32px;height:32px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;touch-action:manipulation}
 .cw-send:hover{background:var(--gold2)}
 .cw-send:disabled{opacity:.4;cursor:not-allowed}
 .cw-send svg{width:13px;height:13px;fill:var(--bg)}
-.cw-foot{
-  padding:.4rem 1rem;border-top:1px solid var(--border2);
-  font-family:'DM Mono',monospace;font-size:.55rem;color:var(--dim);
-  text-align:center;flex-shrink:0;
-}
+.cw-foot{padding:.4rem 1rem;border-top:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:.55rem;color:var(--dim);text-align:center;flex-shrink:0}
 
-/* ── LAYOUT ── */
+/* ── FOOTER WRAP — tap zone for admin access ── */
+.footer-wrap{cursor:pointer;padding:0.5rem 0;min-height:60px;-webkit-tap-highlight-color:transparent}
+.footer-inner{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.07em;margin-top:2rem;padding-top:1.75rem;border-top:1px solid var(--border);line-height:1.9}
+.footer-inner a{color:var(--muted);transition:color .2s}
+.footer-inner a:hover{color:var(--gold)}
+/* AI bubble hidden state */
+.chat-bubble.ai-hidden{display:none!important}
 .layout{display:flex;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 2rem;gap:4rem}
 .left{width:320px;flex-shrink:0;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:5rem 0;overflow-y:auto}
 .photo-wrap{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
@@ -186,19 +88,21 @@ a{color:inherit;text-decoration:none}
 .photo-ring img{display:block}
 .badge-tag{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.2rem}
 .loc-tag{font-size:.75rem;color:var(--muted)}
-.l-name{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;line-height:1.05;color:var(--name-color);margin-bottom:.3rem;cursor:pointer;user-select:none;transition:color .4s}
-.l-name span{color:var(--gold)}
+/* FIX: touch-action:manipulation prevents double-tap zoom on mobile */
+.l-name{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;line-height:1.05;color:var(--name-color);margin-bottom:.3rem;user-select:none;cursor:pointer;touch-action:manipulation;transition:color .4s}
+/* FIX: pointer-events none on span so ALL clicks on name hit nameEl directly */
+.l-name span{color:var(--gold);pointer-events:none}
 .l-title{font-size:.82rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.5}
 .l-bio{font-size:.8rem;color:var(--muted);line-height:1.8;margin-bottom:2rem}
 .l-bio strong{color:var(--white);font-weight:500}
 .l-nav{list-style:none;margin-bottom:2rem}
 .l-nav li{margin-bottom:.1rem}
-.l-nav a{display:flex;align-items:center;gap:.75rem;font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.35rem 0;transition:color .2s;cursor:pointer}
+.l-nav a{display:flex;align-items:center;gap:.75rem;font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.35rem 0;transition:color .2s;cursor:pointer;touch-action:manipulation}
 .nav-line{width:20px;height:1px;background:var(--dim);transition:width .3s,background .3s;flex-shrink:0}
 .l-nav a:hover,.l-nav a.active{color:var(--gold)}
 .l-nav a:hover .nav-line,.l-nav a.active .nav-line{width:44px;background:var(--gold)}
 .l-socials{display:flex;gap:1rem}
-.soc{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--dim);color:var(--muted);transition:all .25s}
+.soc{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--dim);color:var(--muted);transition:all .25s;touch-action:manipulation}
 .soc:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
 .soc svg{width:15px;height:15px;fill:currentColor}
 
@@ -262,9 +166,11 @@ section{margin-bottom:5.5rem;scroll-margin-top:5rem}
 .contact-item{display:flex;align-items:center;gap:1rem;font-size:.85rem;color:var(--muted)}
 .contact-item svg{width:15px;height:15px;fill:var(--gold);flex-shrink:0}
 .contact-item a:hover{color:var(--gold)}
-.contact-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.8rem;border:1px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:all .25s}
+.contact-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.8rem;border:1px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:all .25s;touch-action:manipulation}
 .contact-btn:hover{background:var(--glt)}
-.footer-inner{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.07em;margin-top:3.5rem;padding-top:1.75rem;border-top:1px solid var(--border);line-height:1.9;cursor:pointer}
+/* Footer tap zone — big enough for mobile */
+.footer-wrap{margin-top:3.5rem;padding-top:1.75rem;border-top:1px solid var(--border);cursor:pointer;min-height:60px;touch-action:manipulation}
+.footer-inner{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.07em;line-height:1.9}
 .footer-inner a{color:var(--muted);transition:color .2s}
 .footer-inner a:hover{color:var(--gold)}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -288,18 +194,15 @@ section{margin-bottom:5.5rem;scroll-margin-top:5rem}
 </head>
 <body>
 
-<!-- ══ THEME BAR — top right ══ -->
+<!-- THEME BAR -->
 <div class="theme-bar" id="themeBar"></div>
 
-<!-- ══ AI CHAT BUBBLE — bottom right ══ -->
-<div class="chat-bubble" id="chatBubble">
+<!-- AI CHAT BUBBLE -->
+<div class="chat-bubble" id="chatBubbleWrap" style="display:none">
   <div class="chat-window" id="chatWindow">
     <div class="cw-header">
       <div class="cw-av"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
-      <div>
-        <div class="cw-name">Krish's AI Assistant</div>
-        <div class="cw-sub">Ask about experience, skills & background</div>
-      </div>
+      <div><div class="cw-name">Krish's AI Assistant</div><div class="cw-sub">Ask about experience, skills & background</div></div>
       <div class="cw-online"><span class="cw-dot"></span>Online</div>
       <button class="cw-close" onclick="toggleChat()" title="Close">✕</button>
     </div>
@@ -311,7 +214,7 @@ section{margin-bottom:5.5rem;scroll-margin-top:5rem}
     </div>
     <div class="cw-sugg">
       <button class="sugg-btn" onclick="sendSugg(this)">BI experience?</button>
-      <button class="sugg-btn" onclick="sendSugg(this)">HCA Healthcare work</button>
+      <button class="sugg-btn" onclick="sendSugg(this)">HCA work?</button>
       <button class="sugg-btn" onclick="sendSugg(this)">AI skills?</button>
       <button class="sugg-btn" onclick="sendSugg(this)">Open to roles?</button>
     </div>
@@ -319,16 +222,15 @@ section{margin-bottom:5.5rem;scroll-margin-top:5rem}
       <input class="cw-inp" id="chatInp" type="text" placeholder="Ask a question..." maxlength="300"/>
       <button class="cw-send" id="sendBtn" onclick="sendMsg()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
     </div>
-    <div class="cw-foot">⚡ Powered by Anthropic Claude</div>
+    <div class="cw-foot">⚡ Powered by Google Gemini (Free)</div>
   </div>
-
   <button class="chat-bubble-btn" onclick="toggleChat()" id="bubbleBtn" title="Ask Krish's AI Assistant">
     <svg viewBox="0 0 24 24" id="bubbleIcon"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
     <span class="chat-badge"></span>
   </button>
 </div>
 
-<!-- ══ MAIN LAYOUT ══ -->
+<!-- MAIN LAYOUT -->
 <div class="layout">
 <aside class="left">
   <div>
@@ -347,246 +249,409 @@ section{margin-bottom:5.5rem;scroll-margin-top:5rem}
 <main class="right">
   <section id="about"><div class="sec-label">About</div><div id="aboutEl"></div></section>
   <section id="experience"><div class="sec-label">Experience</div><div id="expEl"></div><a href="/Krish_Nukala_Resume_Final.docx" class="resume-link reveal">View Full Résumé →</a></section>
-  <section id="skills"><div class="sec-label">Skills</div><div class="skills-grid reveal" id="skillsEl"></div></section>
+  <section id="skills"><div class="sec-label">Skills</div><div class="skills-grid" id="skillsEl"></div></section>
   <section id="projects"><div class="sec-label">Projects</div><div id="projEl"></div></section>
   <section id="publications"><div class="sec-label">Publications</div><div id="pubEl"></div></section>
   <section id="certifications"><div class="sec-label">Certifications</div><div class="certs-grid" id="certEl"></div></section>
   <section id="contact"><div class="sec-label">Contact</div><div id="contactEl"></div></section>
-  <div id="footerEl"></div>
+  <!-- Footer — large tap zone for admin access -->
+  <div class="footer-wrap" id="footerWrap">
+    <div class="footer-inner" id="footerEl"></div>
+  </div>
 </main>
 </div>
 
 <script>
-// ── CONFIG — Google Gemini (Free) ──────────────────────────
-// Get your FREE key at: aistudio.google.com → Get API Key
-const GEMINI_KEY = 'AIzaSyD2dYHKADJXTEflgNrbBAJPKeEMRbf4YAA';
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+// ═══════════════════════════════════════
+// AI CONFIG (optional — set in admin)
+// Cloudflare Worker proxy URL or leave blank to disable
+const PROXY_URL = '';
+// ═══════════════════════════════════════
+
 const STORAGE_KEY = 'kn_site_data';
 
-// ── DEFAULT DATA ───────────────────────────────────────────
 const DEFAULTS = {
   header:{firstName:'Krish',lastName:'Nukala',title1:'Sr. Application Engineer',title2:'BI & AI Engineering',badge:'Open to Work',badgeVisible:true,location:'Nashville, TN'},
   sidebar:{bio:'Building enterprise data systems and BI platforms at the intersection of healthcare and cloud. 9+ years turning complex data into decisions. I-140 approved · H-1B transfer ready.',linkedin:'https://www.linkedin.com/in/krish-nukala-8bb5b729',github:'https://github.com/krishnukala',email:'vamshinukala@gmail.com',phone:'(203) 543-2452'},
-  about:['I\'m <strong>Krish Nukala</strong>, a Sr. Application Engineer based in Nashville, TN with <strong>9+ years of experience</strong> building enterprise BI platforms and data systems in healthcare. My work sits at the crossroads of data engineering, business intelligence, and emerging AI.','At <strong>HCA Healthcare</strong> — one of the largest health systems in the US — I independently led the migration of the Mobile Heartbeat platform from Tableau to Power BI, contributed to an enterprise Teradata-to-GCP cloud migration, and supported a large-scale MicroStrategy Cloud transition.','I hold a <strong>Master\'s in Computer Science</strong> from Kent State University and have published research with the Tennessee Department of Health. I\'m actively expanding into AI engineering. My I-140 is approved, making H-1B transfer straightforward for any employer.','Outside of work I maintain the <a href=\'https://nukalafamily.com\' target=\'_blank\'>Nukala Family Archive</a> — a personal passion project preserving our family\'s heritage.'],
-  experience:[{title:'Sr. Application Engineer',company:'HCA Healthcare',location:'Nashville, TN',type:'Healthcare Enterprise',dateFrom:'Oct 2022',dateTo:'Present',desc:'Led solo end-to-end migration of Mobile Heartbeat (MHB) from Tableau to Power BI, rebuilding all dashboards for clinical operations. Contributing to Teradata-to-GCP migration and MicroStrategy Cloud transition. Enhanced MicroStrategy cubes, Data Marts, dossiers, and managing subscriptions enterprise-wide.',tags:['Power BI','MicroStrategy','BigQuery','GCP','Teradata','DAX','SQL Server']},{title:'Data Engineer',company:'CareBridge',location:'Nashville, TN',type:'Healthcare Analytics',dateFrom:'Feb 2022',dateTo:'Oct 2022',desc:'Monitored and ensured reliable processing of daily data files from managed care organizations. Troubleshot PostgreSQL ETL failures and resolved pipeline issues using DataGrip.',tags:['PostgreSQL','DataGrip','ETL','SFTP','Managed Care']},{title:'System Engineer',company:'HCA Parallon',location:'St. Louis, MO',type:'Revenue Cycle',dateFrom:'Jan 2018',dateTo:'Jan 2022',desc:'Technical Lead for Gameffective platform, scaling from pilot to 300+ users. Managed 130+ IVR systems, achieved 100% uptime across 25 Linux servers for 500+ agents, monitored 25,000+ daily call recordings.',tags:['PostgreSQL','Linux','IVR','SSO','Revenue Cycle','Agile']},{title:'Jr. Software Developer / Rhapsody Developer',company:'State of Tennessee – Dept. of Health',location:'Nashville, TN',type:'Public Health',dateFrom:'May 2017',dateTo:'Jan 2018',desc:'Designed HL7 clinical interface solutions using Rhapsody IDE. Published peer-reviewed research on improving syndromic surveillance onboarding efficiency.',tags:['HL7','Rhapsody IDE','Clinical Interfaces','Research']}],
-  skills:[{group:'BI & Visualization',items:['Power BI & Copilot','MicroStrategy','Tableau','DAX & Power Query','MDX & Report Builder']},{group:'Cloud & Databases',items:['Google BigQuery & GCP','Teradata','SQL Server','PostgreSQL','AWS']},{group:'Data Engineering',items:['ETL / ELT Pipelines','SFTP Automation','DataGrip','Stored Procedures','Query Optimization']},{group:'AI & Development',items:['Python & FastAPI','React & TypeScript','Prompt Engineering','Claude API','REST APIs']},{group:'Healthcare Domain',items:['HL7 & Clinical Interfaces','Managed Care Orgs','Revenue Cycle','Syndromic Surveillance','Regulatory Compliance']},{group:'Methods & Platforms',items:['Agile & SDLC','Linux Server Admin','IVR & Telephony','GitHub & Git','Visio & Documentation']}],
-  projects:[{title:'MHB Power BI Migration',year:'2022–Present',type:'Enterprise BI Migration · HCA Healthcare',desc:'Sole engineer responsible for migrating the Mobile Heartbeat platform from Tableau to Power BI at HCA Healthcare. Rebuilt all dashboards from scratch with new data models, DAX measures, and Power Query transformations.',tags:['Power BI','DAX','Power Query','SQL Server','Healthcare'],link:''},{title:'Teradata → GCP Migration',year:'2023–Present',type:'Cloud Data Platform · HCA Healthcare',desc:'Active contributor to enterprise migration from Teradata to Google Cloud Platform — replatforming critical data pipelines and validating data integrity across BigQuery environments.',tags:['Teradata','BigQuery','GCP','ETL','Data Validation'],link:''},{title:'Gamification Platform – Technical Lead',year:'2018–2022',type:'Platform Lead · HCA Parallon',desc:'Technical Lead for Gameffective — a KPI gamification platform for contact center agents. Scaled from pilot to 300+ users. Implemented hourly SFTP data sync and SSO integration.',tags:['PostgreSQL','SFTP','SSO','IVR','System Integration'],link:''},{title:'Nukala Family Archive',year:'2023–Present',type:'Personal Project · Live',desc:'A private family archive and genealogy website. Features admin panel, 14-page navigation, and rich interactive content on GitHub Pages.',tags:['HTML/CSS/JS','GitHub Pages','Admin Panel'],link:'https://nukalafamily.com'}],
-  publications:[{title:'Creation of a Technical Tool to Improve Syndromic Surveillance Onboarding in Tennessee',journal:'Online Journal of Public Health Informatics (OJPHI)',year:'2018',org:'State of Tennessee, Dept. of Health',desc:'Developed and published peer-reviewed research on improving syndromic surveillance onboarding efficiency for the Tennessee Department of Health.',link:'http://ojphi.org/ojs/index.php/ojphi/article/view/8907/7267'}],
-  certifications:[{org:'Alvaria / Noble Systems',name:'IVR, Composer Designer & Agent Certifications',status:'earned',year:'2019'},{org:'Alvaria / Noble Systems',name:'Harmony, Maestro, Web Reports & Query Builder',status:'earned',year:'2019'},{org:'MicroStrategy',name:'MicroStrategy Departmental Analyst',status:'earned',year:''},{org:'Google Cloud',name:'Generative AI Fundamentals',status:'progress',year:''},{org:'Microsoft',name:'Azure AI Fundamentals (AI-900)',status:'progress',year:''},{org:'Microsoft',name:'Power BI Data Analyst (PL-300)',status:'planned',year:''}],
+  about:[
+    'I\'m <strong>Krish Nukala</strong>, a Sr. Application Engineer based in Nashville, TN with <strong>9+ years of experience</strong> building enterprise BI platforms and data systems in healthcare. My work sits at the crossroads of data engineering, business intelligence, and emerging AI.',
+    'At <strong>HCA Healthcare</strong> — one of the largest health systems in the US — I independently led the migration of the Mobile Heartbeat platform from Tableau to Power BI, contributed to an enterprise Teradata-to-GCP cloud migration, and supported a large-scale MicroStrategy Cloud transition.',
+    'I hold a <strong>Master\'s in Computer Science</strong> from Kent State University and have published peer-reviewed research with the Tennessee Department of Health. I am actively expanding into AI engineering and my I-140 is approved, making H-1B transfer straightforward for any employer.',
+    'Outside of work I maintain the <a href="https://nukalafamily.com" target="_blank">Nukala Family Archive</a> — a personal passion project preserving our family\'s heritage.'
+  ],
+  experience:[
+    {title:'Sr. Application Engineer',company:'HCA Healthcare',location:'Nashville, TN',type:'Healthcare Enterprise',dateFrom:'Oct 2022',dateTo:'Present',desc:'Led solo end-to-end migration of Mobile Heartbeat (MHB) from Tableau to Power BI, rebuilding all dashboards for clinical operations. Contributing to Teradata-to-GCP migration and MicroStrategy Cloud transition. Enhanced MicroStrategy cubes, Data Marts, dossiers, and managing subscriptions enterprise-wide.',tags:['Power BI','MicroStrategy','BigQuery','GCP','Teradata','DAX','SQL Server']},
+    {title:'Data Engineer',company:'CareBridge',location:'Nashville, TN',type:'Healthcare Analytics',dateFrom:'Feb 2022',dateTo:'Oct 2022',desc:'Monitored and ensured reliable processing of daily data files from managed care organizations. Troubleshot PostgreSQL ETL failures and resolved pipeline issues using DataGrip.',tags:['PostgreSQL','DataGrip','ETL','SFTP','Managed Care']},
+    {title:'System Engineer',company:'HCA Parallon',location:'St. Louis, MO',type:'Revenue Cycle',dateFrom:'Jan 2018',dateTo:'Jan 2022',desc:'Technical Lead for Gameffective platform, scaling from pilot to 300+ users. Managed 130+ IVR systems, achieved 100% uptime across 25 Linux servers for 500+ agents, monitored 25,000+ daily call recordings.',tags:['PostgreSQL','Linux','IVR','SSO','Revenue Cycle','Agile']},
+    {title:'Jr. Software Developer / Rhapsody Developer',company:'State of Tennessee – Dept. of Health',location:'Nashville, TN',type:'Public Health',dateFrom:'May 2017',dateTo:'Jan 2018',desc:'Designed HL7 clinical interface solutions using Rhapsody IDE. Published peer-reviewed research on improving syndromic surveillance onboarding efficiency.',tags:['HL7','Rhapsody IDE','Clinical Interfaces','Research']}
+  ],
+  skills:[
+    {group:'BI & Visualization',items:['Power BI & Copilot','MicroStrategy','Tableau','DAX & Power Query','MDX & Report Builder']},
+    {group:'Cloud & Databases',items:['Google BigQuery & GCP','Teradata','SQL Server','PostgreSQL','AWS']},
+    {group:'Data Engineering',items:['ETL / ELT Pipelines','SFTP Automation','DataGrip','Stored Procedures','Query Optimization']},
+    {group:'AI & Development',items:['Python & FastAPI','React & TypeScript','Prompt Engineering','Claude API','REST APIs']},
+    {group:'Healthcare Domain',items:['HL7 & Clinical Interfaces','Managed Care Orgs','Revenue Cycle','Syndromic Surveillance','Regulatory Compliance']},
+    {group:'Methods & Platforms',items:['Agile & SDLC','Linux Server Admin','IVR & Telephony','GitHub & Git','Visio & Documentation']}
+  ],
+  projects:[
+    {title:'MHB Power BI Migration',year:'2022–Present',type:'Enterprise BI Migration · HCA Healthcare',desc:'Sole engineer responsible for migrating the Mobile Heartbeat platform from Tableau to Power BI at HCA Healthcare. Rebuilt all dashboards from scratch with new data models, DAX measures, and Power Query transformations.',tags:['Power BI','DAX','Power Query','SQL Server','Healthcare'],link:''},
+    {title:'Teradata → GCP Migration',year:'2023–Present',type:'Cloud Data Platform · HCA Healthcare',desc:'Active contributor to enterprise migration from Teradata to Google Cloud Platform — replatforming critical data pipelines and validating data integrity across BigQuery environments.',tags:['Teradata','BigQuery','GCP','ETL','Data Validation'],link:''},
+    {title:'Gamification Platform – Technical Lead',year:'2018–2022',type:'Platform Lead · HCA Parallon',desc:'Technical Lead for Gameffective — a KPI gamification platform for contact center agents. Scaled from pilot to 300+ users with SFTP hourly data sync and SSO integration.',tags:['PostgreSQL','SFTP','SSO','IVR','System Integration'],link:''},
+    {title:'Nukala Family Archive',year:'2023–Present',type:'Personal Project · Live',desc:'A private family archive and genealogy website. Features admin panel, 14-page navigation, and rich interactive content on GitHub Pages.',tags:['HTML/CSS/JS','GitHub Pages','Admin Panel'],link:'https://nukalafamily.com'}
+  ],
+  publications:[
+    {title:'Creation of a Technical Tool to Improve Syndromic Surveillance Onboarding in Tennessee',journal:'Online Journal of Public Health Informatics (OJPHI)',year:'2018',org:'State of Tennessee, Dept. of Health',desc:'Developed and published peer-reviewed research on improving syndromic surveillance onboarding efficiency for the Tennessee Department of Health through a custom-built software tool.',link:'http://ojphi.org/ojs/index.php/ojphi/article/view/8907/7267',pdfFile:''}
+  ],
+  certifications:[
+    {org:'Alvaria / Noble Systems',name:'IVR, Composer Designer & Agent Certifications',status:'earned',year:'2019'},
+    {org:'Alvaria / Noble Systems',name:'Harmony, Maestro, Web Reports & Query Builder',status:'earned',year:'2019'},
+    {org:'MicroStrategy',name:'MicroStrategy Departmental Analyst',status:'earned',year:''},
+    {org:'Google Cloud',name:'Generative AI Fundamentals',status:'progress',year:''},
+    {org:'Microsoft',name:'Azure AI Fundamentals (AI-900)',status:'progress',year:''},
+    {org:'Microsoft',name:'Power BI Data Analyst (PL-300)',status:'planned',year:''}
+  ],
   contact:{heading:"Let's work together.",text:"I'm currently open to Sr. BI Engineer, AI Application Engineer, and Data Engineering roles. I-140 approved — H-1B transfer only, no lottery needed. If you have an opportunity or want to connect, I'd love to hear from you.",email:'vamshinukala@gmail.com',phone:'(203) 543-2452',location:'Nashville, TN 37027'},
-  footer:{line1:'Designed & built by Krish Nukala',line2:'HTML · CSS · JS · GitHub Pages · AI by Anthropic Claude',visible:true},
+  footer:{line1:'Designed & built by Krish Nukala',line2:'HTML · CSS · JS · GitHub Pages',visible:true},
   theme:{defaultTheme:'dark',enabledThemes:['dark','light','ocean','sunset']},
-  hiddenSections:[],apiKey:'',hf:{}
+  hiddenSections:[],
+  aiEnabled:false,
+  proxyUrl:'',
+  hf:{}
 };
 
+// ── LOAD DATA ──────────────────────────────────────────────
 function loadData(){
   try{
     const s=localStorage.getItem(STORAGE_KEY);
-    if(!s) return DEFAULTS;
+    if(!s) return JSON.parse(JSON.stringify(DEFAULTS));
     const p=JSON.parse(s);
-    return{header:{...DEFAULTS.header,...(p.header||{})},sidebar:{...DEFAULTS.sidebar,...(p.sidebar||{})},about:p.about||DEFAULTS.about,experience:p.experience||DEFAULTS.experience,skills:p.skills||DEFAULTS.skills,projects:p.projects||DEFAULTS.projects,publications:p.publications||DEFAULTS.publications,certifications:p.certifications||DEFAULTS.certifications,contact:{...DEFAULTS.contact,...(p.contact||{})},footer:{...DEFAULTS.footer,...(p.footer||{})},theme:{...DEFAULTS.theme,...(p.theme||{})},hiddenSections:p.hiddenSections||[],apiKey:p.apiKey||'',hf:p.hf||{}};
-  }catch(e){return DEFAULTS;}
+    return{
+      header:{...DEFAULTS.header,...(p.header||{})},
+      sidebar:{...DEFAULTS.sidebar,...(p.sidebar||{})},
+      about:p.about||DEFAULTS.about,
+      experience:p.experience||DEFAULTS.experience,
+      skills:p.skills||DEFAULTS.skills,
+      projects:p.projects||DEFAULTS.projects,
+      publications:p.publications||DEFAULTS.publications,
+      certifications:p.certifications||DEFAULTS.certifications,
+      contact:{...DEFAULTS.contact,...(p.contact||{})},
+      footer:{...DEFAULTS.footer,...(p.footer||{})},
+      theme:{...DEFAULTS.theme,...(p.theme||{})},
+      hiddenSections:p.hiddenSections||[],
+      aiEnabled:p.aiEnabled===true,
+      proxyUrl:p.proxyUrl||'',
+      hf:p.hf||{}
+    };
+  }catch(err){return JSON.parse(JSON.stringify(DEFAULTS));}
 }
 
 const D = loadData();
-function e(s){return s==null?'':String(s).replace(/&(?!amp;|lt;|gt;)/g,'&amp;');}
 
-// ── THEMES ─────────────────────────────────────────────────
-const TH = {
-  dark:  {emoji:'🌙', label:'Dark',   dot:'#e6a817'},
-  light: {emoji:'☀️', label:'Light',  dot:'#b8860b'},
-  ocean: {emoji:'🌊', label:'Ocean',  dot:'#00c9a7'},
-  sunset:{emoji:'🌅', label:'Sunset', dot:'#ff7043'},
-};
-
-function buildThemeBar(){
-  const enabled = (D.theme?.enabledThemes)||['dark','light','ocean','sunset'];
-  const bar = document.getElementById('themeBar');
-  if(enabled.length <= 1){bar.style.display='none';return;}
-  bar.innerHTML = enabled.map(id=>`
-    <button class="th-pill" id="tpill-${id}" onclick="setTheme('${id}')" title="${TH[id]?.label} Theme">
-      ${TH[id]?.emoji||id}
-    </button>`).join('');
-  const saved = localStorage.getItem('kn_theme')||(D.theme?.defaultTheme)||'dark';
-  applyTheme(saved,false);
+// ── SAFE ESCAPE ────────────────────────────────────────────
+function esc(s){
+  if(s==null) return '';
+  return String(s)
+    .replace(/&(?!(amp|lt|gt|quot|#);)/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
 }
 
-function applyTheme(id,save=true){
-  document.documentElement.setAttribute('data-theme',id==='dark'?'':id);
-  if(save) localStorage.setItem('kn_theme',id);
-  document.querySelectorAll('.th-pill').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tpill-'+id)?.classList.add('active');
-  // Apply name colors from admin if set
-  const nc=(D.hf?.nameColors)||{};
-  const map={dark:nc.dark||'#ffffff',light:nc.light||'#1a1f35',ocean:nc.ocean||'#e8f8f5',sunset:nc.sunset||'#fdecea'};
-  document.documentElement.style.setProperty('--name-color', map[id]||'#ffffff');
+// ── URL FIX ────────────────────────────────────────────────
+function fixUrl(u){
+  if(!u||u==='#') return '#';
+  if(u.startsWith('http')) return u;
+  return 'https://'+u.replace(/^\/\//,'');
 }
-
-function setTheme(id){applyTheme(id);}
 
 // ── RENDER ─────────────────────────────────────────────────
 function render(){
-  const h=D.header,s=D.sidebar,hidden=D.hiddenSections||[];
+  const h=D.header, s=D.sidebar, hidden=D.hiddenSections||[];
+
+  // Initials & badge
   document.getElementById('initialsEl').textContent=(h.firstName||'K')[0]+(h.lastName||'N')[0];
   const bd=document.getElementById('badgeEl');
   bd.textContent=h.badge||'Open to Work';
   bd.style.display=h.badgeVisible===false?'none':'';
   document.getElementById('locEl').textContent='📍 '+(h.location||'Nashville, TN');
-  document.getElementById('nameEl').innerHTML=`${e(h.firstName)}<br/><span>${e(h.lastName)}</span>`;
-  document.getElementById('titleEl').innerHTML=`${e(h.title1)}<br/>${e(h.title2)}`;
+  document.getElementById('nameEl').innerHTML=esc(h.firstName)+'<br/><span>'+esc(h.lastName)+'</span>';
+  document.getElementById('titleEl').innerHTML=esc(h.title1)+'<br/>'+esc(h.title2);
   document.getElementById('bioEl').innerHTML=s.bio||'';
 
-  // Photo — check localStorage first, then photo.jpg
+  // Photo
   const ring=document.getElementById('photoRing');
   const savedPhoto=localStorage.getItem('kn_profile_photo');
-  if(savedPhoto){ring.innerHTML=`<img src="${savedPhoto}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block" alt="Krish Nukala"/>`;}
-  else{const img=new Image();img.onload=()=>{ring.innerHTML='';img.style.cssText='width:100%;height:100%;border-radius:50%;object-fit:cover;display:block';ring.appendChild(img);};img.src='photo.jpg';}
+  if(savedPhoto){
+    ring.innerHTML='<img src="'+savedPhoto+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block" alt="Krish Nukala"/>';
+  } else {
+    const img=new Image();
+    img.onload=()=>{ring.innerHTML='';img.style.cssText='width:100%;height:100%;border-radius:50%;object-fit:cover;display:block';ring.appendChild(img);};
+    img.src='photo.jpg';
+  }
 
-  // Nav
-  const navSecs=[{id:'about',l:'About'},{id:'experience',l:'Experience'},{id:'skills',l:'Skills'},{id:'projects',l:'Projects'},{id:'publications',l:'Publications'},{id:'certifications',l:'Certifications'},{id:'contact',l:'Contact'}].filter(n=>!hidden.includes(n.id));
-  document.getElementById('navEl').innerHTML=navSecs.map(n=>`<li><a href="#${n.id}" class="nav-link"><span class="nav-line"></span>${n.l}</a></li>`).join('');
-  ['about','experience','skills','projects','publications','certifications','contact'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=hidden.includes(id)?'none':'';});
+  // Nav — filter hidden sections
+  const NAV=[{id:'about',l:'About'},{id:'experience',l:'Experience'},{id:'skills',l:'Skills'},{id:'projects',l:'Projects'},{id:'publications',l:'Publications'},{id:'certifications',l:'Certifications'},{id:'contact',l:'Contact'}];
+  document.getElementById('navEl').innerHTML=NAV.filter(n=>!hidden.includes(n.id)).map(n=>'<li><a href="#'+n.id+'" class="nav-link"><span class="nav-line"></span>'+n.l+'</a></li>').join('');
+  NAV.forEach(n=>{const el=document.getElementById(n.id);if(el)el.style.display=hidden.includes(n.id)?'none':'';});
 
-  // Fix URLs — ensure https:// prefix
-  function fixUrl(url){if(!url)return'#';if(url.startsWith('http'))return url;return'https://'+url.replace(/^\/\//,'');}
-  document.getElementById('socialsEl').innerHTML=`
-    <a href="${fixUrl(s.linkedin)}" target="_blank" class="soc" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-    <a href="${fixUrl(s.github)}" target="_blank" class="soc" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-    <a href="mailto:${e(s.email)||''}" class="soc" title="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 10.87 21.615 3.82h.749c.904 0 1.636.732 1.636 1.636z"/></svg></a>`;
+  // Socials
+  document.getElementById('socialsEl').innerHTML=
+    '<a href="'+fixUrl(s.linkedin)+'" target="_blank" class="soc" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>'+
+    '<a href="'+fixUrl(s.github)+'" target="_blank" class="soc" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>'+
+    '<a href="mailto:'+esc(s.email)+'" class="soc" title="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 10.87 21.615 3.82h.749c.904 0 1.636.732 1.636 1.636z"/></svg></a>';
 
-  // Content sections
-  document.getElementById('aboutEl').innerHTML=(D.about||[]).map((p,i)=>`<p class="about-p reveal${i?` d${Math.min(i,3)}`:''}">${p}</p>`).join('');
-  document.getElementById('expEl').innerHTML=(D.experience||[]).map((ex,i)=>`<div class="item reveal${i?` d${Math.min(i,3)}`:''}""><div class="item-date">${e(ex.dateFrom)}<br/>${e(ex.dateTo)}</div><div><div class="item-title">${e(ex.title)} · ${e(ex.company)}</div><div class="item-sub">${e(ex.location)} · ${e(ex.type)}</div><div class="item-desc">${e(ex.desc)}</div><div class="tags">${(ex.tags||[]).map(t=>`<span class="tag">${e(t)}</span>`).join('')}</div></div></div>`).join('');
-  document.getElementById('skillsEl').innerHTML=(D.skills||[]).map((g,i)=>`<div class="reveal${i?` d${Math.min(i,3)}`:''}""><div class="sg-title">${e(g.group)}</div><ul class="sg-list">${(g.items||[]).map(it=>`<li>${e(it)}</li>`).join('')}</ul></div>`).join('');
-  document.getElementById('projEl').innerHTML=(D.projects||[]).map((p,i)=>`<div class="item reveal${i?` d${Math.min(i,3)}`:''}""><div class="item-date">${e(p.year)}</div><div><div class="item-title">${p.link?`<a href="${p.link}" target="_blank">${e(p.title)}</a>`:e(p.title)}</div><div class="item-sub">${e(p.type)}</div><div class="item-desc">${e(p.desc)}</div><div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${e(t)}</span>`).join('')}</div>${p.link?`<a href="${p.link}" target="_blank" class="item-link">${p.link.replace(/https?:\/\//,'')} ↗</a>`:''}</div></div>`).join('');
-  document.getElementById('pubEl').innerHTML=(D.publications||[]).map(p=>`
-    <div class="pub-card reveal">
-      <div class="pub-top">
-        <div class="pub-icon">§</div>
-        <div>
-          <div class="pub-title">${e(p.title)}</div>
-          <div class="pub-meta">${e(p.journal)} · ${e(p.year)} · ${e(p.org)}</div>
-        </div>
-      </div>
-      <div class="pub-desc">${e(p.desc)}</div>
-      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center">
-        ${p.link?`<a href="${p.link}" target="_blank" class="pub-link">🔗 Read Online ↗</a>`:''}
-        ${p.pdfFile?`<a href="/${p.pdfFile}" target="_blank" class="pub-link" style="background:var(--glt);padding:0.3rem 0.75rem;border:1px solid var(--border)">📄 Read PDF</a>`:''}
-      </div>
-    </div>`).join('');
-  document.getElementById('certEl').innerHTML=(D.certifications||[]).map((c,i)=>`<div class="cert-card ${e(c.status)} reveal${i?` d${Math.min(i,3)}`:''}""><div class="cert-org">${e(c.org)}</div><div class="cert-name">${e(c.name)}</div><div class="cert-status"><span class="cert-dot${c.status==='progress'?' blink':''}"></span>${c.status==='earned'?'Earned'+(c.year?' · '+c.year:''):c.status==='progress'?'In Progress':'Planned'}</div></div>`).join('');
+  // About
+  document.getElementById('aboutEl').innerHTML=(D.about||[]).map(function(p,i){
+    return '<p class="about-p reveal'+(i?' d'+Math.min(i,3):'')+'">'+ p +'</p>';
+  }).join('');
+
+  // Experience — FIX: no double-quotes in class attribute
+  document.getElementById('expEl').innerHTML=(D.experience||[]).map(function(ex,i){
+    var delay=i?' d'+Math.min(i,3):'';
+    var tagsHtml=(ex.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('');
+    return '<div class="item reveal'+delay+'"><div class="item-date">'+esc(ex.dateFrom)+'<br/>'+esc(ex.dateTo)+'</div><div><div class="item-title">'+esc(ex.title)+' · '+esc(ex.company)+'</div><div class="item-sub">'+esc(ex.location)+' · '+esc(ex.type)+'</div><div class="item-desc">'+esc(ex.desc)+'</div><div class="tags">'+tagsHtml+'</div></div></div>';
+  }).join('');
+
+  // Skills
+  document.getElementById('skillsEl').innerHTML=(D.skills||[]).map(function(g,i){
+    var delay=i?' d'+Math.min(i,3):'';
+    var items=(g.items||[]).map(function(it){return '<li>'+esc(it)+'</li>';}).join('');
+    return '<div class="reveal'+delay+'"><div class="sg-title">'+esc(g.group)+'</div><ul class="sg-list">'+items+'</ul></div>';
+  }).join('');
+
+  // Projects
+  document.getElementById('projEl').innerHTML=(D.projects||[]).map(function(p,i){
+    var delay=i?' d'+Math.min(i,3):'';
+    var tagsHtml=(p.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('');
+    var titleHtml=p.link?'<a href="'+p.link+'" target="_blank">'+esc(p.title)+'</a>':esc(p.title);
+    var linkHtml=p.link?'<a href="'+p.link+'" target="_blank" class="item-link">'+p.link.replace(/https?:\/\//,'')+'↗</a>':'';
+    return '<div class="item reveal'+delay+'"><div class="item-date">'+esc(p.year)+'</div><div><div class="item-title">'+titleHtml+'</div><div class="item-sub">'+esc(p.type)+'</div><div class="item-desc">'+esc(p.desc)+'</div><div class="tags">'+tagsHtml+'</div>'+linkHtml+'</div></div>';
+  }).join('');
+
+  // Publications
+  document.getElementById('pubEl').innerHTML=(D.publications||[]).map(function(p){
+    var btns='';
+    if(p.link) btns+='<a href="'+p.link+'" target="_blank" class="pub-link">🔗 Read Online ↗</a>';
+    if(p.pdfFile) btns+=' <a href="/'+p.pdfFile+'" target="_blank" class="pub-link" style="background:var(--glt);padding:0.3rem 0.75rem;border:1px solid var(--border)">📄 Read PDF</a>';
+    return '<div class="pub-card reveal"><div class="pub-top"><div class="pub-icon">§</div><div><div class="pub-title">'+esc(p.title)+'</div><div class="pub-meta">'+esc(p.journal)+' · '+esc(p.year)+' · '+esc(p.org)+'</div></div></div><div class="pub-desc">'+esc(p.desc)+'</div><div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.25rem">'+btns+'</div></div>';
+  }).join('');
+
+  // Certifications
+  document.getElementById('certEl').innerHTML=(D.certifications||[]).map(function(c,i){
+    var delay=i?' d'+Math.min(i,3):'';
+    var statusText=c.status==='earned'?('Earned'+(c.year?' · '+c.year:'')):c.status==='progress'?'In Progress':'Planned';
+    var dotClass='cert-dot'+(c.status==='progress'?' blink':'');
+    return '<div class="cert-card '+esc(c.status)+' reveal'+delay+'"><div class="cert-org">'+esc(c.org)+'</div><div class="cert-name">'+esc(c.name)+'</div><div class="cert-status"><span class="'+dotClass+'"></span>'+statusText+'</div></div>';
+  }).join('');
 
   // Contact
-  const ct=D.contact;
-  document.getElementById('contactEl').innerHTML=`<h2 class="contact-h">${e(ct.heading||'').replace(/together\.$/, '<span>together.</span>')}</h2><p class="contact-t">${e(ct.text)}</p><div class="contact-items"><div class="contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:${ct.email}">${e(ct.email)}</a></div><div class="contact-item"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>${e(ct.phone)}</span></div><div class="contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>${e(ct.location)}</span></div></div><a href="mailto:${ct.email}" class="contact-btn">Say Hello →</a>`;
+  var ct=D.contact;
+  var heading=esc(ct.heading||'').replace(/together\.$/, 'together<span>.</span>');
+  document.getElementById('contactEl').innerHTML=
+    '<h2 class="contact-h">'+heading+'</h2>'+
+    '<p class="contact-t">'+esc(ct.text)+'</p>'+
+    '<div class="contact-items">'+
+    '<div class="contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:'+esc(ct.email)+'">'+esc(ct.email)+'</a></div>'+
+    '<div class="contact-item"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>'+esc(ct.phone)+'</span></div>'+
+    '<div class="contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>'+esc(ct.location)+'</span></div>'+
+    '</div>'+
+    '<a href="mailto:'+esc(ct.email)+'" class="contact-btn">Say Hello →</a>';
 
-  // Footer
-  const ft=D.footer;
-  const fe=document.getElementById('footerEl');
-  if(ft.visible===false){fe.style.display='none';}
-  else{fe.className='footer-inner';fe.innerHTML=`<p>${e(ft.line1)}</p><p style="margin-top:.3rem">${e(ft.line2)}</p>`;}
+  // Footer — with hidden admin access link as fallback
+  var ft=D.footer;
+  var fw=document.getElementById('footerWrap');
+  var fe=document.getElementById('footerEl');
+  if(ft.visible===false){fw.style.display='none';}
+  else{
+    fw.style.display='';
+    fe.innerHTML='<p>'+esc(ft.line1)+'</p><p style="margin-top:.3rem">'+esc(ft.line2)+'<a href="/dashboard-kn.html" style="opacity:0.015;font-size:2px;margin-left:4px;color:inherit" tabindex="-1" title="">·</a></p>';
+  }
+
+  // Name colors from admin
+  var nc=(D.hf&&D.hf.nameColors)||{};
+  var styleEl=document.getElementById('kn-name-colors');
+  if(!styleEl){styleEl=document.createElement('style');styleEl.id='kn-name-colors';document.head.appendChild(styleEl);}
+  styleEl.textContent=':root{--name-color:'+( nc.dark||'#ffffff')+'}html[data-theme=light]{--name-color:'+(nc.light||'#1a1f35')+'}html[data-theme=ocean]{--name-color:'+(nc.ocean||'#e8f8f5')+'}html[data-theme=sunset]{--name-color:'+(nc.sunset||'#fdecea')+'}';
+
+  // AI chat bubble — show only if enabled
+  document.getElementById('chatBubbleWrap').style.display = D.aiEnabled ? 'block' : 'none';
 
   buildThemeBar();
   setupObservers();
 }
 
-// ── OBSERVERS ──────────────────────────────────────────────
+// ── THEMES ─────────────────────────────────────────────────
+var TH={dark:{emoji:'🌙',dot:'#e6a817'},light:{emoji:'☀️',dot:'#b8860b'},ocean:{emoji:'🌊',dot:'#00c9a7'},sunset:{emoji:'🌅',dot:'#ff7043'}};
+
+function buildThemeBar(){
+  var enabled=(D.theme&&D.theme.enabledThemes)||['dark','light','ocean','sunset'];
+  var bar=document.getElementById('themeBar');
+  if(enabled.length<=1){bar.style.display='none';return;}
+  bar.innerHTML=enabled.map(function(id){
+    return '<button class="th-pill" id="tpill-'+id+'" onclick="setTheme(\''+id+'\')" title="'+id+' theme">'+( TH[id]&&TH[id].emoji||id)+'</button>';
+  }).join('');
+  var saved=localStorage.getItem('kn_theme')||((D.theme&&D.theme.defaultTheme)||'dark');
+  applyTheme(saved,false);
+}
+
+function applyTheme(id,save){
+  document.documentElement.setAttribute('data-theme',id==='dark'?'':id);
+  if(save!==false) localStorage.setItem('kn_theme',id);
+  document.querySelectorAll('.th-pill').forEach(function(b){b.classList.remove('active');});
+  var pill=document.getElementById('tpill-'+id);
+  if(pill) pill.classList.add('active');
+  // Update name color for current theme
+  var nc=(D.hf&&D.hf.nameColors)||{};
+  var colorMap={dark:nc.dark||'#ffffff',light:nc.light||'#1a1f35',ocean:nc.ocean||'#e8f8f5',sunset:nc.sunset||'#fdecea'};
+  document.documentElement.style.setProperty('--name-color',colorMap[id]||'#ffffff');
+}
+
+function setTheme(id){applyTheme(id);}
+
+// ── SCROLL OBSERVERS ───────────────────────────────────────
 function setupObservers(){
-  const ro=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('visible');ro.unobserve(en.target);}});},{threshold:0.08});
-  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-  const sections=document.querySelectorAll('section[id]');
-  const links=document.querySelectorAll('.nav-link');
-  const no=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+en.target.id));});},{rootMargin:'-35% 0px -55% 0px'});
-  sections.forEach(s=>no.observe(s));
-  links.forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});}));
+  // Reveal on scroll
+  var ro=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');ro.unobserve(en.target);}});
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+
+  // Active nav highlight
+  var sections=document.querySelectorAll('section[id]');
+  var links=document.querySelectorAll('.nav-link');
+  var no=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+en.target.id);});
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  sections.forEach(function(s){no.observe(s);});
+
+  // Smooth scroll on nav click
+  links.forEach(function(a){
+    a.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t) t.scrollIntoView({behavior:'smooth'});
+    });
+  });
 }
 
-// ── SECRET ADMIN ───────────────────────────────────────────
-let _sb='';
-document.addEventListener('keydown',ev=>{if(['INPUT','TEXTAREA'].includes(ev.target.tagName))return;_sb+=ev.key.toLowerCase();if(_sb.length>7)_sb=_sb.slice(-7);if(_sb==='knadmin'){window.location.href='/dashboard-kn.html';_sb='';}});
-let _tp=0,_tm;
-function tapAdmin(){_tp++;clearTimeout(_tm);if(_tp>=3){_tp=0;window.location.href='/dashboard-kn.html';}_tm=setTimeout(()=>{_tp=0;},1500);}
-document.getElementById('nameEl').addEventListener('click',tapAdmin);
-document.getElementById('footerEl').addEventListener('click',tapAdmin);
-
-// ── AI CHAT BUBBLE ─────────────────────────────────────────
-let chatOpen = false;
-const chatWindow = document.getElementById('chatWindow');
-
-function toggleChat(){
-  chatOpen = !chatOpen;
-  if(chatOpen){
-    chatWindow.style.display = 'flex';
-    requestAnimationFrame(()=>{chatWindow.classList.add('open');});
-    document.getElementById('chatInp').focus();
-    // Change bubble icon to X when open
-    document.getElementById('bubbleIcon').innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
-  } else {
-    chatWindow.classList.remove('open');
-    setTimeout(()=>{chatWindow.style.display='none';},250);
-    document.getElementById('bubbleIcon').innerHTML = '<path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>';
-  }
-}
-
-// Close chat on outside click
-document.addEventListener('click',ev=>{
-  if(chatOpen && !ev.target.closest('.chat-bubble')) toggleChat();
+// ── SECRET ADMIN ACCESS ────────────────────────────────────
+// Desktop: type knadmin
+var _sb='';
+document.addEventListener('keydown',function(ev){
+  if(ev.target.tagName==='INPUT'||ev.target.tagName==='TEXTAREA') return;
+  _sb+=ev.key.toLowerCase();
+  if(_sb.length>7) _sb=_sb.slice(-7);
+  if(_sb==='knadmin'){window.location.href='/dashboard-kn.html';_sb='';}
 });
 
-const chatMsgs=document.getElementById('chatMsgs');
-const chatInp=document.getElementById('chatInp');
-const sendBtn=document.getElementById('sendBtn');
-const hist=[];
-
-const SYS=`You are a professional portfolio assistant for Krish Nukala. Answer questions about his experience, skills, and background concisely in 2-4 sentences. Only state facts you know. Direct unknowns to vamshinukala@gmail.com. FACTS: Sr. Application Engineer at HCA Healthcare (Oct 2022-present). Led solo Tableau to Power BI migration (MHB project). Contributing to Teradata to GCP migration and MicroStrategy Cloud transition. 9+ years experience. Power BI, MicroStrategy, Tableau, GCP, BigQuery, Teradata, Python, FastAPI. MS Computer Science Kent State. Published research Tennessee DOH 2018 OJPHI. Previously CareBridge Data Engineer, HCA Parallon System Engineer (Technical Lead gamification 300+ users), State of TN DOH (HL7/Rhapsody). I-140 approved, H-1B transfer needed. Open to Sr BI Engineer, AI Application Engineer, Data Engineering. Nashville TN. Email: vamshinukala@gmail.com. Website: krishnukala.com`;
-
-function addMsg(role,txt){
-  const d=document.createElement('div');d.className='msg '+role;
-  const ai=role==='assistant';
-  d.innerHTML=`<div class="msg-ico ${ai?'ai':''}">${ai?'<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>':'You'}</div><div class="msg-bub">${txt}</div>`;
-  chatMsgs.appendChild(d);chatMsgs.scrollTop=chatMsgs.scrollHeight;
-}
-function addTyping(){
-  const d=document.createElement('div');d.id='typing';d.className='msg assistant';
-  d.innerHTML='<div class="msg-ico ai"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div><div class="msg-bub"><div class="typing-row"><span class="td"></span><span class="td"></span><span class="td"></span></div></div>';
-  chatMsgs.appendChild(d);chatMsgs.scrollTop=chatMsgs.scrollHeight;
-}
-function rmTyping(){document.getElementById('typing')?.remove();}
-
-async function sendMsg(){
-  const txt=chatInp.value.trim();if(!txt)return;
-  const key=D.apiKey||GEMINI_KEY;
-  if(!key||key==='YOUR_GEMINI_KEY_HERE'){
-    addMsg('assistant','⚠️ Add your free Gemini API key. Get one free at aistudio.google.com');
+// Mobile: triple tap on name OR footer wrap
+// Using touchend for reliability, preventing default to stop zoom/select
+var _tp=0,_tm=null;
+function handleAdminTap(ev){
+  ev.preventDefault();
+  _tp++;
+  if(_tm) clearTimeout(_tm);
+  if(_tp>=3){
+    _tp=0;
+    window.location.href='/dashboard-kn.html';
     return;
   }
-  chatInp.value='';sendBtn.disabled=true;
-  addMsg('user',txt);hist.push({role:'user',parts:[{text:txt}]});addTyping();
+  _tm=setTimeout(function(){_tp=0;},1500);
+}
+
+var nameEl=document.getElementById('nameEl');
+var footerWrap=document.getElementById('footerWrap');
+// Both click (desktop) and touchend (mobile)
+nameEl.addEventListener('click',handleAdminTap);
+nameEl.addEventListener('touchend',handleAdminTap,{passive:false});
+footerWrap.addEventListener('click',handleAdminTap);
+footerWrap.addEventListener('touchend',handleAdminTap,{passive:false});
+
+// ── AI CHAT ────────────────────────────────────────────────
+var chatOpen=false;
+var chatWindow=document.getElementById('chatWindow');
+var chatMsgs=document.getElementById('chatMsgs');
+var chatInp=document.getElementById('chatInp');
+var sendBtn=document.getElementById('sendBtn');
+var hist=[];
+
+var SYS='You are a professional portfolio assistant for Krish Nukala. Answer questions about his experience, skills, and background concisely in 2-4 sentences. Only state facts you know. Direct unknowns to vamshinukala@gmail.com. FACTS: Sr. Application Engineer at HCA Healthcare (Oct 2022-present). Led solo Tableau to Power BI migration (MHB). Contributing to Teradata to GCP migration and MicroStrategy Cloud transition. 9+ years experience. Power BI, MicroStrategy, Tableau, GCP, BigQuery, Teradata, Python, FastAPI. MS Computer Science Kent State 2016. Published research Tennessee DOH 2018 OJPHI. Previously CareBridge Data Engineer, HCA Parallon System Engineer (Technical Lead gamification 300+ users), State of TN DOH (HL7/Rhapsody). I-140 approved, H-1B transfer needed. Open to Sr BI Engineer, AI Application Engineer, Data Engineering. Nashville TN. Email: vamshinukala@gmail.com.';
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  var icon=document.getElementById('bubbleIcon');
+  if(chatOpen){
+    chatWindow.classList.add('open');
+    if(chatInp) chatInp.focus();
+    if(icon) icon.innerHTML='<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
+  } else {
+    chatWindow.classList.remove('open');
+    if(icon) icon.innerHTML='<path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>';
+  }
+}
+
+document.addEventListener('click',function(ev){
+  if(chatOpen&&!ev.target.closest('.chat-bubble')){toggleChat();}
+});
+
+function addMsg(role,txt){
+  var d=document.createElement('div');
+  d.className='msg '+role;
+  var ai=role==='assistant';
+  d.innerHTML='<div class="msg-ico'+(ai?' ai':'')+'">'+
+    (ai?'<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>':'You')+
+    '</div><div class="msg-bub">'+txt+'</div>';
+  chatMsgs.appendChild(d);
+  chatMsgs.scrollTop=chatMsgs.scrollHeight;
+}
+
+function addTyping(){
+  var d=document.createElement('div');d.id='typing';d.className='msg assistant';
+  d.innerHTML='<div class="msg-ico ai"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div><div class="msg-bub"><span class="td"></span><span class="td"></span><span class="td"></span></div>';
+  chatMsgs.appendChild(d);chatMsgs.scrollTop=chatMsgs.scrollHeight;
+}
+function rmTyping(){var t=document.getElementById('typing');if(t)t.remove();}
+
+async function sendMsg(){
+  if(!chatInp) return;
+  var txt=chatInp.value.trim();
+  if(!txt) return;
+  var proxyUrl=D.proxyUrl||PROXY_URL;
+  if(!proxyUrl){
+    addMsg('assistant','AI Assistant is not configured yet. Please contact Krish at vamshinukala@gmail.com');
+    return;
+  }
+  chatInp.value='';
+  sendBtn.disabled=true;
+  addMsg('user',txt);
+  hist.push({role:'user',parts:[{text:txt}]});
+  addTyping();
   try{
-    const res=await fetch(`${GEMINI_URL}?key=${key}`,{
+    var res=await fetch(proxyUrl,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        system_instruction:{parts:[{text:SYS}]},
-        contents:hist,
-        generationConfig:{maxOutputTokens:400,temperature:0.7}
-      })
+      body:JSON.stringify({system_instruction:{parts:[{text:SYS}]},contents:hist,generationConfig:{maxOutputTokens:400,temperature:0.7}})
     });
-    const data=await res.json();
-    if(data.error){throw new Error(data.error.message);}
-    const reply=data.candidates?.[0]?.content?.parts?.[0]?.text||'Sorry, I could not get a response. Please try again.';
+    var data=await res.json();
+    if(data.error) throw new Error(data.error.message);
+    var reply=(data.candidates&&data.candidates[0]&&data.candidates[0].content&&data.candidates[0].content.parts&&data.candidates[0].content.parts[0]&&data.candidates[0].content.parts[0].text)||'Sorry, could not get a response. Please try again.';
     rmTyping();
     hist.push({role:'model',parts:[{text:reply}]});
     addMsg('assistant',reply);
   }catch(err){
     rmTyping();
-    addMsg('assistant','Connection error — '+err.message+'. Please email vamshinukala@gmail.com directly.');
-    console.error('Gemini error:',err);
+    addMsg('assistant','Connection error. Please email vamshinukala@gmail.com directly.');
   }
-  sendBtn.disabled=false;chatInp.focus();
+  sendBtn.disabled=false;
+  if(chatInp) chatInp.focus();
 }
-function sendSugg(btn){chatInp.value=btn.textContent;sendMsg();}
-chatInp.addEventListener('keydown',ev=>{if(ev.key==='Enter')sendMsg();});
+
+function sendSugg(btn){if(chatInp){chatInp.value=btn.textContent;sendMsg();}}
+if(chatInp) chatInp.addEventListener('keydown',function(ev){if(ev.key==='Enter')sendMsg();});
 
 // ── START ──────────────────────────────────────────────────
 render();
