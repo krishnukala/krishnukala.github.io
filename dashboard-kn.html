@@ -2,1894 +2,894 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Admin — krishnukala.com</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin — Krish Nukala Portfolio</title>
 <style>
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#1c2230;--gold:#e6a817;--gold2:#fbbf24;--glt:rgba(230,168,23,.1);--white:#cdd6f4;--muted:#6272a4;--dim:#44475a;--border:rgba(230,168,23,.12);--border2:rgba(255,255,255,.06);--green:#1a7a4a;--red:#e05252;--redlt:rgba(224,82,82,.1);--font-sans:'DM Sans',sans-serif;--font-head:'Syne',sans-serif;--font-mono:'DM Mono',monospace;--border-gold:rgba(230,168,23,.3)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0d1117;--bg2:#161b22;--bg3:#1c2230;--bg4:#21262d;
-  --gold:#e6a817;--gold2:#fbbf24;--goldlt:rgba(230,168,23,0.1);
-  --green:#6ee7b7;--greenlt:rgba(110,231,183,0.1);
-  --red:#f87171;--redlt:rgba(248,113,113,0.1);
-  --white:#cdd6f4;--muted:#6272a4;--dim:#44475a;
-  --border:rgba(255,255,255,0.07);--border-gold:rgba(230,168,23,0.2);
-  --font:'DM Sans',sans-serif;--font-head:'Syne',sans-serif;--font-mono:'DM Mono',monospace;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--white);min-height:100vh;font-size:14px}
-input,textarea,select,button{font-family:var(--font);font-size:14px}
-a{color:var(--gold);text-decoration:none}
-::selection{background:rgba(230,168,23,0.2)}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--dim);border-radius:3px}
-
-/* ══════════════════════════════════
-   LOGIN SCREEN
-══════════════════════════════════ */
-#loginScreen{
-  position:fixed;inset:0;background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  z-index:1000;
-}
-.login-box{
-  width:100%;max-width:380px;padding:2.5rem;
-  border:1px solid var(--border-gold);
-  background:var(--bg2);
-  position:relative;overflow:hidden;
-}
-.login-box::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-}
-.login-logo{
-  font-family:var(--font-head);font-size:1.6rem;font-weight:800;
-  color:var(--gold);margin-bottom:0.3rem;
-}
-.login-sub{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:2rem}
-.login-label{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.4rem;display:block}
-.login-input{
-  width:100%;background:var(--bg3);border:1px solid var(--border);
-  color:var(--white);padding:0.7rem 1rem;outline:none;
-  margin-bottom:1rem;transition:border-color 0.2s;
-}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--white);min-height:100vh}
+a{color:inherit;text-decoration:none}
+/* Login */
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem}
+.login-card{width:100%;max-width:400px;background:var(--bg2);border:1px solid var(--border);padding:2.5rem}
+.login-logo{font-family:var(--font-head);font-size:1.8rem;font-weight:800;color:var(--white);margin-bottom:.25rem}
+.login-logo span{color:var(--gold)}
+.login-sub{font-family:var(--font-mono);font-size:.62rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:2rem}
+.login-input{width:100%;background:var(--bg3);border:1px solid var(--dim);color:var(--white);font-family:var(--font-sans);font-size:.9rem;padding:.75rem 1rem;outline:none;margin-bottom:.75rem;transition:border-color .2s}
 .login-input:focus{border-color:var(--gold)}
-.login-btn{
-  width:100%;padding:0.75rem;background:var(--gold);color:var(--bg);
-  border:none;cursor:pointer;font-family:var(--font-head);font-weight:700;
-  font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;
-  transition:background 0.2s;margin-bottom:0.75rem;
-}
+.login-btn{width:100%;background:var(--gold);border:none;color:var(--bg);font-family:var(--font-mono);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem;cursor:pointer;transition:background .2s}
 .login-btn:hover{background:var(--gold2)}
-.login-error{
-  font-size:0.78rem;color:var(--red);
-  padding:0.5rem 0.75rem;background:var(--redlt);
-  border:1px solid rgba(248,113,113,0.2);
-  display:none;margin-top:0.5rem;
-}
-.login-hint{font-family:var(--font-mono);font-size:0.6rem;color:var(--dim);text-align:center;margin-top:1rem}
-
-/* ══════════════════════════════════
-   ADMIN LAYOUT
-══════════════════════════════════ */
-#adminPanel{display:none}
-.admin-layout{display:flex;min-height:100vh}
-
-/* Sidebar */
-.admin-sidebar{
-  width:220px;flex-shrink:0;
-  background:var(--bg2);border-right:1px solid var(--border);
-  position:fixed;top:0;left:0;bottom:0;
-  display:flex;flex-direction:column;overflow-y:auto;
-}
-.sidebar-brand{
-  padding:1.5rem 1.25rem;border-bottom:1px solid var(--border);
-}
-.sidebar-brand-name{font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--gold)}
-.sidebar-brand-sub{font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:0.2rem}
-
-.sidebar-nav{padding:1rem 0;flex:1}
-.nav-section-label{
-  font-family:var(--font-mono);font-size:0.55rem;color:var(--dim);
-  letter-spacing:0.18em;text-transform:uppercase;
-  padding:0.75rem 1.25rem 0.3rem;
-}
-.sidebar-nav a{
-  display:flex;align-items:center;gap:0.65rem;
-  padding:0.55rem 1.25rem;color:var(--muted);
-  font-size:0.82rem;transition:all 0.2s;cursor:pointer;
-  border-left:2px solid transparent;
-}
-.sidebar-nav a:hover,.sidebar-nav a.active{
-  color:var(--gold);background:var(--goldlt);
-  border-left-color:var(--gold);
-}
-.sidebar-nav a svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
-
-.sidebar-footer{
-  padding:1rem 1.25rem;border-top:1px solid var(--border);
-}
-.logout-btn{
-  width:100%;padding:0.55rem;border:1px solid var(--dim);
-  background:transparent;color:var(--muted);cursor:pointer;
-  font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;
-  text-transform:uppercase;transition:all 0.2s;
-  display:flex;align-items:center;justify-content:center;gap:0.5rem;
-}
-.logout-btn:hover{border-color:var(--red);color:var(--red)}
-
+.login-btn:disabled{opacity:.4;cursor:not-allowed}
+.login-error{font-family:var(--font-mono);font-size:.7rem;color:var(--red);margin-top:.5rem;display:none}
+.login-lockout{font-family:var(--font-mono);font-size:.7rem;color:var(--red);margin-top:.5rem;display:none;padding:.5rem;background:var(--redlt);border:1px solid rgba(224,82,82,.2)}
+/* Admin Layout */
+.admin-wrap{display:flex;min-height:100vh}
+.sidebar{width:220px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-head{padding:1.25rem 1rem;border-bottom:1px solid var(--border2)}
+.sidebar-name{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--white)}
+.sidebar-name span{color:var(--gold)}
+.sidebar-tag{font-family:var(--font-mono);font-size:.55rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.nav-section-label{font-family:var(--font-mono);font-size:.55rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;padding:.75rem 1rem .35rem}
+.sidebar nav a{display:flex;align-items:center;gap:.6rem;padding:.5rem 1rem;font-size:.8rem;color:var(--muted);transition:all .2s;cursor:pointer;border-left:2px solid transparent}
+.sidebar nav a:hover{color:var(--white);background:var(--bg3)}
+.sidebar nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--glt)}
+.sidebar nav a svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+.sidebar-footer{margin-top:auto;padding:1rem;border-top:1px solid var(--border2)}
+.btn-logout{width:100%;background:transparent;border:1px solid var(--dim);color:var(--muted);font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;padding:.5rem;cursor:pointer;transition:all .2s}
+.btn-logout:hover{border-color:var(--red);color:var(--red)}
 /* Main content */
-.admin-main{margin-left:220px;flex:1;padding:0;min-width:0}
-
-.admin-topbar{
-  background:var(--bg2);border-bottom:1px solid var(--border);
-  padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:50;
-}
-.topbar-title{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--white)}
-.topbar-actions{display:flex;gap:0.75rem;align-items:center}
-
-.btn{
-  padding:0.5rem 1.1rem;border:none;cursor:pointer;
-  font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;
-  text-transform:uppercase;transition:all 0.2s;display:inline-flex;
-  align-items:center;gap:0.4rem;
-}
-.btn-primary{background:var(--gold);color:var(--bg);font-weight:700}
+.main{flex:1;overflow-y:auto}
+.admin-content{display:none;padding:0}
+.admin-content.active{display:block}
+/* Cards */
+.card{background:var(--bg2);border:1px solid var(--border2);padding:1.5rem;margin-bottom:1.25rem}
+.card-title{font-family:var(--font-head);font-size:1rem;font-weight:600;color:var(--white);margin-bottom:.25rem}
+.card-sub{font-size:.78rem;color:var(--muted);margin-bottom:1.1rem}
+/* Fields */
+.field{margin-bottom:1rem}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.field-label{font-family:var(--font-mono);font-size:.62rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.35rem}
+.optional{color:var(--dim);font-size:.58rem;letter-spacing:0;text-transform:none;font-family:var(--font-sans)}
+input[type=text],input[type=url],input[type=email],input[type=tel],input[type=password],input[type=number],select,textarea{width:100%;background:var(--bg3);border:1px solid var(--dim);color:var(--white);font-family:var(--font-sans);font-size:.85rem;padding:.55rem .85rem;outline:none;transition:border-color .2s;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:80px;line-height:1.6}
+select{cursor:pointer}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;font-family:var(--font-mono);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none}
+.btn-primary{background:var(--gold);color:var(--bg)}
 .btn-primary:hover{background:var(--gold2)}
 .btn-secondary{background:transparent;color:var(--muted);border:1px solid var(--dim)}
 .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
-.btn-danger{background:transparent;color:var(--red);border:1px solid rgba(248,113,113,0.3)}
+.btn-danger{background:transparent;color:var(--red);border:1px solid rgba(224,82,82,.3)}
 .btn-danger:hover{background:var(--redlt)}
-.btn-success{background:var(--green);color:var(--bg);font-weight:700}
-.btn-success:hover{opacity:0.9}
-
-/* Panels */
-.admin-content{padding:2rem;display:none}
-.admin-content.active{display:block}
-
-/* Cards */
-.card{background:var(--bg2);border:1px solid var(--border);padding:1.5rem;margin-bottom:1.25rem}
-.card-title{font-family:var(--font-head);font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.25rem}
-.card-sub{font-size:0.78rem;color:var(--muted);margin-bottom:1.25rem}
-
-/* Form elements */
-.field{margin-bottom:1.1rem}
-.field-label{
-  font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);
-  letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.4rem;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.field-label .optional{color:var(--dim);font-size:0.55rem;letter-spacing:0.08em}
-.field input,.field textarea,.field select{
-  width:100%;background:var(--bg3);border:1px solid var(--border);
-  color:var(--white);padding:0.6rem 0.85rem;outline:none;
-  transition:border-color 0.2s;resize:vertical;
-}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold)}
-.field textarea{min-height:80px;line-height:1.6}
-.field select option{background:var(--bg3)}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
-
-/* Tags input */
-.tags-input-wrap{
-  background:var(--bg3);border:1px solid var(--border);
-  padding:0.4rem 0.6rem;display:flex;flex-wrap:wrap;gap:0.4rem;
-  min-height:42px;align-items:center;transition:border-color 0.2s;
-}
-.tags-input-wrap:focus-within{border-color:var(--gold)}
-.tags-input-wrap input{background:transparent;border:none;outline:none;color:var(--white);flex:1;min-width:120px;padding:0.2rem 0.3rem}
-.tag-chip{
-  background:var(--goldlt);border:1px solid var(--border-gold);
-  color:var(--gold);font-family:var(--font-mono);font-size:0.6rem;
-  padding:0.2rem 0.55rem;display:flex;align-items:center;gap:0.3rem;
-  white-space:nowrap;
-}
-.tag-chip button{background:none;border:none;cursor:pointer;color:var(--gold);font-size:0.75rem;line-height:1;padding:0}
-.tag-chip button:hover{color:var(--red)}
-
-/* List items (experience, projects) */
-.list-item{
-  background:var(--bg3);border:1px solid var(--border);
-  padding:1rem;margin-bottom:0.75rem;position:relative;
-  transition:border-color 0.2s;
-}
-.list-item:hover{border-color:var(--border-gold)}
-.list-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;gap:1rem}
-.list-item-title{font-family:var(--font-head);font-size:0.9rem;font-weight:600;color:var(--white)}
-.list-item-actions{display:flex;gap:0.4rem;flex-shrink:0}
-.icon-btn{
-  width:28px;height:28px;border:1px solid var(--border);background:transparent;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  color:var(--muted);transition:all 0.2s;
-}
-.icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{opacity:.85}
+/* List items */
+.list-item{border:1px solid var(--border2);margin-bottom:.75rem;background:var(--bg3)}
+.list-item-header{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border2)}
+.list-item-title{font-family:var(--font-head);font-size:.85rem;font-weight:600;color:var(--white)}
+.list-item-actions{display:flex;align-items:center;gap:.5rem}
+.list-item-body{padding:1rem}
+.icon-btn{width:28px;height:28px;background:transparent;border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .icon-btn.del:hover{border-color:var(--red);color:var(--red)}
-.icon-btn svg{width:13px;height:13px;fill:currentColor}
-
-.add-btn{
-  width:100%;padding:0.6rem;border:1px dashed var(--dim);background:transparent;
-  color:var(--muted);cursor:pointer;font-family:var(--font-mono);font-size:0.65rem;
-  letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;
-  display:flex;align-items:center;justify-content:center;gap:0.5rem;
-}
-.add-btn:hover{border-color:var(--gold);color:var(--gold)}
-
-/* Theme editor */
-.theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
-.color-field{
-  display:flex;align-items:center;gap:0.75rem;
-  background:var(--bg3);border:1px solid var(--border);
-  padding:0.5rem 0.75rem;transition:border-color 0.2s;
-}
-.color-field:hover{border-color:var(--border-gold)}
-.color-swatch{width:32px;height:32px;border:1px solid var(--border);cursor:pointer;flex-shrink:0}
-.color-info{flex:1;min-width:0}
-.color-name{font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;margin-bottom:0.15rem}
-.color-val{font-family:var(--font-mono);font-size:0.75rem;color:var(--white)}
-input[type=color]{opacity:0;position:absolute;width:0;height:0}
-
-.font-option{
-  padding:0.75rem;border:1px solid var(--border);background:var(--bg3);
-  cursor:pointer;text-align:center;transition:all 0.2s;
-}
-.font-option:hover,.font-option.selected{border-color:var(--gold);background:var(--goldlt)}
-.font-option-name{font-size:0.8rem;color:var(--white);margin-bottom:0.2rem;font-weight:600}
-.font-option-preview{font-size:0.72rem;color:var(--muted)}
-
+.icon-btn svg{width:14px;height:14px;fill:currentColor}
+/* Tags */
+.tags-input-wrap{display:flex;flex-wrap:wrap;gap:.35rem;padding:.5rem;border:1px solid var(--dim);background:var(--bg3);min-height:42px;align-items:center;transition:border-color .2s}
+.tags-input-wrap:focus-within{border-color:var(--gold)}
+.tag-chip{display:inline-flex;align-items:center;gap:.3rem;background:var(--glt);border:1px solid var(--border);font-family:var(--font-mono);font-size:.62rem;color:var(--gold);padding:.15rem .5rem}
+.tag-chip button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.8rem;line-height:1;padding:0}
+.tag-chip button:hover{color:var(--red)}
+.tags-input-wrap input{flex:1;min-width:100px;background:none;border:none;color:var(--white);font-size:.82rem;outline:none;padding:.1rem}
+/* Badges */
+.badge{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem}
+.badge-earned{background:var(--glt);color:var(--gold);border:1px solid var(--border)}
+.badge-progress{background:rgba(110,231,183,.1);color:#6ee7b7;border:1px solid rgba(110,231,183,.2)}
+.badge-planned{background:var(--bg3);color:var(--dim);border:1px solid var(--border2)}
+/* Image upload widget */
+.img-upload-box{border:1px solid var(--border);padding:1rem;background:var(--bg3);margin-top:.5rem}
+.img-upload-box-label{font-family:var(--font-mono);font-size:.6rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem}
+.img-upload-row{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:flex-start}
+.img-preview-area{flex-shrink:0;text-align:center}
+.img-preview-area img{max-width:110px;max-height:80px;object-fit:cover;border:1px solid var(--border);display:block;margin-bottom:.5rem}
+.img-no-preview{width:110px;height:75px;background:var(--bg2);border:1px dashed var(--dim);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--dim);margin-bottom:.5rem}
+.img-upload-controls{flex:1;min-width:180px;display:flex;flex-direction:column;gap:.5rem}
+.upload-label-btn{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .75rem;background:var(--gold);color:var(--bg);font-family:var(--font-mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;cursor:pointer;width:fit-content}
+.upload-label-btn:hover{background:var(--gold2)}
+/* Toggle switch */
+.toggle-track{width:42px;height:22px;border-radius:11px;background:var(--dim);cursor:pointer;position:relative;transition:background .3s;flex-shrink:0}
+.toggle-track.on{background:var(--gold)}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .3s;pointer-events:none}
+.toggle-track.on .toggle-thumb{left:22px}
+/* Toast */
+.save-toast{position:fixed;bottom:2rem;right:2rem;background:var(--green);color:#fff;font-family:var(--font-mono);font-size:.72rem;padding:.75rem 1.25rem;transform:translateY(100px);opacity:0;transition:all .3s;z-index:999}
+.save-toast.show{transform:translateY(0);opacity:1}
 /* Dashboard stats */
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
-.stat-card{background:var(--bg2);border:1px solid var(--border);padding:1.1rem;text-align:center}
-.stat-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--gold);line-height:1}
-.stat-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:0.3rem}
-
-/* Save indicator */
-.save-toast{
-  position:fixed;bottom:1.5rem;right:1.5rem;
-  background:var(--green);color:var(--bg);
-  padding:0.65rem 1.25rem;font-family:var(--font-mono);font-size:0.7rem;
-  letter-spacing:0.1em;text-transform:uppercase;font-weight:700;
-  z-index:999;opacity:0;transform:translateY(10px);
-  transition:all 0.3s ease;pointer-events:none;
-}
-.save-toast.show{opacity:1;transform:translateY(0)}
-
-/* Status badges */
-.badge{display:inline-flex;align-items:center;gap:0.3rem;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.55rem}
-.badge-earned{background:var(--goldlt);border:1px solid var(--border-gold);color:var(--gold)}
-.badge-progress{background:var(--greenlt);border:1px solid rgba(110,231,183,0.2);color:var(--green)}
-.badge-planned{background:var(--bg4);border:1px solid var(--border);color:var(--muted)}
-
-/* Password change */
-.divider{height:1px;background:var(--border);margin:1.5rem 0}
-
-/* Responsive */
-@media(max-width:768px){
-  .admin-sidebar{width:100%;position:static;height:auto}
-  .admin-main{margin-left:0}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .field-row,.field-row-3{grid-template-columns:1fr}
-}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-box{background:var(--bg3);border:1px solid var(--border2);padding:1rem;text-align:center}
+.stat-num{font-family:var(--font-head);font-size:1.8rem;font-weight:800;color:var(--gold)}
+.stat-label{font-family:var(--font-mono);font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
+/* Section page header */
+.page-head{padding:1.5rem 2rem;border-bottom:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.page-title{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:var(--white)}
+.page-body{padding:2rem}
+/* Color picker */
+.color-swatch{width:32px;height:28px;border:1px solid var(--border);cursor:pointer;padding:0;background:none}
+/* Photo preview */
+.photo-preview-ring{width:80px;height:80px;border-radius:50%;border:2px solid var(--gold);padding:3px;overflow:hidden;margin-bottom:.75rem}
+.photo-preview-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.photo-initials{width:100%;height:100%;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold)}
 </style>
 </head>
 <body>
 
-<!-- ══ SAVE TOAST ══ -->
-<div class="save-toast" id="saveToast">✓ Changes Saved</div>
-
-<!-- ══════════════════════════════════
-     LOGIN SCREEN
-══════════════════════════════════ -->
-<div id="loginScreen">
-  <div class="login-box">
-    <div class="login-logo">KN Admin</div>
-    <div class="login-sub">krishnukala.com · Control Panel</div>
-    <label class="login-label" for="loginPass">Password</label>
+<!-- LOGIN -->
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">Krish<span>.</span></div>
+    <div class="login-sub">Portfolio Admin Panel</div>
     <input class="login-input" type="password" id="loginPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()"/>
-    <button class="login-btn" onclick="doLogin()">Sign In →</button>
-    <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
-    <div class="login-lockout" id="loginLockout" style="display:none;font-family:var(--font-mono);font-size:0.7rem;color:var(--red);text-align:center;margin-top:0.75rem;padding:0.5rem;background:var(--redlt);border:1px solid rgba(248,113,113,0.2)"></div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">Sign In →</button>
+    <div class="login-error" id="loginError">Incorrect password.</div>
+    <div class="login-lockout" id="loginLockout"></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     ADMIN PANEL
-══════════════════════════════════ -->
-<div id="adminPanel">
-<div class="admin-layout">
+<!-- ADMIN PANEL -->
+<div id="adminPanel" style="display:none">
+<div class="admin-wrap">
 
-  <!-- SIDEBAR -->
-  <aside class="admin-sidebar">
-    <div class="sidebar-brand">
-      <div class="sidebar-brand-name">KN Admin</div>
-      <div class="sidebar-brand-sub">krishnukala.com</div>
-    </div>
-
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">Overview</div>
-      <a onclick="showPanel('dashboard')" class="active" id="nav-dashboard">
-        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-        Dashboard
-      </a>
-
-      <div class="nav-section-label">Content</div>
-      <a onclick="showPanel('about')" id="nav-about">
-        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        About & Bio
-      </a>
-      <a onclick="showPanel('experience')" id="nav-experience">
-        <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.05 15.96 0 13.5 0c-1.39 0-2.48.72-3.16 1.83L12 3.4l1.66-1.57C14.12 1.31 14.76 1 15.5 1c1.38 0 2.5 1.12 2.5 2.5V6H6c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 15H4V8h16v13z"/></svg>
-        Experience
-      </a>
-      <a onclick="showPanel('projects')" id="nav-projects">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        Projects
-      </a>
-      <a onclick="showPanel('skills')" id="nav-skills">
-        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
-        Skills
-      </a>
-      <a onclick="showPanel('certifications')" id="nav-certifications">
-        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-        Certifications
-      </a>
-      <a onclick="showPanel('publications')" id="nav-publications">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        Publications
-      </a>
-      <a onclick="showPanel('contact')" id="nav-contact">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        Contact Info
-      </a>
-
-      <div class="nav-section-label">Appearance</div>
-      <a onclick="showPanel('headerfooter')" id="nav-headerfooter">
-        <svg viewBox="0 0 24 24"><path d="M4 5h16v2H4zm0 12h16v2H4zm0-6h16v2H4z"/></svg>
-        Header & Footer
-      </a>
-      <a onclick="showPanel('theme')" id="nav-theme">
-        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-        Theme & Colors
-      </a>
-
-      <div class="nav-section-label">System</div>
-      <a onclick="showPanel('settings')" id="nav-settings">
-        <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
-        Settings
-      </a>
-      <a onclick="exportSite()" id="nav-export">
-        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-        Export Site
-      </a>
-    </nav>
-
-    <div class="sidebar-footer">
-      <button class="logout-btn" onclick="doLogout()">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
-        Sign Out
-      </button>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="admin-main">
-    <div class="admin-topbar">
-      <div class="topbar-title" id="topbarTitle">Dashboard</div>
-      <div class="topbar-actions">
-        <button class="btn btn-secondary" onclick="previewSite()">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-          Preview Site
-        </button>
-        <button class="btn btn-primary" onclick="saveAll()">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
-          Save Changes
-        </button>
-      </div>
-    </div>
-
-    <!-- ── DASHBOARD ── -->
-    <div class="admin-content active" id="panel-dashboard">
-      <div style="padding:2rem">
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-num" id="stat-exp">4</div><div class="stat-label">Experience Items</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-proj">4</div><div class="stat-label">Projects</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-skills">6</div><div class="stat-label">Skill Groups</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-certs">6</div><div class="stat-label">Certifications</div></div>
-        </div>
-        <div class="card">
-          <div class="card-title">Quick Actions</div>
-          <div class="card-sub">Common tasks to update your portfolio</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-            <button class="btn btn-secondary" onclick="showPanel('about')">Edit Bio</button>
-            <button class="btn btn-secondary" onclick="showPanel('experience')">Add Experience</button>
-            <button class="btn btn-secondary" onclick="showPanel('projects')">Add Project</button>
-            <button class="btn btn-secondary" onclick="showPanel('certifications')">Update Certs</button>
-            <button class="btn btn-secondary" onclick="showPanel('theme')">Change Colors</button>
-            <button class="btn btn-secondary" onclick="importData()">📥 Import Data</button>
-            <button class="btn btn-primary" onclick="exportSite()">Export & Download</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">How to Update Your Live Site</div>
-          <div class="card-sub">After making changes here, follow these steps to push to krishnukala.com</div>
-          <div style="display:flex;flex-direction:column;gap:0.6rem">
-            <div style="display:flex;gap:1rem;align-items:flex-start;font-size:0.82rem;color:var(--muted)">
-              <span style="background:var(--goldlt);border:1px solid var(--border-gold);color:var(--gold);font-family:var(--font-mono);font-size:0.65rem;padding:0.15rem 0.5rem;flex-shrink:0">01</span>
-              Make your changes in this admin panel
-            </div>
-            <div style="display:flex;gap:1rem;align-items:flex-start;font-size:0.82rem;color:var(--muted)">
-              <span style="background:var(--goldlt);border:1px solid var(--border-gold);color:var(--gold);font-family:var(--font-mono);font-size:0.65rem;padding:0.15rem 0.5rem;flex-shrink:0">02</span>
-              Click <strong style="color:var(--white)">Save Changes</strong> (top right)
-            </div>
-            <div style="display:flex;gap:1rem;align-items:flex-start;font-size:0.82rem;color:var(--muted)">
-              <span style="background:var(--goldlt);border:1px solid var(--border-gold);color:var(--gold);font-family:var(--font-mono);font-size:0.65rem;padding:0.15rem 0.5rem;flex-shrink:0">03</span>
-              Click <strong style="color:var(--white)">Export Site</strong> → downloads updated index.html
-            </div>
-            <div style="display:flex;gap:1rem;align-items:flex-start;font-size:0.82rem;color:var(--muted)">
-              <span style="background:var(--goldlt);border:1px solid var(--border-gold);color:var(--gold);font-family:var(--font-mono);font-size:0.65rem;padding:0.15rem 0.5rem;flex-shrink:0">04</span>
-              Go to github.com/krishnukala/krishnukala.github.io → Upload the new index.html → Your site updates in ~2 min
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── ABOUT ── -->
-    <div class="admin-content" id="panel-about">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Personal Information</div>
-          <div class="card-sub">Your name, title, and header details</div>
-          <div class="field-row">
-            <div class="field"><label class="field-label">First Name</label><input type="text" id="firstName" value="Krish"/></div>
-            <div class="field"><label class="field-label">Last Name</label><input type="text" id="lastName" value="Nukala"/></div>
-          </div>
-          <div class="field"><label class="field-label">Full Name (for display)</label><input type="text" id="fullName" value="Vamshi (Krish) Nukala"/></div>
-          <div class="field"><label class="field-label">Job Title Line 1</label><input type="text" id="titleLine1" value="Sr. Application Engineer"/></div>
-          <div class="field"><label class="field-label">Job Title Line 2</label><input type="text" id="titleLine2" value="BI & AI Engineering"/></div>
-          <div class="field"><label class="field-label">Location</label><input type="text" id="location" value="Brentwood, TN"/></div>
-          <div class="field"><label class="field-label">Availability Badge <span class="optional">Shown in sidebar</span></label><input type="text" id="availBadge" value="Open to Work"/></div>
-        </div>
-        <div class="card">
-          <div class="card-title">Bio / About Section</div>
-          <div class="card-sub">Each paragraph appears as a separate block. Use plain text — no HTML needed.</div>
-          <div class="field"><label class="field-label">Paragraph 1</label><textarea id="bio1">I'm Krish Nukala, a Sr. Application Engineer based in Brentwood, TN with 9+ years of experience building enterprise BI platforms and data systems in healthcare. My work sits at the crossroads of data engineering, business intelligence, and emerging AI.</textarea></div>
-          <div class="field"><label class="field-label">Paragraph 2</label><textarea id="bio2">At HCA Healthcare — one of the largest health systems in the US — I independently led the migration of the Mobile Heartbeat platform from Tableau to Power BI, contributed to an enterprise Teradata-to-GCP cloud migration, and supported a large-scale MicroStrategy Cloud transition.</textarea></div>
-          <div class="field"><label class="field-label">Paragraph 3</label><textarea id="bio3">I hold a Master's in Computer Science from Kent State University and have published research with the Tennessee Department of Health. I'm actively expanding into AI engineering — combining deep healthcare domain knowledge with modern AI tooling. My I-140 is approved, making H-1B transfer straightforward.</textarea></div>
-          <div class="field"><label class="field-label">Paragraph 4 <span class="optional">Optional personal note</span></label><textarea id="bio4">Outside of work I maintain the Nukala Family Archive — a personal passion project preserving our family's heritage.</textarea></div>
-        </div>
-        <div class="card">
-          <div class="card-title">Sidebar Short Bio</div>
-          <div class="card-sub">The 2-line description shown under your title in the left panel</div>
-          <div class="field"><textarea id="sidebarBio" style="min-height:60px">Building enterprise data systems and BI platforms at the intersection of healthcare and cloud. 9+ years turning complex data into decisions. I-140 approved · H-1B transfer ready.</textarea></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── EXPERIENCE ── -->
-    <div class="admin-content" id="panel-experience">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Work Experience</div>
-          <div class="card-sub">Drag to reorder. Most recent first.</div>
-          <div id="expList"></div>
-          <button class="add-btn" onclick="addExpItem()">+ Add Experience</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── PROJECTS ── -->
-    <div class="admin-content" id="panel-projects">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Projects</div>
-          <div class="card-sub">Only list real, implemented projects.</div>
-          <div id="projList"></div>
-          <button class="add-btn" onclick="addProjItem()">+ Add Project</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SKILLS ── -->
-    <div class="admin-content" id="panel-skills">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Skill Groups</div>
-          <div class="card-sub">Each group appears as a column. Type a skill and press Enter to add it.</div>
-          <div id="skillsList"></div>
-          <button class="add-btn" onclick="addSkillGroup()">+ Add Skill Group</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── CERTIFICATIONS ── -->
-    <div class="admin-content" id="panel-certifications">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Certifications</div>
-          <div class="card-sub">Set status to Earned, In Progress, or Planned.</div>
-          <div id="certsList"></div>
-          <button class="add-btn" onclick="addCert()">+ Add Certification</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── PUBLICATIONS ── -->
-    <div class="admin-content" id="panel-publications">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Publications</div>
-          <div class="card-sub">Research papers, articles, or written work.</div>
-          <div id="pubsList"></div>
-          <button class="add-btn" onclick="addPub()">+ Add Publication</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── CONTACT ── -->
-    <div class="admin-content" id="panel-contact">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Contact Information</div>
-          <div class="card-sub">Displayed in the contact section and sidebar</div>
-          <div class="field"><label class="field-label">Email Address</label><input type="email" id="contactEmail" value="vamshinukala@gmail.com"/></div>
-          <div class="field"><label class="field-label">Phone Number</label><input type="tel" id="contactPhone" value="(203) 543-2452"/></div>
-          <div class="field"><label class="field-label">Location</label><input type="text" id="contactLocation" value="Brentwood, TN 37027"/></div>
-          <div class="field"><label class="field-label">LinkedIn URL</label><input type="url" id="contactLinkedIn" value="https://www.linkedin.com/in/krish-nukala-8bb5b729"/></div>
-          <div class="field"><label class="field-label">GitHub URL</label><input type="url" id="contactGitHub" value="https://github.com/krishnukala"/></div>
-          <div class="field"><label class="field-label">Contact Section Heading <span class="optional">e.g. "Let's work together."</span></label><input type="text" id="contactHeading" value="Let's work together."/></div>
-          <div class="field"><label class="field-label">Contact Intro Text</label><textarea id="contactText">I'm currently open to Sr. BI Engineer, AI Application Engineer, and Data Engineering roles. I-140 approved — H-1B transfer only, no lottery needed. If you have an opportunity or want to connect, I'd love to hear from you.</textarea></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── HEADER & FOOTER ── -->
-    <div class="admin-content" id="panel-headerfooter">
-      <div style="padding:2rem">
-
-        <!-- ── PROFILE PHOTO ── -->
-        <div class="card">
-          <div class="card-title">Profile Photo</div>
-          <div class="card-sub">Upload your photo — it replaces the KN initials in the sidebar</div>
-          <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
-
-            <!-- Preview -->
-            <div style="flex-shrink:0;text-align:center">
-              <div id="photoPreviewWrap" style="width:90px;height:90px;border-radius:50%;border:2px solid var(--gold);padding:3px;overflow:hidden;margin-bottom:0.75rem">
-                <div id="photoPreview" style="width:100%;height:100%;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold)">KN</div>
-              </div>
-              <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.1em">PREVIEW</div>
-            </div>
-
-            <!-- Controls -->
-            <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.75rem">
-              <div>
-                <label for="photoUploadInput" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:var(--gold);color:var(--bg);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background 0.2s">
-                  📷 Upload Photo
-                </label>
-                <input type="file" id="photoUploadInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(this)"/>
-              </div>
-              <div style="font-size:0.78rem;color:var(--muted);line-height:1.6">
-                Supports JPG, PNG, WEBP. Recommended: square photo, at least 200×200px. Photo is stored locally on this device.
-              </div>
-              <div id="photoStatus" style="font-family:var(--font-mono);font-size:0.7rem;color:var(--green);display:none">✓ Photo saved</div>
-              <button class="btn btn-danger" onclick="removePhoto()" id="removePhotoBtn" style="display:none;width:fit-content">Remove Photo</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Site Header — Browser Tab</div>
-          <div class="card-sub">What appears in the browser tab and search engine results</div>
-          <div class="field"><label class="field-label">Page Title <span class="optional">Shows in browser tab</span></label>
-            <input type="text" id="hf-pageTitle" value="Krish Nukala — BI &amp; AI Engineer"/>
-          </div>
-          <div class="field"><label class="field-label">Meta Description <span class="optional">Shows in Google search results</span></label>
-            <textarea id="hf-metaDesc" style="min-height:55px">Sr. Application Engineer specializing in Business Intelligence and AI Engineering. 9+ years healthcare IT experience.</textarea>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Profile Header — Left Sidebar</div>
-          <div class="card-sub">The name, title and badge shown at the top of your sidebar</div>
-          <div class="field-row">
-            <div class="field"><label class="field-label">First Name</label>
-              <input type="text" id="hf-firstName" value="Krish"/>
-            </div>
-            <div class="field"><label class="field-label">Last Name</label>
-              <input type="text" id="hf-lastName" value="Nukala"/>
-            </div>
-          </div>
-          <div class="field"><label class="field-label">Title Line 1</label>
-            <input type="text" id="hf-title1" value="Sr. Application Engineer"/>
-          </div>
-          <div class="field"><label class="field-label">Title Line 2</label>
-            <input type="text" id="hf-title2" value="BI &amp; AI Engineering"/>
-          </div>
-          <!-- Name Color Pickers per theme -->
-          <div class="field">
-            <label class="field-label">Name Color <span class="optional">Per theme — fixes readability issues</span></label>
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-top:0.4rem">
-              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
-                <span style="font-size:0.85rem">🌙</span>
-                <div style="flex:1">
-                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">DARK THEME</div>
-                  <div style="display:flex;align-items:center;gap:0.5rem">
-                    <input type="color" id="nc-dark" value="#ffffff" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('dark',this.value)"/>
-                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-dark-val">#ffffff</span>
-                  </div>
-                </div>
-              </div>
-              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
-                <span style="font-size:0.85rem">☀️</span>
-                <div style="flex:1">
-                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">LIGHT THEME</div>
-                  <div style="display:flex;align-items:center;gap:0.5rem">
-                    <input type="color" id="nc-light" value="#1a1f35" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('light',this.value)"/>
-                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-light-val">#1a1f35</span>
-                  </div>
-                </div>
-              </div>
-              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
-                <span style="font-size:0.85rem">🌊</span>
-                <div style="flex:1">
-                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">OCEAN THEME</div>
-                  <div style="display:flex;align-items:center;gap:0.5rem">
-                    <input type="color" id="nc-ocean" value="#e8f8f5" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('ocean',this.value)"/>
-                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-ocean-val">#e8f8f5</span>
-                  </div>
-                </div>
-              </div>
-              <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem;background:var(--bg3);border:1px solid var(--border)">
-                <span style="font-size:0.85rem">🌅</span>
-                <div style="flex:1">
-                  <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:0.3rem">SUNSET THEME</div>
-                  <div style="display:flex;align-items:center;gap:0.5rem">
-                    <input type="color" id="nc-sunset" value="#fdecea" style="width:32px;height:28px;border:1px solid var(--border);cursor:pointer;background:none;padding:0" oninput="previewNameColor('sunset',this.value)"/>
-                    <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--white)" id="nc-sunset-val">#fdecea</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--muted)">💡 Default colors are already set correctly for each theme. Only change if you want a custom color.</div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label class="field-label">Availability Badge</label>
-              <input type="text" id="hf-badge" value="Open to Work"/>
-            </div>
-            <div class="field"><label class="field-label">Location</label>
-              <input type="text" id="hf-location" value="Nashville, TN"/>
-            </div>
-          </div>
-          <div class="field">
-            <label class="field-label">Badge Visibility</label>
-            <div style="display:flex;gap:0.75rem;margin-top:0.3rem">
-              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
-                <input type="radio" name="badgeVisible" id="badgeOn" value="on" checked style="accent-color:var(--gold)"/> Show badge
-              </label>
-              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
-                <input type="radio" name="badgeVisible" id="badgeOff" value="off" style="accent-color:var(--gold)"/> Hide badge
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Navigation Links</div>
-          <div class="card-sub">Show or hide sections in the left sidebar navigation</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem" id="navToggles">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Footer</div>
-          <div class="card-sub">Text shown at the very bottom of your portfolio</div>
-          <div class="field"><label class="field-label">Footer Line 1</label>
-            <input type="text" id="hf-footer1" value="Designed &amp; built by Krish Nukala · Inspired by Brittany Chiang"/>
-          </div>
-          <div class="field"><label class="field-label">Footer Line 2</label>
-            <input type="text" id="hf-footer2" value="Built with HTML · CSS · Vanilla JS · Hosted on GitHub Pages · AI powered by Anthropic Claude"/>
-          </div>
-          <div class="field">
-            <label class="field-label">Footer Visibility</label>
-            <div style="display:flex;gap:0.75rem;margin-top:0.3rem">
-              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
-                <input type="radio" name="footerVisible" id="footerOn" value="on" checked style="accent-color:var(--gold)"/> Show footer
-              </label>
-              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.85rem;color:var(--muted)">
-                <input type="radio" name="footerVisible" id="footerOff" value="off" style="accent-color:var(--gold)"/> Hide footer
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Social Links</div>
-          <div class="card-sub">Links shown as icons at the bottom of the sidebar</div>
-          <div class="field"><label class="field-label">LinkedIn URL</label>
-            <input type="url" id="hf-linkedin" value="https://www.linkedin.com/in/krish-nukala-8bb5b729"/>
-          </div>
-          <div class="field"><label class="field-label">GitHub URL</label>
-            <input type="url" id="hf-github" value="https://github.com/krishnukala"/>
-          </div>
-          <div class="field"><label class="field-label">Email</label>
-            <input type="email" id="hf-email" value="vamshinukala@gmail.com"/>
-          </div>
-          <div class="field"><label class="field-label">Phone <span class="optional">Shown in contact section</span></label>
-            <input type="tel" id="hf-phone" value="(203) 543-2452"/>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── THEME ── -->
-    <div class="admin-content" id="panel-theme">
-      <div style="padding:2rem">
-
-        <div class="card">
-          <div class="card-title">Theme Switcher — Enable / Disable</div>
-          <div class="card-sub">Control which themes visitors can choose on your portfolio. At least one must stay enabled.</div>
-          <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.25rem" id="themeToggles">
-            <!-- Rendered by JS -->
-          </div>
-          <div class="field">
-            <label class="field-label">Default Theme <span class="optional">What visitors see on first load</span></label>
-            <select id="defaultTheme" style="background:var(--bg3);border:1px solid var(--border);color:var(--white);padding:0.6rem 0.85rem;width:100%;outline:none">
-              <option value="dark">🌙 Dark (Navy & Gold)</option>
-              <option value="light">☀️ Light (Clean White)</option>
-              <option value="ocean">🌊 Ocean (Deep Teal)</option>
-              <option value="sunset">🌅 Sunset (Dark Red)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Custom Color Palette</div>
-          <div class="card-sub">Fine-tune the Dark theme colors. Click any swatch to change it.</div>
-          <div class="theme-grid" id="colorGrid"></div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Quick Preset Themes</div>
-          <div class="card-sub">One-click presets to reset the Dark theme colors</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-            <button class="btn btn-secondary" onclick="applyPreset('gold')">🌟 Gold & Dark</button>
-            <button class="btn btn-secondary" onclick="applyPreset('teal')">🌊 Teal & Navy</button>
-            <button class="btn btn-secondary" onclick="applyPreset('purple')">💜 Purple & Dark</button>
-            <button class="btn btn-secondary" onclick="applyPreset('green')">🌿 Green & Dark</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Typography</div>
-          <div class="card-sub">Choose your heading font style</div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem" id="fontGrid">
-            <div class="font-option selected" onclick="selectFont(this,'Syne')" style="font-family:'Syne',sans-serif">
-              <div class="font-option-name">Syne</div>
-              <div class="font-option-preview">Current · Geometric Bold</div>
-            </div>
-            <div class="font-option" onclick="selectFont(this,'Playfair Display')" style="font-family:'Playfair Display',serif">
-              <div class="font-option-name">Playfair Display</div>
-              <div class="font-option-preview">Elegant · Editorial</div>
-            </div>
-            <div class="font-option" onclick="selectFont(this,'Space Grotesk')" style="font-family:'Space Grotesk',sans-serif">
-              <div class="font-option-name">Space Grotesk</div>
-              <div class="font-option-preview">Modern · Technical</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── SETTINGS ── -->
-    <div class="admin-content" id="panel-settings">
-      <div style="padding:2rem">
-        <div class="card">
-          <div class="card-title">Change Admin Password</div>
-          <div class="card-sub">Choose a strong password. Store it somewhere safe.</div>
-          <div class="field"><label class="field-label">Current Password</label><input type="password" id="currPass" placeholder="Current password"/></div>
-          <div class="field"><label class="field-label">New Password</label><input type="password" id="newPass" placeholder="New password (min 8 chars)"/></div>
-          <div class="field"><label class="field-label">Confirm New Password</label><input type="password" id="confPass" placeholder="Confirm new password"/></div>
-          <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
-          <div id="passMsg" style="margin-top:0.75rem;font-size:0.8rem"></div>
-        </div>
-        <div class="card">
-          <div class="card-title">Site Metadata</div>
-          <div class="card-sub">SEO and browser tab information</div>
-          <div class="field"><label class="field-label">Page Title</label><input type="text" id="metaTitle" value="Krish Nukala — BI & AI Engineer"/></div>
-          <div class="field"><label class="field-label">Meta Description</label><textarea id="metaDesc" style="min-height:60px">Sr. Application Engineer specializing in Business Intelligence and AI Engineering. 9+ years healthcare IT experience.</textarea></div>
-        </div>
-        <div class="card">
-          <div class="card-title">AI Assistant</div>
-          <div class="card-sub">Floating chat bubble that lets visitors ask questions about you</div>
-
-          <!-- Enable / Disable Toggle -->
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem;background:var(--bg3);border:1px solid var(--border);margin-bottom:1rem">
-            <div>
-              <div style="font-family:var(--font-head);font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:0.2rem">Enable AI Chat Bubble</div>
-              <div style="font-size:0.78rem;color:var(--muted)">Shows a floating chat icon on your portfolio. Disabled by default.</div>
-            </div>
-            <div onclick="toggleAI()" id="aiToggleTrack" style="width:46px;height:24px;border-radius:12px;background:var(--dim);cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0;margin-left:1rem">
-              <div id="aiToggleThumb" style="position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left 0.3s"></div>
-            </div>
-          </div>
-          <div id="aiConfigSection" style="display:none">
-            <div class="field">
-              <label class="field-label">Cloudflare Worker Proxy URL <span class="optional">Keeps your API key hidden</span></label>
-              <input type="url" id="proxyUrl" placeholder="https://krish-ai-proxy.YOUR-NAME.workers.dev"/>
-              <div style="font-size:0.75rem;color:var(--muted);margin-top:0.4rem">
-                Set up a free Cloudflare Worker proxy to keep your API key secure. 
-                See setup guide: <a href="https://workers.cloudflare.com" target="_blank" style="color:var(--gold)">workers.cloudflare.com</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Data Management</div>
-          <div class="card-sub">Import or reset your admin data</div>
-          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
-            <button class="btn btn-secondary" onclick="exportData()">📤 Export Data (JSON)</button>
-            <button class="btn btn-secondary" onclick="importData()">📥 Import Data (JSON)</button>
-            <button class="btn btn-danger" onclick="resetData()">Reset to Defaults</button>
-          </div>
-          <div style="margin-top:1rem;font-size:0.78rem;color:var(--muted);line-height:1.7;padding:0.75rem;background:var(--bg3);border:1px solid var(--border)">
-            💡 <strong style="color:var(--white)">Using on multiple devices?</strong><br/>
-            Export your data as JSON on your main computer → save the file → Import it on any other device or browser. 
-            Your data stays in sync this way. The admin panel saves data locally per device.
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-name">Krish<span>.</span>Admin</div>
+    <div class="sidebar-tag">Portfolio Manager</div>
+  </div>
+  <nav>
+    <div class="nav-section-label">Dashboard</div>
+    <a onclick="showPanel('dashboard')" id="nav-dashboard"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg>Dashboard</a>
+    <div class="nav-section-label">Content</div>
+    <a onclick="showPanel('about')" id="nav-about"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>About & Bio</a>
+    <a onclick="showPanel('experience')" id="nav-experience"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.86.18-1 0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .14.11.56.18 1H8c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6-3c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm6 17H8V8h12v12z"/></svg>Experience</a>
+    <a onclick="showPanel('skills')" id="nav-skills"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>Skills</a>
+    <a onclick="showPanel('projects')" id="nav-projects"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Projects</a>
+    <a onclick="showPanel('publications')" id="nav-publications"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Publications</a>
+    <a onclick="showPanel('certifications')" id="nav-certifications"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Certifications</a>
+    <div class="nav-section-label">Appearance</div>
+    <a onclick="showPanel('headerfooter')" id="nav-headerfooter"><svg viewBox="0 0 24 24"><path d="M4 5h16v2H4zm0 12h16v2H4zm0-6h16v2H4z"/></svg>Header & Footer</a>
+    <a onclick="showPanel('theme')" id="nav-theme"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/></svg>Themes</a>
+    <div class="nav-section-label">Settings</div>
+    <a onclick="showPanel('settings')" id="nav-settings"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>Settings</a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="https://krishnukala.com" target="_blank" style="display:block;font-family:var(--font-mono);font-size:.62rem;color:var(--muted);margin-bottom:.5rem;text-align:center">↗ View Site</a>
+    <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+  </div>
 </div>
+
+<!-- MAIN AREA -->
+<div class="main">
+
+<!-- SAVE TOAST -->
+<div class="save-toast" id="saveToast">✓ Changes saved</div>
+
+<!-- ── DASHBOARD ── -->
+<div class="admin-content" id="panel-dashboard">
+  <div class="page-head">
+    <div class="page-title">Dashboard</div>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="importData()">📥 Import Data</button>
+      <button class="btn btn-secondary" onclick="exportData()">📤 Export Data</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save All Changes</button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num" id="stat-exp">4</div><div class="stat-label">Experience</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-proj">2</div><div class="stat-label">Projects</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-skills">6</div><div class="stat-label">Skill Groups</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-certs">7</div><div class="stat-label">Certifications</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Quick Actions</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem">
+        <button class="btn btn-secondary" onclick="showPanel('about')">Edit Bio</button>
+        <button class="btn btn-secondary" onclick="showPanel('experience')">Edit Experience</button>
+        <button class="btn btn-secondary" onclick="showPanel('skills')">Edit Skills</button>
+        <button class="btn btn-secondary" onclick="showPanel('headerfooter')">Header & Footer</button>
+        <button class="btn btn-secondary" onclick="showPanel('settings')">Settings</button>
+        <button class="btn btn-primary" onclick="saveAll()">💾 Save All</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">How to Publish Changes</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.8">
+        1. Make your edits in any section<br/>
+        2. Click <strong style="color:var(--white)">Save All Changes</strong><br/>
+        3. Changes are saved locally — visitors on <strong style="color:var(--white)">this browser</strong> see them immediately<br/>
+        4. To publish for <strong style="color:var(--white)">all visitors</strong>: Export Data → share the JSON — or re-upload the index.html from Claude<br/>
+        5. For cross-device sync: <strong style="color:var(--white)">Export Data</strong> on one device → <strong style="color:var(--white)">Import Data</strong> on another
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- ── ABOUT ── -->
+<div class="admin-content" id="panel-about">
+  <div class="page-head"><div class="page-title">About & Bio</div><button class="btn btn-primary" onclick="saveAll()">💾 Save</button></div>
+  <div class="page-body">
+    <div class="card">
+      <div class="card-title">Profile Photo</div>
+      <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
+        <div>
+          <div class="photo-preview-ring" id="photoPreviewWrap"><div class="photo-initials" id="photoPreview">KN</div></div>
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);text-align:center;letter-spacing:.08em">PREVIEW</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.6rem">
+          <label class="upload-label-btn">📷 Upload Photo<input type="file" accept="image/*" style="display:none" onchange="handlePhotoUpload(this)"/></label>
+          <button class="btn btn-danger" onclick="removePhoto()" id="removePhotoBtn" style="display:none;font-size:.62rem">Remove Photo</button>
+          <div style="font-size:.75rem;color:var(--muted)">Supported: JPG, PNG, WEBP. Max 2MB. Saved locally on this device.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Name & Title</div>
+      <div class="field-row">
+        <div class="field"><label class="field-label">First Name</label><input type="text" id="firstName" value="Krish"/></div>
+        <div class="field"><label class="field-label">Last Name</label><input type="text" id="lastName" value="Nukala"/></div>
+      </div>
+      <div class="field"><label class="field-label">Title Line 1</label><input type="text" id="titleLine1" value="Sr. Application Engineer"/></div>
+      <div class="field"><label class="field-label">Title Line 2</label><input type="text" id="titleLine2" value="Business Intelligence | AI & Data Analytics"/></div>
+      <div class="field-row">
+        <div class="field"><label class="field-label">Availability Badge</label><input type="text" id="availBadge" value="Open to Work"/></div>
+        <div class="field"><label class="field-label">Location</label><input type="text" id="locationField" value="Nashville, TN 37203"/></div>
+      </div>
+      <div class="field">
+        <label class="field-label">Show Badge</label>
+        <div style="display:flex;gap:1rem;margin-top:.3rem">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.82rem;color:var(--muted)"><input type="radio" name="badgeVis" id="badgeOn" value="on" checked style="accent-color:var(--gold)"/> Show</label>
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.82rem;color:var(--muted)"><input type="radio" name="badgeVis" id="badgeOff" value="off" style="accent-color:var(--gold)"/> Hide</label>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Sidebar Bio</div>
+      <div class="card-sub">Short text shown under your name in the sidebar</div>
+      <div class="field"><textarea id="sidebarBio" rows="4">Sr. Application Engineer with 9+ years building enterprise BI platforms and data systems in healthcare. Power BI · MicroStrategy · Tableau · GCP · BigQuery. I-140 approved · H-1B transfer ready.</textarea></div>
+    </div>
+    <div class="card">
+      <div class="card-title">About Section</div>
+      <div class="card-sub">Full paragraphs shown in the About section — one paragraph per box. Supports &lt;strong&gt; and &lt;a href&gt; tags.</div>
+      <div class="field"><label class="field-label">Paragraph 1</label><textarea id="bio1" rows="3"></textarea></div>
+      <div class="field"><label class="field-label">Paragraph 2</label><textarea id="bio2" rows="3"></textarea></div>
+      <div class="field"><label class="field-label">Paragraph 3 <span class="optional">Optional</span></label><textarea id="bio3" rows="3"></textarea></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Social Links</div>
+      <div class="field"><label class="field-label">LinkedIn URL</label><input type="url" id="linkedinUrl" value="https://www.linkedin.com/in/krish-nukala-8bb5b729"/></div>
+      <div class="field"><label class="field-label">GitHub URL</label><input type="url" id="githubUrl" value="https://github.com/krishnukala"/></div>
+      <div class="field"><label class="field-label">Email</label><input type="email" id="emailField" value="vamshinukala@gmail.com"/></div>
+      <div class="field"><label class="field-label">Phone</label><input type="tel" id="phoneField" value="(203) 543-2452"/></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EXPERIENCE ── -->
+<div class="admin-content" id="panel-experience">
+  <div class="page-head">
+    <div class="page-title">Experience</div>
+    <div style="display:flex;gap:.75rem">
+      <button class="btn btn-secondary" onclick="addExpItem()">+ Add Job</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div id="expList"></div>
+  </div>
+</div>
+
+<!-- ── SKILLS ── -->
+<div class="admin-content" id="panel-skills">
+  <div class="page-head">
+    <div class="page-title">Skills</div>
+    <div style="display:flex;gap:.75rem">
+      <button class="btn btn-secondary" onclick="addSkillGroup()">+ Add Group</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="card" style="background:var(--glt);border-color:var(--border-gold)">
+      <div style="font-size:.82rem;color:var(--white)">💡 <strong>How to edit skills:</strong> Type one skill per line in the text box. Add or remove lines freely. Click Save when done.</div>
+    </div>
+    <div id="skillsList"></div>
+  </div>
+</div>
+
+<!-- ── PROJECTS ── -->
+<div class="admin-content" id="panel-projects">
+  <div class="page-head">
+    <div class="page-title">Projects</div>
+    <div style="display:flex;gap:.75rem">
+      <button class="btn btn-secondary" onclick="addProjItem()">+ Add Project</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
+    </div>
+  </div>
+  <div class="page-body"><div id="projList"></div></div>
+</div>
+
+<!-- ── PUBLICATIONS ── -->
+<div class="admin-content" id="panel-publications">
+  <div class="page-head">
+    <div class="page-title">Publications</div>
+    <div style="display:flex;gap:.75rem">
+      <button class="btn btn-secondary" onclick="addPub()">+ Add Publication</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
+    </div>
+  </div>
+  <div class="page-body"><div id="pubsList"></div></div>
+</div>
+
+<!-- ── CERTIFICATIONS ── -->
+<div class="admin-content" id="panel-certifications">
+  <div class="page-head">
+    <div class="page-title">Certifications</div>
+    <div style="display:flex;gap:.75rem">
+      <button class="btn btn-secondary" onclick="addCert()">+ Add Certification</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
+    </div>
+  </div>
+  <div class="page-body"><div id="certsList"></div></div>
+</div>
+
+<!-- ── HEADER & FOOTER ── -->
+<div class="admin-content" id="panel-headerfooter">
+  <div class="page-head"><div class="page-title">Header & Footer</div><button class="btn btn-primary" onclick="saveAll()">💾 Save</button></div>
+  <div class="page-body">
+    <div class="card">
+      <div class="card-title">Page Title (Browser Tab)</div>
+      <div class="field"><label class="field-label">Title</label><input type="text" id="hf-pageTitle" value="Krish Nukala — BI & AI Engineer"/></div>
+      <div class="field"><label class="field-label">Meta Description</label><textarea id="hf-metaDesc" rows="2">Sr. Application Engineer specializing in Business Intelligence and AI Engineering.</textarea></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Name Color Per Theme</div>
+      <div class="card-sub">Controls the readability of your name across different themes</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>🌙</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">DARK</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-dark" value="#ffffff" class="color-swatch" oninput="document.getElementById('nc-dark-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-dark-val">#ffffff</span></div></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>☀️</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">LIGHT</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-light" value="#1a1f35" class="color-swatch" oninput="document.getElementById('nc-light-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-light-val">#1a1f35</span></div></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>🌊</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">OCEAN</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-ocean" value="#e8f8f5" class="color-swatch" oninput="document.getElementById('nc-ocean-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-ocean-val">#e8f8f5</span></div></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>🌅</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">SUNSET</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-sunset" value="#fdecea" class="color-swatch" oninput="document.getElementById('nc-sunset-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-sunset-val">#fdecea</span></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Footer Text</div>
+      <div class="field"><label class="field-label">Line 1</label><input type="text" id="hf-footer1" value="Designed & built by Krish Nukala"/></div>
+      <div class="field"><label class="field-label">Line 2</label><input type="text" id="hf-footer2" value="HTML · CSS · JS · GitHub Pages"/></div>
+      <div class="field"><label class="field-label">Footer Visibility</label>
+        <div style="display:flex;gap:1rem;margin-top:.3rem">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.82rem;color:var(--muted)"><input type="radio" name="footerVis" id="footerOn" value="on" checked style="accent-color:var(--gold)"/> Show</label>
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.82rem;color:var(--muted)"><input type="radio" name="footerVis" id="footerOff" value="off" style="accent-color:var(--gold)"/> Hide</label>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Navigation Sections</div>
+      <div class="card-sub">Show or hide sections in the portfolio navigation</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem" id="navToggles"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── THEMES ── -->
+<div class="admin-content" id="panel-theme">
+  <div class="page-head"><div class="page-title">Themes</div><button class="btn btn-primary" onclick="saveAll()">💾 Save</button></div>
+  <div class="page-body">
+    <div class="card">
+      <div class="card-title">Enable / Disable Themes</div>
+      <div class="card-sub">Choose which themes visitors can select. At least one must stay enabled.</div>
+      <div style="display:flex;flex-direction:column;gap:.75rem" id="themeToggles"></div>
+      <div class="field" style="margin-top:1rem">
+        <label class="field-label">Default Theme</label>
+        <select id="defaultTheme">
+          <option value="dark">🌙 Dark (Navy & Gold)</option>
+          <option value="light">☀️ Light (Clean White)</option>
+          <option value="ocean">🌊 Ocean (Deep Teal)</option>
+          <option value="sunset">🌅 Sunset (Dark Red)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SETTINGS ── -->
+<div class="admin-content" id="panel-settings">
+  <div class="page-head"><div class="page-title">Settings</div><button class="btn btn-primary" onclick="saveAll()">💾 Save</button></div>
+  <div class="page-body">
+    <div class="card">
+      <div class="card-title">AI Chat Bubble</div>
+      <div class="card-sub">Floating chat icon that lets visitors ask questions about you. Disabled by default.</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem;background:var(--bg3);border:1px solid var(--border);margin-bottom:1rem">
+        <div><div style="font-family:var(--font-head);font-size:.9rem;font-weight:600;color:var(--white)">Enable AI Chat</div><div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Requires a proxy URL to work</div></div>
+        <div onclick="toggleAI()" id="aiToggleTrack" class="toggle-track"><div class="toggle-thumb"></div></div>
+      </div>
+      <div id="aiConfigSection" style="display:none">
+        <div class="field"><label class="field-label">Proxy URL <span class="optional">Cloudflare Worker — hides your API key</span></label><input type="url" id="proxyUrl" placeholder="https://your-worker.workers.dev"/></div>
+        <div style="font-size:.75rem;color:var(--muted)">Set up a free Cloudflare Worker at workers.cloudflare.com to proxy your Gemini API key securely.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Change Admin Password</div>
+      <div class="field"><label class="field-label">Current Password</label><input type="password" id="currPass"/></div>
+      <div class="field"><label class="field-label">New Password</label><input type="password" id="newPass"/></div>
+      <div class="field"><label class="field-label">Confirm New Password</label><input type="password" id="confPass"/></div>
+      <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+      <div id="passMsg" style="font-size:.78rem;margin-top:.5rem"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Data Management</div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <button class="btn btn-secondary" onclick="exportData()">📤 Export Data (JSON)</button>
+        <button class="btn btn-secondary" onclick="importData()">📥 Import Data (JSON)</button>
+        <button class="btn btn-danger" onclick="resetData()">Reset All to Defaults</button>
+      </div>
+      <div style="margin-top:.75rem;font-size:.78rem;color:var(--muted);line-height:1.6;padding:.75rem;background:var(--bg3);border:1px solid var(--border)">
+        💡 Export your data JSON on one device → Import it on another to sync all your content.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /admin-wrap -->
+</div><!-- /adminPanel -->
 
 <script>
-// ════════════════════════════════════════════════
-// DEFAULT PASSWORD (SHA-256 hash of "KrishAdmin2026!")
-// Change via Settings panel after first login
-// ════════════════════════════════════════════════
-// ── Simple hash function ──────────────────────
-async function hashStr(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-}
+// ══════════════════════════════════════════════════
+const STORAGE_KEY = 'kn_site_data';
 
-// ── Lockout system ────────────────────────────
-const MAX_ATTEMPTS = 5;
-const LOCKOUT_MS   = 30 * 60 * 1000; // 30 minutes
-
-function getLock() {
-  try { return JSON.parse(localStorage.getItem('kn_lockout')||'{"attempts":0,"until":0}'); }
-  catch { return {attempts:0,until:0}; }
-}
-function saveLock(d){ localStorage.setItem('kn_lockout', JSON.stringify(d)); }
-
-function checkLockoutOnLoad() {
-  const d = getLock();
-  if (d.until && Date.now() < d.until) showLockout(d.until);
-  else if (d.until) saveLock({attempts:0,until:0}); // expired, reset
-}
-
-function showLockout(until) {
-  const mins = Math.ceil((until - Date.now()) / 60000);
-  const el = document.getElementById('loginLockout');
-  el.textContent = `Too many failed attempts. Try again in ${mins} minute${mins!==1?'s':''}.`;
-  el.style.display = 'block';
-  document.getElementById('loginError').style.display = 'none';
-  const btn = document.querySelector('.login-btn');
-  const inp = document.getElementById('loginPass');
-  btn.disabled = true; btn.style.opacity = '0.4';
-  inp.disabled = true;
-  setTimeout(() => {
-    btn.disabled=false; btn.style.opacity='1';
-    inp.disabled=false; el.style.display='none';
-    saveLock({attempts:0,until:0});
-  }, until - Date.now());
-}
-
-// ── Auth ──────────────────────────────────────
-async function doLogin() {
-  const d = getLock();
-  if (d.until && Date.now() < d.until) { showLockout(d.until); return; }
-
-  const pass = document.getElementById('loginPass').value;
-  if (!pass) return;
-  const stored = localStorage.getItem('kn_pass_hash');
-  const hash = await hashStr(pass);
-  const valid = stored ? hash === stored : pass === 'KrishAdmin2026!';
-
-  if (valid) {
-    saveLock({attempts:0,until:0});
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-    initAdmin();
-  } else {
-    d.attempts = (d.attempts||0) + 1;
-    const left = MAX_ATTEMPTS - d.attempts;
-    if (d.attempts >= MAX_ATTEMPTS) {
-      d.until = Date.now() + LOCKOUT_MS;
-      saveLock(d);
-      showLockout(d.until);
-    } else {
-      saveLock(d);
-      const e = document.getElementById('loginError');
-      e.textContent = left === 1
-        ? 'Incorrect password. 1 attempt left before 30-min lockout.'
-        : `Incorrect password. ${left} attempts remaining.`;
-      e.style.display = 'block';
-    }
-    document.getElementById('loginPass').value = '';
-  }
-}
-
-function doLogout() {
-  document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('loginPass').value = '';
-  document.getElementById('loginError').style.display = 'none';
-  document.getElementById('loginLockout').style.display = 'none';
-}
-
-// ── Navigation ────────────────────────────────
-function showPanel(name) {
-  document.querySelectorAll('.admin-content').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-  document.getElementById('panel-' + name)?.classList.add('active');
-  document.getElementById('nav-' + name)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',about:'About & Bio',experience:'Experience',projects:'Projects',skills:'Skills',certifications:'Certifications',publications:'Publications',contact:'Contact Info',theme:'Theme & Colors',settings:'Settings'};
-  document.getElementById('topbarTitle').textContent = titles[name] || name;
-}
-
-// ── Default Data ──────────────────────────────
+// Default data matching the portfolio site
 const DEFAULT_DATA = {
-  experience: [
-    {title:'Sr. Application Engineer',company:'HCA Healthcare',location:'Nashville, TN',type:'Healthcare Enterprise',dateFrom:'Oct 2022',dateTo:'Present',desc:'Led solo end-to-end migration of Mobile Heartbeat (MHB) from Tableau to Power BI, rebuilding all dashboards for clinical operations. Contributing to Teradata-to-GCP migration and MicroStrategy Cloud transition.',tags:['Power BI','MicroStrategy','BigQuery','GCP','Teradata','DAX','SQL Server']},
-    {title:'Data Engineer',company:'CareBridge',location:'Nashville, TN',type:'Healthcare Analytics',dateFrom:'Feb 2022',dateTo:'Oct 2022',desc:'Monitored and ensured reliable processing of daily data files from managed care organizations. Troubleshot PostgreSQL ETL failures and resolved pipeline issues.',tags:['PostgreSQL','DataGrip','ETL','SFTP','Managed Care']},
-    {title:'System Engineer',company:'Parallon',location:'St. Louis, MO',type:'Revenue Cycle',dateFrom:'Jan 2018',dateTo:'Jan 2022',desc:'Technical Lead for Gamification platform, scaling from pilot to 300+ users. Managed 130+ IVR systems, achieved 100% uptime across 25 Linux servers for 500+ agents.',tags:['PostgreSQL','Linux','IVR','SSO','Revenue Cycle','Agile']},
-    {title:'Jr. Software Developer / Rhapsody Developer',company:'State of Tennessee – Dept. of Health',location:'Nashville, TN',type:'Public Health',dateFrom:'May 2017',dateTo:'Jan 2018',desc:'Designed HL7 clinical interface solutions using Rhapsody IDE. Published peer-reviewed research on improving syndromic surveillance onboarding efficiency.',tags:['HL7','Rhapsody IDE','Clinical Interfaces','Research']}
+  header:{firstName:'Krish',lastName:'Nukala',title1:'Sr. Application Engineer',title2:'Business Intelligence | AI & Data Analytics',badge:'Open to Work',badgeVisible:true,location:'Nashville, TN 37203'},
+  sidebar:{bio:'Sr. Application Engineer with 9+ years building enterprise BI platforms and data systems in healthcare. I-140 approved · H-1B transfer ready.',linkedin:'https://www.linkedin.com/in/krish-nukala-8bb5b729',github:'https://github.com/krishnukala',email:'vamshinukala@gmail.com',phone:'(203) 543-2452'},
+  about:['Results-driven <strong>Sr. Application Engineer</strong> with <strong>9+ years of experience</strong> spanning Business Intelligence, data engineering, and enterprise application development.','Actively transitioning toward <strong>AI/ML engineering</strong> — with hands-on experience building AI-native full-stack applications.','Outside of work I maintain the <a href="https://nukalafamily.com" target="_blank">Nukala Family Archive</a> — a personal passion project.'],
+  experience:[
+    {title:'Sr. Application Engineer',company:'HCA Healthcare',location:'Nashville, TN',type:'Healthcare Enterprise',dateFrom:'Oct 2022',dateTo:'Present',bullets:['Led end-to-end solo migration of the Mobile Heartbeat (MHB) project from Tableau to Power BI, rebuilding all dashboards from scratch and delivering a fully functional BI solution serving clinical operations teams across the enterprise.','Architected Power BI data models including table relationships, DAX measures, and Power Query transformations to ensure accurate, performant reporting across large-scale healthcare datasets.','Actively contributing to the enterprise-wide Teradata-to-GCP migration, replatforming critical data pipelines and validating data integrity across Google BigQuery environments.','Supporting and enhancing multiple MicroStrategy projects — building enhanced cubes, Data Marts, optimizing cube performances, new reports, optimizing existing dossiers, managing subscriptions and providing production support to business stakeholders.','Participated in major MicroStrategy platform upgrades and contributed to the large-scale MicroStrategy-to-Cloud transition, ensuring continuity of reporting and analytics capabilities.','Collaborated cross-functionally with data engineering, analytics, and IT teams to align BI deliverables with enterprise architecture standards and business priorities.'],tags:['Power BI','MicroStrategy','BigQuery','GCP','Teradata','DAX','Power Query'],logoData:''},
+    {title:'Data Engineer',company:'CareBridge',location:'Nashville, TN',type:'Healthcare Analytics',dateFrom:'Feb 2022',dateTo:'Oct 2022',bullets:['Monitored receipt and successful processing of all incoming daily files from managed care organizations within the ETL pipeline.','Reviewed automated SFTP notifications and PostgreSQL-generated analytic alerts in Mattermost for daily ETL failures, ensuring SLA compliance.','Troubleshot and resolved data processing errors across ETL pipeline stages using DataGrip and PostgreSQL stored procedures and functions.','Coordinated with analytics team members on new automated scheduled jobs, improving operational data flow reliability.'],tags:['PostgreSQL','DataGrip','ETL','SFTP','Mattermost'],logoData:''},
+    {title:'System Engineer',company:'HCA Parallon',location:'St. Louis, MO',type:'Revenue Cycle',dateFrom:'Jan 2018',dateTo:'Jan 2022',bullets:['Technical Lead for a cloud-based application called Gameffective — a KPI gamification platform scaled to 300+ internal users with roadmap to 1,000+.','Data Center Technology: Cross functional Data Center Sites in various locations with seamless continuity.','Business Intelligence & Data Modeling: Application data modeling, KPIs, creating report data needed for application growth and/or expansion.','Design and build web-based CTI applications, IVR design and development and highly advanced ACD call routing for national Contact Center, with a focus on Healthcare Services.','Orchestrate and lead problem triage to resolution efforts with the vendor, team and our users independently.','Enhance and support the automated dialer (Noble) that is highly integrated with our Enterprise-Wide business application (Debt Manager).','Support of a Speech Analytics (SAIA) tool that analyzes call recordings based on specific use cases.','Support and enhance a screen scrapper application which freed up resources in our payment posting organization and providing great results daily to meet Service Level Agreement (SLA).'],tags:['Gameffective','IVR','CTI','ACD','Noble Dialer','SAIA','Linux'],logoData:''},
+    {title:'Junior Software Developer / Rhapsody Developer',company:'State of Tennessee – Dept. of Health',location:'Nashville, TN',type:'Public Health IT',dateFrom:'May 2017',dateTo:'Jan 2018',bullets:['Designed and implemented HL7 clinical interface solutions using Rhapsody IDE in collaboration with technical teams and business stakeholders.','Maintained, monitored, and provided production support for clinical interfaces and coded logic within the interface engine.','Oversaw interface development lifecycle through deliverables completion, engine monitoring, and performance validation.'],tags:['HL7','Rhapsody IDE','Clinical Interfaces'],logoData:''}
   ],
-  projects: [
-    {title:'MHB Power BI Migration',type:'Enterprise BI Migration · HCA Healthcare',year:'2022–Present',desc:'Sole engineer responsible for migrating the Mobile Heartbeat platform from Tableau to Power BI at HCA Healthcare. Rebuilt all dashboards from scratch with new data models, DAX measures, and Power Query transformations.',tags:['Power BI','DAX','Power Query','SQL Server','Healthcare'],link:''},
-    {title:'Teradata → GCP Migration',type:'Cloud Data Platform · HCA Healthcare',year:'2023–Present',desc:'Active contributor to enterprise migration from Teradata to Google Cloud Platform — replatforming critical data pipelines, validating integrity across BigQuery environments.',tags:['Teradata','BigQuery','GCP','ETL','Data Validation'],link:''},
-    {title:'Gamification Platform',type:'Technical Lead · Parallon',year:'2018–2022',desc:'Technical Lead for Gameffective — a KPI gamification platform for contact center agents. Scaled from pilot to 300+ users. Implemented SFTP hourly data sync and SSO integration.',tags:['PostgreSQL','SFTP','SSO','IVR','System Integration'],link:''},
-    {title:'Nukala Family Archive',type:'Personal Project',year:'2023–Present',desc:'A private family archive and genealogy website built as a personal passion project. Features a full admin panel, 14-page navigation, and interactive content using HTML/CSS/JS on GitHub Pages.',tags:['HTML/CSS/JS','GitHub Pages','Admin Panel'],link:'https://nukalafamily.com'}
+  skills:[
+    {group:'BI & Visualization',items:['Power BI','MicroStrategy','Tableau','DAX','Power Query','Report Builder','Power BI Copilot','Web Reports']},
+    {group:'AI & Data Science',items:['Python','APIs','BigQuery ML','Prompt Engineering','AI-native App Development']},
+    {group:'Databases & Cloud',items:['Teradata','Google BigQuery','GCP','SQL Server','PostgreSQL','AWS']},
+    {group:'Data Engineering',items:['ETL/ELT Pipelines','SFTP Automation','DataGrip','Stored Procedures','Scheduled Jobs','Query Optimization']},
+    {group:'Languages & Frameworks',items:['SQL','Python','JavaScript','Java','C/C++','VB.Net','XML','HTML/CSS']},
+    {group:'Platforms & Tools',items:['GitHub','Linux','SDLC','Agile','Rhapsody IDE','Eclipse','Visio','HL7/EMR','ServiceNow','Jira','Speech Analytics']}
   ],
-  skills: [
-    {group:'BI & Visualization',items:['Power BI & Copilot','MicroStrategy','Tableau','DAX & Power Query','MDX & Report Builder']},
-    {group:'Cloud & Databases',items:['Google BigQuery & GCP','Teradata','SQL Server','PostgreSQL','AWS']},
-    {group:'Data Engineering',items:['ETL / ELT Pipelines','SFTP Automation','DataGrip','Stored Procedures','Query Optimization']},
-    {group:'AI & Development',items:['Python & FastAPI','React & TypeScript','Prompt Engineering','Claude API','REST APIs']},
-    {group:'Healthcare Domain',items:['HL7 & Clinical Interfaces','Managed Care Orgs','Revenue Cycle','Syndromic Surveillance','Regulatory Compliance']},
-    {group:'Methods & Platforms',items:['Agile & SDLC','Linux Server Admin','IVR & Telephony','GitHub & Git','Visio & Documentation']}
+  projects:[
+    {title:'Gamification Platform — Technical Lead',year:'2018 – 2022',type:'Cloud Platform · HCA Parallon, St. Louis, MO',bullets:['Achieved 300 internal users with plans of going to 1,000+ as Technical Lead for Gameffective project from Pilot to Go-live.','Collaborated with ETL team to set up SFTP transfer protocol ensuring hourly data sync to vendor.','Engaged in SSO (Single Sign-On) app functionality.','Implemented call transferring system between Qualifying Agents and Closing Agents by building an integrated solution.'],tags:['Gameffective','SFTP','SSO','ETL','IVR'],link:'',imageData:'',pdfFile:''},
+    {title:'Nukala Family Archive',year:'2023 – Present',type:'Personal Project · Live',bullets:['Built and maintain a private family archive and genealogy website as a personal passion project.','Features full admin panel, 14-page navigation, and rich interactive content hosted on GitHub Pages.'],tags:['HTML/CSS/JS','GitHub Pages','Admin Panel'],link:'https://nukalafamily.com',imageData:'',pdfFile:''}
   ],
-  certifications: [
-    {org:'Alvaria / Noble Systems',name:'IVR, Composer Designer & Agent Certifications',status:'earned',year:'2019'},
-    {org:'Alvaria / Noble Systems',name:'Harmony, Maestro, Web Reports & Query Builder',status:'earned',year:'2019'},
-    {org:'Google Cloud',name:'Generative AI Fundamentals',status:'progress',year:''},
-    {org:'Microsoft',name:'Azure AI Fundamentals (AI-900)',status:'progress',year:''},
-    {org:'Microsoft',name:'Power BI Data Analyst (PL-300)',status:'planned',year:''},
-    {org:'Google Cloud',name:'Professional ML Engineer',status:'planned',year:''}
+  publications:[{title:'Creation of a Technical Tool to Improve Syndromic Surveillance Onboarding in Tennessee',journal:'Online Journal of Public Health Informatics (OJPHI)',year:'2018',org:'State of Tennessee, Dept. of Health',desc:'Improved Department of Health syndromic surveillance onboarding efficiency through a custom-built software tool. Published peer-reviewed research on clinical interface development and public health informatics.',link:'https://ojphi.jmir.org/2018/1/e62247/',pdfFile:'',imageData:''}],
+  certifications:[
+    {org:'MicroStrategy',name:'MicroStrategy Departmental Analyst',status:'earned',year:'',imageData:'',pdfFile:'',verifyUrl:''},
+    {org:'Institute of Management Studies',name:'Model-Netics Leadership & Management',status:'earned',year:'',imageData:'',pdfFile:'',verifyUrl:''},
+    {org:'Microsoft',name:'Power BI Training',status:'earned',year:'',imageData:'',pdfFile:'',verifyUrl:''},
+    {org:'Alvaria / Noble Systems',name:'IVR Certification',status:'earned',year:'2019',imageData:'',pdfFile:'',verifyUrl:''},
+    {org:'Alvaria / Noble Systems',name:'Composer Designer, Composer Agent & Harmony',status:'earned',year:'2019',imageData:'',pdfFile:'',verifyUrl:''},
+    {org:'Alvaria / Noble Systems',name:'Maestro, Web Reports & Query Builder',status:'earned',year:'2019',imageData:'',pdfFile:'',verifyUrl:''},
+    {org:'Google Cloud / AWS',name:'AWS, GCP & AI Trainings',status:'earned',year:'',imageData:'',pdfFile:'',verifyUrl:''}
   ],
-  publications: [
-    {title:'Creation of a Technical Tool to Improve Syndromic Surveillance Onboarding in Tennessee',journal:'Online Journal of Public Health Informatics (OJPHI)',year:'2018',org:'State of Tennessee, Dept. of Health',desc:'Developed and published peer-reviewed research on improving syndromic surveillance onboarding efficiency for the Tennessee Department of Health through a custom-built software tool.',link:'http://ojphi.org/ojs/index.php/ojphi/article/view/8907/7267'}
+  education:[
+    {degree:'Master of Science, Computer Science',school:'Kent State University',location:'Kent, OH',year:'Dec 2016'},
+    {degree:'Bachelor of Engineering, Computer Science & Engineering',school:'JNTU Hyderabad',location:'India',year:'May 2015'}
   ],
-  theme: {gold:'#e6a817',bg:'#0d1117',bg2:'#161b22',white:'#cdd6f4',muted:'#6272a4'},
-  font: 'Syne'
+  contact:{heading:"Let's work together.",text:"I'm currently open to Sr. BI Engineer, AI Application Engineer, and Data Engineering roles. I-140 approved — H-1B transfer only, no lottery needed.",email:'vamshinukala@gmail.com',phone:'(203) 543-2452',location:'Nashville, TN 37203'},
+  footer:{line1:'Designed & built by Krish Nukala',line2:'HTML · CSS · JS · GitHub Pages',visible:true},
+  theme:{defaultTheme:'dark',enabledThemes:['dark','light','ocean','sunset']},
+  hiddenSections:[],aiEnabled:false,proxyUrl:'',hf:{}
 };
 
-let DATA = {};
+var DATA = {};
 
-function loadData() {
-  try {
-    const saved = localStorage.getItem('kn_admin_data');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      // Merge with defaults to ensure all keys exist
-      DATA = {
-        ...JSON.parse(JSON.stringify(DEFAULT_DATA)),
-        ...parsed
-      };
-    } else {
-      DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
-      // Auto-save defaults so they persist
-      localStorage.setItem('kn_admin_data', JSON.stringify(DATA));
-    }
-  } catch(e) {
-    DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+// ── DATA LOAD / SAVE ─────────────────────────
+function loadData(){
+  try{
+    var s=localStorage.getItem(STORAGE_KEY);
+    DATA=s?JSON.parse(s):JSON.parse(JSON.stringify(DEFAULT_DATA));
+    if(!DATA.experience)DATA.experience=DEFAULT_DATA.experience;
+    if(!DATA.skills)DATA.skills=DEFAULT_DATA.skills;
+    if(!DATA.projects)DATA.projects=DEFAULT_DATA.projects;
+    if(!DATA.publications)DATA.publications=DEFAULT_DATA.publications;
+    if(!DATA.certifications)DATA.certifications=DEFAULT_DATA.certifications;
+    if(!DATA.education)DATA.education=DEFAULT_DATA.education;
+    if(DATA.aiEnabled===undefined)DATA.aiEnabled=false;
+  }catch(e){DATA=JSON.parse(JSON.stringify(DEFAULT_DATA));}
+}
+function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(DATA));showToast();}
+function showToast(){var t=document.getElementById('saveToast');t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
+function exportData(){var a=document.createElement('a');a.href='data:text/json,'+encodeURIComponent(JSON.stringify(DATA,null,2));a.download='krish-portfolio-data.json';a.click();}
+function importData(){
+  var inp=document.createElement('input');inp.type='file';inp.accept='.json';
+  inp.onchange=function(e){
+    var file=e.target.files[0];if(!file)return;
+    var r=new FileReader();r.onload=function(ev){
+      try{DATA={...JSON.parse(JSON.stringify(DEFAULT_DATA)),...JSON.parse(ev.target.result)};saveData();initAdmin();alert('✅ Data imported!');}
+      catch(e){alert('❌ Invalid JSON file.');}
+    };r.readAsText(file);
+  };inp.click();
+}
+function resetData(){if(confirm('Reset all data to defaults? This cannot be undone.')){DATA=JSON.parse(JSON.stringify(DEFAULT_DATA));saveData();initAdmin();}}
+
+// ── AUTH ─────────────────────────────────────
+const MAX_ATT=5,LOCK_MS=30*60*1000;
+async function hashStr(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0');}).join('');}
+function getLock(){try{return JSON.parse(localStorage.getItem('kn_lockout')||'{"a":0,"u":0}');}catch{return{a:0,u:0};}}
+function saveLock(d){localStorage.setItem('kn_lockout',JSON.stringify(d));}
+function checkLockoutOnLoad(){var d=getLock();if(d.u&&Date.now()<d.u)showLock(d.u);else if(d.u)saveLock({a:0,u:0});}
+function showLock(until){
+  var mins=Math.ceil((until-Date.now())/60000);
+  var el=document.getElementById('loginLockout');
+  el.textContent='Too many attempts. Try again in '+mins+' minute'+(mins!==1?'s':'')+'.';
+  el.style.display='block';
+  document.getElementById('loginError').style.display='none';
+  var btn=document.getElementById('loginBtn'),inp=document.getElementById('loginPass');
+  btn.disabled=true;inp.disabled=true;
+  setTimeout(function(){btn.disabled=false;inp.disabled=false;el.style.display='none';saveLock({a:0,u:0});},until-Date.now());
+}
+async function doLogin(){
+  var d=getLock();if(d.u&&Date.now()<d.u){showLock(d.u);return;}
+  var pass=document.getElementById('loginPass').value;if(!pass)return;
+  var stored=localStorage.getItem('kn_pass_hash');
+  var hash=await hashStr(pass);
+  var valid=stored?hash===stored:pass==='KrishAdmin2026!';
+  if(valid){saveLock({a:0,u:0});document.getElementById('loginScreen').style.display='none';document.getElementById('adminPanel').style.display='block';initAdmin();}
+  else{
+    d.a=(d.a||0)+1;var left=MAX_ATT-d.a;
+    if(d.a>=MAX_ATT){d.u=Date.now()+LOCK_MS;saveLock(d);showLock(d.u);}
+    else{saveLock(d);var e=document.getElementById('loginError');e.textContent='Incorrect password. '+left+' attempt'+(left!==1?'s':'')+' remaining.';e.style.display='block';}
+    document.getElementById('loginPass').value='';
   }
 }
+function doLogout(){document.getElementById('adminPanel').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('loginPass').value='';document.getElementById('loginError').style.display='none';document.getElementById('loginLockout').style.display='none';}
 
-function saveData() {
-  localStorage.setItem('kn_admin_data', JSON.stringify(DATA));
-  showToast();
-}
-
-function showToast() {
-  const t = document.getElementById('saveToast');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+// ── PANELS ───────────────────────────────────
+function showPanel(id){
+  document.querySelectorAll('.admin-content').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.sidebar nav a').forEach(function(a){a.classList.remove('active');});
+  document.getElementById('panel-'+id).classList.add('active');
+  var nav=document.getElementById('nav-'+id);if(nav)nav.classList.add('active');
 }
 
-function importData() {
-  const input = document.createElement('input');
-  input.type = 'file'; input.accept = '.json';
-  input.onchange = e => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      try {
-        const imported = JSON.parse(ev.target.result);
-        DATA = { ...JSON.parse(JSON.stringify(DEFAULT_DATA)), ...imported };
-        saveData();
-        initAdmin();
-        alert('✅ Data imported successfully! Your content is now loaded.');
-      } catch(err) {
-        alert('❌ Invalid file. Please use a JSON file exported from this admin panel.');
-      }
-    };
-    reader.readAsText(file);
-  };
-  input.click();
+// ── SHARED IMAGE UPLOAD ───────────────────────
+function resizeImg(file,maxW,maxH,cb){
+  var r=new FileReader();r.onload=function(ev){
+    var img=new Image();img.onload=function(){
+      var canvas=document.createElement('canvas');
+      var w=img.width,h=img.height;
+      var ratio=Math.min(maxW/w,maxH/h,1);
+      canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio);
+      canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+      cb(canvas.toDataURL('image/jpeg',0.82));
+    };img.src=ev.target.result;
+  };r.readAsDataURL(file);
+}
+function imgWidget(type,idx,imgData,pdfFile,label,maxW,maxH,showPdf){
+  var hasImg=!!imgData;
+  return'<div class="img-upload-box">'+
+    '<div class="img-upload-box-label">'+label+'</div>'+
+    '<div class="img-upload-row">'+
+      '<div class="img-preview-area">'+
+        (hasImg?'<img src="'+imgData+'" alt="preview"/>'+'<div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted)">PREVIEW</div>':'<div class="img-no-preview">No image</div>')+
+        '<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.35rem">'+
+          '<label class="upload-label-btn">📷 Upload<input type="file" accept="image/*" style="display:none" onchange="handleItemImg(\''+type+'\','+idx+',this.files[0],'+maxW+','+maxH+')"/></label>'+
+          (hasImg?'<button onclick="removeItemImg(\''+type+'\','+idx+')" style="padding:.3rem .65rem;background:transparent;border:1px solid var(--red);color:var(--red);font-family:var(--font-mono);font-size:.58rem;cursor:pointer">Remove</button>':'')+
+        '</div>'+
+      '</div>'+
+      (showPdf?
+        '<div style="flex:1;min-width:180px">'+
+          '<div style="font-family:var(--font-mono);font-size:.6rem;color:var(--muted);margin-bottom:.4rem;letter-spacing:.08em;text-transform:uppercase">PDF File</div>'+
+          '<input type="text" value="'+(pdfFile||'')+'" placeholder="e.g. paper.pdf" style="width:100%;margin-bottom:.35rem" oninput="setItemPdf(\''+type+'\','+idx+',this.value)"/>'+
+          '<div style="font-size:.72rem;color:var(--muted)">Upload the PDF to GitHub first, then type the filename here.</div>'+
+        '</div>':'')+
+    '</div>'+
+  '</div>';
+}
+function handleItemImg(type,idx,file,w,h){
+  if(!file)return;
+  if(file.size>5*1024*1024){alert('File too large. Please use under 5MB.');return;}
+  resizeImg(file,w,h,function(data){
+    if(type==='exp'){DATA.experience[idx].logoData=data;renderExp();}
+    else if(type==='proj'){DATA.projects[idx].imageData=data;renderProj();}
+    else if(type==='cert'){DATA.certifications[idx].imageData=data;renderCerts();}
+    else if(type==='pub'){DATA.publications[idx].imageData=data;renderPubs();}
+  });
+}
+function removeItemImg(type,idx){
+  if(type==='exp'){DATA.experience[idx].logoData='';renderExp();}
+  else if(type==='proj'){delete DATA.projects[idx].imageData;renderProj();}
+  else if(type==='cert'){delete DATA.certifications[idx].imageData;renderCerts();}
+  else if(type==='pub'){delete DATA.publications[idx].imageData;renderPubs();}
+}
+function setItemPdf(type,idx,val){
+  if(type==='proj')DATA.projects[idx].pdfFile=val;
+  else if(type==='cert')DATA.certifications[idx].pdfFile=val;
+  else if(type==='pub')DATA.publications[idx].pdfFile=val;
 }
 
-// ── EXPERIENCE LIST ───────────────────────────
-function renderExp() {
-  const list = document.getElementById('expList');
-  list.innerHTML = DATA.experience.map((e,i) => `
-    <div class="list-item">
-      <div class="list-item-header">
-        <div class="list-item-title">${e.title} · ${e.company}</div>
-        <div class="list-item-actions">
-          <button class="icon-btn del" onclick="delExp(${i})" title="Delete">
-            <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field"><label class="field-label">Job Title</label><input type="text" value="${e.title}" oninput="DATA.experience[${i}].title=this.value"/></div>
-        <div class="field"><label class="field-label">Company</label><input type="text" value="${e.company}" oninput="DATA.experience[${i}].company=this.value"/></div>
-      </div>
-      <div class="field-row">
-        <div class="field"><label class="field-label">Location</label><input type="text" value="${e.location}" oninput="DATA.experience[${i}].location=this.value"/></div>
-        <div class="field"><label class="field-label">Type/Industry</label><input type="text" value="${e.type}" oninput="DATA.experience[${i}].type=this.value"/></div>
-      </div>
-      <div class="field-row">
-        <div class="field"><label class="field-label">From</label><input type="text" value="${e.dateFrom}" oninput="DATA.experience[${i}].dateFrom=this.value"/></div>
-        <div class="field"><label class="field-label">To</label><input type="text" value="${e.dateTo}" oninput="DATA.experience[${i}].dateTo=this.value"/></div>
-      </div>
-      <div class="field"><label class="field-label">Description</label><textarea oninput="DATA.experience[${i}].desc=this.value">${e.desc}</textarea></div>
-      <div class="field"><label class="field-label">Skill Tags <span class="optional">Press Enter to add</span></label>
-        <div class="tags-input-wrap" id="exp-tags-${i}">
-          ${e.tags.map((t,ti)=>`<span class="tag-chip">${t}<button onclick="delExpTag(${i},${ti})">×</button></span>`).join('')}
-          <input type="text" placeholder="Add tag..." onkeydown="addExpTag(event,${i})"/>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('stat-exp').textContent = DATA.experience.length;
+// ── EXPERIENCE ────────────────────────────────
+function renderExp(){
+  var list=document.getElementById('expList');
+  list.innerHTML=DATA.experience.map(function(ex,i){
+    var bullets=(ex.bullets||[]).join('\n');
+    return'<div class="list-item">'+
+      '<div class="list-item-header"><div class="list-item-title">'+ex.title+' · '+ex.company+'</div>'+
+        '<div class="list-item-actions"><button class="icon-btn del" onclick="delExp('+i+')" title="Delete"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div>'+
+      '</div>'+
+      '<div class="list-item-body">'+
+        '<div class="field-row"><div class="field"><label class="field-label">Job Title</label><input type="text" value="'+ex.title+'" oninput="DATA.experience['+i+'].title=this.value"/></div><div class="field"><label class="field-label">Company</label><input type="text" value="'+ex.company+'" oninput="DATA.experience['+i+'].company=this.value"/></div></div>'+
+        '<div class="field-row"><div class="field"><label class="field-label">Location</label><input type="text" value="'+ex.location+'" oninput="DATA.experience['+i+'].location=this.value"/></div><div class="field"><label class="field-label">Type</label><input type="text" value="'+(ex.type||'')+'" oninput="DATA.experience['+i+'].type=this.value"/></div></div>'+
+        '<div class="field-row"><div class="field"><label class="field-label">From</label><input type="text" value="'+ex.dateFrom+'" oninput="DATA.experience['+i+'].dateFrom=this.value"/></div><div class="field"><label class="field-label">To</label><input type="text" value="'+ex.dateTo+'" oninput="DATA.experience['+i+'].dateTo=this.value"/></div></div>'+
+        '<div class="field"><label class="field-label">Job Description Bullets <span class="optional">One bullet point per line</span></label><textarea rows="8" oninput="DATA.experience['+i+'].bullets=this.value.split(\'\\n\').filter(function(s){return s.trim();})">'+bullets+'</textarea></div>'+
+        '<div class="field"><label class="field-label">Tech Tags <span class="optional">Press Enter to add</span></label><div class="tags-input-wrap" id="expTags-'+i+'">'+
+          ex.tags.map(function(t,ti){return'<span class="tag-chip">'+t+'<button onclick="delExpTag('+i+','+ti+')">×</button></span>';}).join('')+
+          '<input type="text" placeholder="Add tag..." onkeydown="addExpTag(event,'+i+')"/>'+
+        '</div></div>'+
+        imgWidget('exp',i,ex.logoData||'','','Company Logo',200,200,false)+
+      '</div>'+
+    '</div>';
+  }).join('');
+  document.getElementById('stat-exp').textContent=DATA.experience.length;
 }
+function addExpItem(){DATA.experience.push({title:'New Role',company:'Company Name',location:'City, State',type:'Industry',dateFrom:'Month Year',dateTo:'Present',bullets:['Describe your responsibilities and achievements here.'],tags:[],logoData:''});renderExp();}
+function delExp(i){if(confirm('Delete this experience?')){DATA.experience.splice(i,1);renderExp();}}
+function addExpTag(e,i){if(e.key==='Enter'&&e.target.value.trim()){DATA.experience[i].tags.push(e.target.value.trim());renderExp();}}
+function delExpTag(i,ti){DATA.experience[i].tags.splice(ti,1);renderExp();}
 
-function addExpItem() {
-  DATA.experience.push({title:'New Role',company:'Company Name',location:'City, State',type:'Industry',dateFrom:'Month Year',dateTo:'Present',desc:'Description of your role and key achievements.',tags:[]});
-  renderExp();
+// ── SKILLS ────────────────────────────────────
+function renderSkills(){
+  var list=document.getElementById('skillsList');
+  list.innerHTML=DATA.skills.map(function(g,i){
+    return'<div class="list-item">'+
+      '<div class="list-item-header"><div class="list-item-title">'+g.group+'</div><div class="list-item-actions"><button class="icon-btn del" onclick="delSkillGroup('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div></div>'+
+      '<div class="list-item-body">'+
+        '<div class="field"><label class="field-label">Group Name</label><input type="text" value="'+g.group+'" oninput="DATA.skills['+i+'].group=this.value"/></div>'+
+        '<div class="field"><label class="field-label">Skills <span class="optional">One per line — paste or type freely</span></label><textarea rows="6" style="resize:vertical" oninput="DATA.skills['+i+'].items=this.value.split(\'\\n\').map(function(s){return s.trim();}).filter(function(s){return s;})">'+g.items.join('\n')+'</textarea></div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+  document.getElementById('stat-skills').textContent=DATA.skills.length;
 }
-function delExp(i) { if(confirm('Delete this experience?')) { DATA.experience.splice(i,1); renderExp(); } }
-function addExpTag(e,i) { if(e.key==='Enter'&&e.target.value.trim()){DATA.experience[i].tags.push(e.target.value.trim());renderExp();} }
-function delExpTag(i,ti) { DATA.experience[i].tags.splice(ti,1); renderExp(); }
+function addSkillGroup(){DATA.skills.push({group:'New Skill Group',items:['Skill 1','Skill 2','Skill 3']});renderSkills();}
+function delSkillGroup(i){if(confirm('Delete this skill group?')){DATA.skills.splice(i,1);renderSkills();}}
 
-// ── PROJECTS LIST ─────────────────────────────
-function renderProj() {
-  const list = document.getElementById('projList');
-  list.innerHTML = DATA.projects.map((p,i) => `
-    <div class="list-item">
-      <div class="list-item-header">
-        <div class="list-item-title">${p.title}</div>
-        <div class="list-item-actions">
-          <button class="icon-btn del" onclick="delProj(${i})" title="Delete"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field"><label class="field-label">Project Title</label><input type="text" value="${p.title}" oninput="DATA.projects[${i}].title=this.value"/></div>
-        <div class="field"><label class="field-label">Year</label><input type="text" value="${p.year}" oninput="DATA.projects[${i}].year=this.value"/></div>
-      </div>
-      <div class="field"><label class="field-label">Type / Context</label><input type="text" value="${p.type}" oninput="DATA.projects[${i}].type=this.value"/></div>
-      <div class="field"><label class="field-label">Description</label><textarea oninput="DATA.projects[${i}].desc=this.value">${p.desc}</textarea></div>
-      <div class="field"><label class="field-label">Live URL <span class="optional">Optional</span></label><input type="url" value="${p.link||''}" placeholder="https://..." oninput="DATA.projects[${i}].link=this.value"/></div>
-      <div class="field"><label class="field-label">Tech Tags</label>
-        <div class="tags-input-wrap">
-          ${p.tags.map((t,ti)=>`<span class="tag-chip">${t}<button onclick="delProjTag(${i},${ti})">×</button></span>`).join('')}
-          <input type="text" placeholder="Add tag..." onkeydown="addProjTag(event,${i})"/>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('stat-proj').textContent = DATA.projects.length;
+// ── PROJECTS ──────────────────────────────────
+function renderProj(){
+  var list=document.getElementById('projList');
+  list.innerHTML=DATA.projects.map(function(p,i){
+    var bullets=(p.bullets||[]).join('\n');
+    return'<div class="list-item">'+
+      '<div class="list-item-header"><div class="list-item-title">'+p.title+'</div><div class="list-item-actions"><button class="icon-btn del" onclick="delProj('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div></div>'+
+      '<div class="list-item-body">'+
+        '<div class="field-row"><div class="field"><label class="field-label">Title</label><input type="text" value="'+p.title+'" oninput="DATA.projects['+i+'].title=this.value"/></div><div class="field"><label class="field-label">Year</label><input type="text" value="'+p.year+'" oninput="DATA.projects['+i+'].year=this.value"/></div></div>'+
+        '<div class="field"><label class="field-label">Type / Context</label><input type="text" value="'+p.type+'" oninput="DATA.projects['+i+'].type=this.value"/></div>'+
+        '<div class="field"><label class="field-label">Bullet Points <span class="optional">One per line</span></label><textarea rows="5" oninput="DATA.projects['+i+'].bullets=this.value.split(\'\\n\').filter(function(s){return s.trim();})">'+bullets+'</textarea></div>'+
+        '<div class="field"><label class="field-label">Live URL <span class="optional">Optional</span></label><input type="url" value="'+(p.link||'')+'" placeholder="https://..." oninput="DATA.projects['+i+'].link=this.value"/></div>'+
+        '<div class="field"><label class="field-label">Tech Tags <span class="optional">Press Enter</span></label><div class="tags-input-wrap">'+
+          p.tags.map(function(t,ti){return'<span class="tag-chip">'+t+'<button onclick="delProjTag('+i+','+ti+')">×</button></span>';}).join('')+
+          '<input type="text" placeholder="Add tag..." onkeydown="addProjTag(event,'+i+')"/>'+
+        '</div></div>'+
+        imgWidget('proj',i,p.imageData||'',p.pdfFile||'','Project Screenshot / PDF',800,500,true)+
+      '</div>'+
+    '</div>';
+  }).join('');
+  document.getElementById('stat-proj').textContent=DATA.projects.length;
 }
-function addProjItem() { DATA.projects.push({title:'New Project',type:'Project Type',year:'2026',desc:'Describe what you built and the impact.',tags:[],link:''}); renderProj(); }
-function delProj(i) { if(confirm('Delete this project?')) { DATA.projects.splice(i,1); renderProj(); } }
-function addProjTag(e,i) { if(e.key==='Enter'&&e.target.value.trim()){DATA.projects[i].tags.push(e.target.value.trim());renderProj();} }
-function delProjTag(i,ti) { DATA.projects[i].tags.splice(ti,1); renderProj(); }
-
-// ── SKILLS ───────────────────────────────────
-function renderSkills() {
-  const list = document.getElementById('skillsList');
-  list.innerHTML = DATA.skills.map((g,i) => `
-    <div class="list-item">
-      <div class="list-item-header">
-        <div class="list-item-title">${g.group}</div>
-        <div class="list-item-actions">
-          <button class="icon-btn del" onclick="delSkillGroup(${i})" title="Delete group"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-        </div>
-      </div>
-      <div class="field">
-        <label class="field-label">Group Name</label>
-        <input type="text" value="${g.group}" oninput="DATA.skills[${i}].group=this.value"/>
-      </div>
-      <div class="field">
-        <label class="field-label">Skills <span class="optional">One per line — just paste or type them in</span></label>
-        <textarea rows="6" style="resize:vertical" oninput="DATA.skills[${i}].items=this.value.split('\\n').map(s=>s.trim()).filter(s=>s)">${g.items.join('\n')}</textarea>
-      </div>
-    </div>`).join('');
-  document.getElementById('stat-skills').textContent = DATA.skills.length;
-}
-function addSkillGroup() {
-  DATA.skills.push({group:'New Skill Group',items:['Skill 1','Skill 2','Skill 3']});
-  renderSkills();
-}
-function delSkillGroup(i) { if(confirm('Delete this skill group?')){ DATA.skills.splice(i,1); renderSkills(); } }
-
-// ── CERTIFICATIONS ────────────────────────────
-function renderCerts() {
-  const list = document.getElementById('certsList');
-  list.innerHTML = DATA.certifications.map((c,i) => `
-    <div class="list-item">
-      <div class="list-item-header">
-        <div class="list-item-title">${c.name}</div>
-        <div class="list-item-actions">
-          <span class="badge badge-${c.status}">${c.status}</span>
-          <button class="icon-btn del" onclick="delCert(${i})"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field"><label class="field-label">Organization</label><input type="text" value="${c.org}" oninput="DATA.certifications[${i}].org=this.value"/></div>
-        <div class="field"><label class="field-label">Certification Name</label><input type="text" value="${c.name}" oninput="DATA.certifications[${i}].name=this.value"/></div>
-      </div>
-      <div class="field-row">
-        <div class="field"><label class="field-label">Status</label>
-          <select onchange="DATA.certifications[${i}].status=this.value;renderCerts()">
-            <option value="earned" ${c.status==='earned'?'selected':''}>Earned</option>
-            <option value="progress" ${c.status==='progress'?'selected':''}>In Progress</option>
-            <option value="planned" ${c.status==='planned'?'selected':''}>Planned</option>
-          </select>
-        </div>
-        <div class="field"><label class="field-label">Year <span class="optional">If earned</span></label><input type="text" value="${c.year||''}" placeholder="e.g. 2025" oninput="DATA.certifications[${i}].year=this.value"/></div>
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('stat-certs').textContent = DATA.certifications.length;
-}
-function addCert() { DATA.certifications.push({org:'Organization',name:'Certification Name',status:'planned',year:''}); renderCerts(); }
-function delCert(i) { if(confirm('Delete this certification?')){ DATA.certifications.splice(i,1); renderCerts(); } }
+function addProjItem(){DATA.projects.push({title:'New Project',year:'2025',type:'Project Type',bullets:['Describe this project and its impact.'],tags:[],link:'',imageData:'',pdfFile:''});renderProj();}
+function delProj(i){if(confirm('Delete this project?')){DATA.projects.splice(i,1);renderProj();}}
+function addProjTag(e,i){if(e.key==='Enter'&&e.target.value.trim()){DATA.projects[i].tags.push(e.target.value.trim());renderProj();}}
+function delProjTag(i,ti){DATA.projects[i].tags.splice(ti,1);renderProj();}
 
 // ── PUBLICATIONS ──────────────────────────────
-function renderPubs() {
-  const list = document.getElementById('pubsList');
-  list.innerHTML = DATA.publications.map((p,i) => `
-    <div class="list-item">
-      <div class="list-item-header">
-        <div class="list-item-title">${p.title.substring(0,60)}...</div>
-        <div class="list-item-actions">
-          <button class="icon-btn del" onclick="delPub(${i})"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-        </div>
-      </div>
-      <div class="field"><label class="field-label">Title</label><input type="text" value="${p.title}" oninput="DATA.publications[${i}].title=this.value"/></div>
-      <div class="field-row">
-        <div class="field"><label class="field-label">Journal / Publication</label><input type="text" value="${p.journal}" oninput="DATA.publications[${i}].journal=this.value"/></div>
-        <div class="field"><label class="field-label">Year</label><input type="text" value="${p.year}" oninput="DATA.publications[${i}].year=this.value"/></div>
-      </div>
-      <div class="field"><label class="field-label">Organization</label><input type="text" value="${p.org}" oninput="DATA.publications[${i}].org=this.value"/></div>
-      <div class="field"><label class="field-label">Description</label><textarea oninput="DATA.publications[${i}].desc=this.value">${p.desc}</textarea></div>
-      <div class="field"><label class="field-label">Online URL <span class="optional">Link to journal/website</span></label><input type="url" value="${p.link||''}" placeholder="https://..." oninput="DATA.publications[${i}].link=this.value"/></div>
-      <div class="field">
-        <label class="field-label">PDF Filename <span class="optional">Upload PDF to GitHub repo, then enter filename here</span></label>
-        <input type="text" value="${p.pdfFile||''}" placeholder="e.g. syndromic-surveillance-paper.pdf" oninput="DATA.publications[${i}].pdfFile=this.value"/>
-        <div style="margin-top:0.4rem;font-size:0.75rem;color:var(--muted)">
-          📋 How: Upload your PDF to GitHub → Add file → Upload → name it something simple. Then type that filename here. Both URL and PDF buttons will show on your site.
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-function addPub() { DATA.publications.push({title:'Publication Title',journal:'Journal Name',year:'2026',org:'Organization',desc:'Description of the research.',link:''}); renderPubs(); }
-function delPub(i) { if(confirm('Delete this publication?')){ DATA.publications.splice(i,1); renderPubs(); } }
-
-function delPub(i) { if(confirm('Delete this publication?')){ DATA.publications.splice(i,1); renderPubs(); } }
-
-// ── THEME ENABLE/DISABLE TOGGLES ──────────────────────────────
-const ALL_THEMES = [
-  { id:'dark',   emoji:'🌙', label:'Dark',   desc:'Navy & Gold — Professional default' },
-  { id:'light',  emoji:'☀️', label:'Light',  desc:'Clean white — Easy on the eyes' },
-  { id:'ocean',  emoji:'🌊', label:'Ocean',  desc:'Deep teal — Calm & distinctive' },
-  { id:'sunset', emoji:'🌅', label:'Sunset', desc:'Dark red — Bold & creative' },
-];
-function renderThemeToggles() {
-  const enabled = DATA.enabledThemes || ['dark','light','ocean','sunset'];
-  const c = document.getElementById('themeToggles'); if(!c) return;
-  c.innerHTML = ALL_THEMES.map(t => {
-    const on = enabled.includes(t.id);
-    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:var(--bg3);border:1px solid ${on?'var(--border-gold)':'var(--border)'};transition:all 0.2s">
-      <div style="display:flex;align-items:center;gap:0.75rem">
-        <span style="font-size:1.2rem">${t.emoji}</span>
-        <div><div style="font-family:var(--font-head);font-size:0.88rem;font-weight:600;color:var(--white)">${t.label}</div>
-        <div style="font-size:0.72rem;color:var(--muted)">${t.desc}</div></div>
-      </div>
-      <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer">
-        <span style="font-family:var(--font-mono);font-size:0.6rem;color:${on?'var(--gold)':'var(--muted)'};letter-spacing:0.1em;text-transform:uppercase">${on?'On':'Off'}</span>
-        <div onclick="toggleThemeOpt('${t.id}')" style="width:38px;height:20px;border-radius:10px;background:${on?'var(--gold)':'var(--dim)'};cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0">
-          <div style="position:absolute;top:2px;left:${on?'20px':'2px'};width:16px;height:16px;border-radius:50%;background:#fff;transition:left 0.3s;pointer-events:none"></div>
-        </div>
-      </label>
-    </div>`;
+function renderPubs(){
+  var list=document.getElementById('pubsList');
+  list.innerHTML=DATA.publications.map(function(p,i){
+    return'<div class="list-item">'+
+      '<div class="list-item-header"><div class="list-item-title">'+(p.title.length>60?p.title.substring(0,60)+'...':p.title)+'</div><div class="list-item-actions"><button class="icon-btn del" onclick="delPub('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div></div>'+
+      '<div class="list-item-body">'+
+        '<div class="field"><label class="field-label">Title</label><input type="text" value="'+p.title+'" oninput="DATA.publications['+i+'].title=this.value"/></div>'+
+        '<div class="field-row"><div class="field"><label class="field-label">Journal</label><input type="text" value="'+p.journal+'" oninput="DATA.publications['+i+'].journal=this.value"/></div><div class="field"><label class="field-label">Year</label><input type="text" value="'+p.year+'" oninput="DATA.publications['+i+'].year=this.value"/></div></div>'+
+        '<div class="field"><label class="field-label">Organization</label><input type="text" value="'+p.org+'" oninput="DATA.publications['+i+'].org=this.value"/></div>'+
+        '<div class="field"><label class="field-label">Description</label><textarea oninput="DATA.publications['+i+'].desc=this.value">'+p.desc+'</textarea></div>'+
+        '<div class="field"><label class="field-label">Online URL</label><input type="url" value="'+(p.link||'')+'" placeholder="https://..." oninput="DATA.publications['+i+'].link=this.value"/></div>'+
+        imgWidget('pub',i,p.imageData||'',p.pdfFile||'','Publication Cover Image / PDF',600,400,true)+
+      '</div>'+
+    '</div>';
   }).join('');
-  const def = document.getElementById('defaultTheme');
-  if(def) def.value = DATA.defaultTheme || 'dark';
 }
-function toggleThemeOpt(id) {
-  if(!DATA.enabledThemes) DATA.enabledThemes = ['dark','light','ocean','sunset'];
-  const idx = DATA.enabledThemes.indexOf(id);
-  if(idx >= 0) {
-    if(DATA.enabledThemes.length <= 1){ alert('At least one theme must stay enabled.'); return; }
-    DATA.enabledThemes.splice(idx,1);
-  } else { DATA.enabledThemes.push(id); }
+function addPub(){DATA.publications.push({title:'Publication Title',journal:'Journal Name',year:'2025',org:'Organization',desc:'Describe the research and its significance.',link:'',pdfFile:'',imageData:''});renderPubs();}
+function delPub(i){if(confirm('Delete this publication?')){DATA.publications.splice(i,1);renderPubs();}}
+
+// ── CERTIFICATIONS ────────────────────────────
+function renderCerts(){
+  var list=document.getElementById('certsList');
+  list.innerHTML=DATA.certifications.map(function(c,i){
+    return'<div class="list-item">'+
+      '<div class="list-item-header"><div class="list-item-title">'+c.name+'</div><div class="list-item-actions"><span class="badge badge-'+c.status+'">'+c.status+'</span><button class="icon-btn del" onclick="delCert('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div></div>'+
+      '<div class="list-item-body">'+
+        '<div class="field-row"><div class="field"><label class="field-label">Organization</label><input type="text" value="'+c.org+'" oninput="DATA.certifications['+i+'].org=this.value"/></div><div class="field"><label class="field-label">Certification Name</label><input type="text" value="'+c.name+'" oninput="DATA.certifications['+i+'].name=this.value"/></div></div>'+
+        '<div class="field-row"><div class="field"><label class="field-label">Status</label><select onchange="DATA.certifications['+i+'].status=this.value;renderCerts()"><option value="earned" '+(c.status==='earned'?'selected':'')+'>Earned</option><option value="progress" '+(c.status==='progress'?'selected':'')+'>In Progress</option><option value="planned" '+(c.status==='planned'?'selected':'')+'>Planned</option></select></div><div class="field"><label class="field-label">Year <span class="optional">If earned</span></label><input type="text" value="'+(c.year||'')+'" placeholder="2019" oninput="DATA.certifications['+i+'].year=this.value"/></div></div>'+
+        '<div class="field"><label class="field-label">Verify URL <span class="optional">Credly / LinkedIn badge link</span></label><input type="url" value="'+(c.verifyUrl||'')+'" placeholder="https://..." oninput="DATA.certifications['+i+'].verifyUrl=this.value"/></div>'+
+        imgWidget('cert',i,c.imageData||'',c.pdfFile||'','Certificate Image / PDF',600,450,true)+
+      '</div>'+
+    '</div>';
+  }).join('');
+  document.getElementById('stat-certs').textContent=DATA.certifications.length;
+}
+function addCert(){DATA.certifications.push({org:'Organization',name:'Certification Name',status:'planned',year:'',imageData:'',pdfFile:'',verifyUrl:''});renderCerts();}
+function delCert(i){if(confirm('Delete this certification?')){DATA.certifications.splice(i,1);renderCerts();}}
+
+// ── PHOTO UPLOAD ──────────────────────────────
+function handlePhotoUpload(input){
+  var file=input.files[0];if(!file)return;
+  if(file.size>2*1024*1024){alert('Photo too large. Please use under 2MB.');return;}
+  var reader=new FileReader();reader.onload=function(ev){
+    var img=new Image();img.onload=function(){
+      var canvas=document.createElement('canvas');
+      var size=Math.min(img.width,img.height,300);
+      canvas.width=size;canvas.height=size;
+      var ctx=canvas.getContext('2d');
+      ctx.beginPath();ctx.arc(size/2,size/2,size/2,0,Math.PI*2);ctx.clip();
+      ctx.drawImage(img,(img.width-size)/2,(img.height-size)/2,size,size,0,0,size,size);
+      var data=canvas.toDataURL('image/jpeg',0.85);
+      localStorage.setItem('kn_profile_photo',data);
+      document.getElementById('photoPreview').innerHTML='<img src="'+data+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block" alt="Photo"/>';
+      document.getElementById('removePhotoBtn').style.display='inline-flex';
+    };img.src=ev.target.result;
+  };reader.readAsDataURL(file);
+}
+function removePhoto(){if(!confirm('Remove photo?'))return;localStorage.removeItem('kn_profile_photo');document.getElementById('photoPreview').innerHTML='<div class="photo-initials">KN</div>';document.getElementById('removePhotoBtn').style.display='none';}
+function loadPhotoPreview(){var s=localStorage.getItem('kn_profile_photo');if(s){document.getElementById('photoPreview').innerHTML='<img src="'+s+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block" alt="Photo"/>';document.getElementById('removePhotoBtn').style.display='inline-flex';}}
+
+// ── THEME TOGGLES ─────────────────────────────
+var ALL_THEMES=[{id:'dark',emoji:'🌙',label:'Dark',desc:'Navy & Gold — default'},{id:'light',emoji:'☀️',label:'Light',desc:'Clean white'},{id:'ocean',emoji:'🌊',label:'Ocean',desc:'Deep teal'},{id:'sunset',emoji:'🌅',label:'Sunset',desc:'Dark red'}];
+function renderThemeToggles(){
+  var enabled=DATA.enabledThemes||['dark','light','ocean','sunset'];
+  document.getElementById('themeToggles').innerHTML=ALL_THEMES.map(function(t){
+    var on=enabled.includes(t.id);
+    return'<div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:var(--bg3);border:1px solid '+(on?'var(--border-gold)':'var(--border)')+'">'+
+      '<div style="display:flex;align-items:center;gap:.75rem"><span style="font-size:1.1rem">'+t.emoji+'</span><div><div style="font-family:var(--font-head);font-size:.88rem;font-weight:600;color:var(--white)">'+t.label+'</div><div style="font-size:.72rem;color:var(--muted)">'+t.desc+'</div></div></div>'+
+      '<div onclick="toggleThemeOpt(\''+t.id+'\')" class="toggle-track'+(on?' on':'')+'" style="margin-left:1rem"><div class="toggle-thumb"></div></div>'+
+    '</div>';
+  }).join('');
+  var def=document.getElementById('defaultTheme');if(def)def.value=DATA.defaultTheme||'dark';
+}
+function toggleThemeOpt(id){
+  if(!DATA.enabledThemes)DATA.enabledThemes=['dark','light','ocean','sunset'];
+  var idx=DATA.enabledThemes.indexOf(id);
+  if(idx>=0){if(DATA.enabledThemes.length<=1){alert('At least one theme must stay enabled.');return;}DATA.enabledThemes.splice(idx,1);}
+  else DATA.enabledThemes.push(id);
   renderThemeToggles();
 }
 
-// ── NAV SECTION TOGGLES ───────────────────────────────────────
-const NAV_SECTIONS = [
-  {id:'about',label:'About'},{id:'experience',label:'Experience'},
-  {id:'skills',label:'Skills'},{id:'projects',label:'Projects'},
-  {id:'publications',label:'Publications'},{id:'certifications',label:'Certifications'},
-  {id:'ai-assistant',label:'AI Assistant'},{id:'contact',label:'Contact'},
-];
-function renderNavToggles() {
-  const hidden = DATA.hiddenSections || [];
-  const c = document.getElementById('navToggles'); if(!c) return;
-  c.innerHTML = NAV_SECTIONS.map(s => {
-    const on = !hidden.includes(s.id);
-    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.85rem;background:var(--bg3);border:1px solid ${on?'var(--border-gold)':'var(--border)'}">
-      <span style="font-size:0.82rem;color:${on?'var(--white)':'var(--muted)'}">${s.label}</span>
-      <div onclick="toggleNav('${s.id}')" style="width:34px;height:18px;border-radius:9px;background:${on?'var(--gold)':'var(--dim)'};cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0">
-        <div style="position:absolute;top:2px;left:${on?'16px':'2px'};width:14px;height:14px;border-radius:50%;background:#fff;transition:left 0.3s;pointer-events:none"></div>
-      </div>
-    </div>`;
+// ── NAV TOGGLES ───────────────────────────────
+var NAV_SECS=[{id:'about',l:'About'},{id:'experience',l:'Experience'},{id:'skills',l:'Skills'},{id:'projects',l:'Projects'},{id:'publications',l:'Publications'},{id:'certifications',l:'Certifications'},{id:'resume',l:'Resume'},{id:'contact',l:'Contact'}];
+function renderNavToggles(){
+  var hidden=DATA.hiddenSections||[];
+  document.getElementById('navToggles').innerHTML=NAV_SECS.map(function(s){
+    var on=!hidden.includes(s.id);
+    return'<div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem .85rem;background:var(--bg3);border:1px solid '+(on?'var(--border-gold)':'var(--border)')+'">'+
+      '<span style="font-size:.82rem;color:'+(on?'var(--white)':'var(--muted)')+'">'+s.l+'</span>'+
+      '<div onclick="toggleNav(\''+s.id+'\')" class="toggle-track'+(on?' on':'')+'" style="width:34px;height:18px;border-radius:9px"><div class="toggle-thumb" style="width:14px;height:14px;'+(on?'left:16px':'')+'"></div></div>'+
+    '</div>';
   }).join('');
 }
-function toggleNav(id) {
-  if(!DATA.hiddenSections) DATA.hiddenSections = [];
-  const idx = DATA.hiddenSections.indexOf(id);
-  if(idx >= 0) DATA.hiddenSections.splice(idx,1); else DATA.hiddenSections.push(id);
-  renderNavToggles();
-}
+function toggleNav(id){if(!DATA.hiddenSections)DATA.hiddenSections=[];var idx=DATA.hiddenSections.indexOf(id);if(idx>=0)DATA.hiddenSections.splice(idx,1);else DATA.hiddenSections.push(id);renderNavToggles();}
 
-// ── HEADER & FOOTER SAVE/LOAD ────────────────────────────────
-// ── PROFILE PHOTO ─────────────────────────────────────────────
-function handlePhotoUpload(input) {
-  const file = input.files[0];
-  if (!file) return;
-  // Validate size (max 2MB)
-  if (file.size > 2 * 1024 * 1024) {
-    alert('Photo is too large. Please use an image under 2MB.');
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const base64 = ev.target.result;
-    // Resize to max 300x300 to keep storage small
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const size = Math.min(img.width, img.height, 300);
-      canvas.width = size; canvas.height = size;
-      const ctx = canvas.getContext('2d');
-      // Center-crop to square
-      const sx = (img.width - size) / 2;
-      const sy = (img.height - size) / 2;
-      ctx.beginPath();
-      ctx.arc(size/2, size/2, size/2, 0, Math.PI*2);
-      ctx.clip();
-      ctx.drawImage(img, sx, sy, size, size, 0, 0, size, size);
-      const compressed = canvas.toDataURL('image/jpeg', 0.85);
-      // Save to localStorage
-      localStorage.setItem('kn_profile_photo', compressed);
-      // Update preview
-      document.getElementById('photoPreview').innerHTML = `<img src="${compressed}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block"/>`;
-      document.getElementById('photoStatus').style.display = 'block';
-      document.getElementById('removePhotoBtn').style.display = 'inline-flex';
-      setTimeout(() => { document.getElementById('photoStatus').style.display = 'none'; }, 3000);
-    };
-    img.src = base64;
-  };
-  reader.readAsDataURL(file);
-}
-
-function removePhoto() {
-  if (!confirm('Remove profile photo? The KN initials will show instead.')) return;
-  localStorage.removeItem('kn_profile_photo');
-  document.getElementById('photoPreview').innerHTML = `<div style="width:100%;height:100%;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold)">KN</div>`;
-  document.getElementById('removePhotoBtn').style.display = 'none';
-}
-
-function loadPhotoPreview() {
-  const saved = localStorage.getItem('kn_profile_photo');
-  if (saved) {
-    document.getElementById('photoPreview').innerHTML = `<img src="${saved}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block"/>`;
-    document.getElementById('removePhotoBtn').style.display = 'inline-flex';
-  }
-}
-
-function previewNameColor(theme, val) {
-  document.getElementById('nc-'+theme+'-val').textContent = val;
-}
-
-function saveHeaderFooter() {
-  DATA.hf = {
-    pageTitle:     document.getElementById('hf-pageTitle')?.value,
-    metaDesc:      document.getElementById('hf-metaDesc')?.value,
-    firstName:     document.getElementById('hf-firstName')?.value,
-    lastName:      document.getElementById('hf-lastName')?.value,
-    title1:        document.getElementById('hf-title1')?.value,
-    title2:        document.getElementById('hf-title2')?.value,
-    badge:         document.getElementById('hf-badge')?.value,
-    location:      document.getElementById('hf-location')?.value,
-    badgeVisible:  document.getElementById('badgeOn')?.checked !== false,
-    footer1:       document.getElementById('hf-footer1')?.value,
-    footer2:       document.getElementById('hf-footer2')?.value,
-    footerVisible: document.getElementById('footerOn')?.checked !== false,
-    linkedin:      document.getElementById('hf-linkedin')?.value,
-    github:        document.getElementById('hf-github')?.value,
-    email:         document.getElementById('hf-email')?.value,
-    phone:         document.getElementById('hf-phone')?.value,
-    nameColors: {
-      dark:   document.getElementById('nc-dark')?.value   || '#ffffff',
-      light:  document.getElementById('nc-light')?.value  || '#1a1f35',
-      ocean:  document.getElementById('nc-ocean')?.value  || '#e8f8f5',
-      sunset: document.getElementById('nc-sunset')?.value || '#fdecea',
-    }
-  };
-  DATA.defaultTheme = document.getElementById('defaultTheme')?.value || 'dark';
-}
-function loadHeaderFooter() {
-  loadPhotoPreview();
-  const hf = DATA.hf || {};
-  const sv = (id,v) => { const el=document.getElementById(id); if(el&&v) el.value=v; };
-  sv('hf-pageTitle', hf.pageTitle); sv('hf-metaDesc', hf.metaDesc);
-  sv('hf-firstName', hf.firstName); sv('hf-lastName', hf.lastName);
-  sv('hf-title1', hf.title1);      sv('hf-title2', hf.title2);
-  sv('hf-badge', hf.badge);         sv('hf-location', hf.location);
-  sv('hf-footer1', hf.footer1);     sv('hf-footer2', hf.footer2);
-  sv('hf-linkedin', hf.linkedin);   sv('hf-github', hf.github);
-  sv('hf-email', hf.email);         sv('hf-phone', hf.phone);
-  if(hf.badgeVisible === false)  { const el=document.getElementById('badgeOff');  if(el) el.checked=true; }
-  if(hf.footerVisible === false) { const el=document.getElementById('footerOff'); if(el) el.checked=true; }
-  // Load name colors
-  const nc = hf.nameColors || {};
-  const setColor = (id, val) => {
-    const el = document.getElementById(id);
-    const valEl = document.getElementById(id+'-val');
-    if(el && val) { el.value = val; }
-    if(valEl && val) { valEl.textContent = val; }
-  };
-  setColor('nc-dark',   nc.dark   || '#ffffff');
-  setColor('nc-light',  nc.light  || '#1a1f35');
-  setColor('nc-ocean',  nc.ocean  || '#e8f8f5');
-  setColor('nc-sunset', nc.sunset || '#fdecea');
-  renderThemeToggles();
-  renderNavToggles();
-}
-
-// ── THEME ─────────────────────────────────────
-const COLORS = [
-  {key:'gold',label:'Accent Color',desc:'Gold highlights'},
-  {key:'bg',label:'Background',desc:'Main background'},
-  {key:'bg2',label:'Surface',desc:'Cards & panels'},
-  {key:'white',label:'Primary Text',desc:'Headings & body'},
-  {key:'muted',label:'Secondary Text',desc:'Descriptions'},
-];
-function renderColors() {
-  document.getElementById('colorGrid').innerHTML = COLORS.map(c => `
-    <div class="color-field">
-      <div class="color-swatch" style="background:${DATA.theme[c.key]||'#000'}" onclick="document.getElementById('cp-${c.key}').click()"></div>
-      <input type="color" id="cp-${c.key}" value="${DATA.theme[c.key]||'#000000'}" oninput="DATA.theme['${c.key}']=this.value;document.getElementById('cs-${c.key}').style.background=this.value;document.getElementById('cv-${c.key}').textContent=this.value"/>
-      <div class="color-info">
-        <div class="color-name">${c.label}</div>
-        <div class="color-val" id="cv-${c.key}">${DATA.theme[c.key]||'#000'}</div>
-      </div>
-    </div>
-  `).join('');
-  // Fix swatch IDs after render
-  COLORS.forEach(c => { const sw = document.querySelector(`.color-swatch[onclick*="${c.key}"]`); if(sw) sw.id = `cs-${c.key}`; });
-}
-
-function selectFont(el, font) {
-  document.querySelectorAll('.font-option').forEach(f => f.classList.remove('selected'));
-  el.classList.add('selected');
-  DATA.font = font;
-}
-
-const PRESETS = {
-  gold: {gold:'#e6a817',bg:'#0d1117',bg2:'#161b22',white:'#cdd6f4',muted:'#6272a4'},
-  teal: {gold:'#00c9a7',bg:'#0a1628',bg2:'#0f1f38',white:'#e2f4f0',muted:'#5a8a9f'},
-  purple: {gold:'#a78bfa',bg:'#0f0d1a',bg2:'#1a1730',white:'#e2e0f0',muted:'#7c6fa0'},
-  green: {gold:'#4ade80',bg:'#0a1a0d',bg2:'#0f2214',white:'#d4f0dc',muted:'#5a8a65'},
-};
-function applyPreset(name) { DATA.theme = {...PRESETS[name]}; renderColors(); showToast(); }
-
-// ── SAVE ALL ──────────────────────────────────
-// ── AI TOGGLE ─────────────────────────────────────────────────
-function toggleAI() {
-  DATA.aiEnabled = !DATA.aiEnabled;
-  updateAIToggleUI();
-}
-function updateAIToggleUI() {
-  var track = document.getElementById('aiToggleTrack');
-  var thumb = document.getElementById('aiToggleThumb');
-  var config = document.getElementById('aiConfigSection');
-  if (!track) return;
-  if (DATA.aiEnabled) {
-    track.style.background = 'var(--gold)';
-    thumb.style.left = '24px';
-    if(config) config.style.display = 'block';
-  } else {
-    track.style.background = 'var(--dim)';
-    thumb.style.left = '2px';
-    if(config) config.style.display = 'none';
-  }
-}
-
-function saveAll() {
-  DATA.about = {
-    firstName: document.getElementById('firstName')?.value || 'Krish',
-    lastName: document.getElementById('lastName')?.value || 'Nukala',
-    fullName: document.getElementById('fullName')?.value,
-    titleLine1: document.getElementById('titleLine1')?.value,
-    titleLine2: document.getElementById('titleLine2')?.value,
-    location: document.getElementById('location')?.value,
-    availBadge: document.getElementById('availBadge')?.value,
-    bio1: document.getElementById('bio1')?.value,
-    bio2: document.getElementById('bio2')?.value,
-    bio3: document.getElementById('bio3')?.value,
-    bio4: document.getElementById('bio4')?.value,
-    sidebarBio: document.getElementById('sidebarBio')?.value,
-  };
-  DATA.contact = {
-    email: document.getElementById('contactEmail')?.value,
-    phone: document.getElementById('contactPhone')?.value,
-    location: document.getElementById('contactLocation')?.value,
-    linkedin: document.getElementById('contactLinkedIn')?.value,
-    github: document.getElementById('contactGitHub')?.value,
-    heading: document.getElementById('contactHeading')?.value,
-    text: document.getElementById('contactText')?.value,
-  };
-  const apiKey = document.getElementById('apiKey')?.value;
-  if (apiKey) DATA.apiKey = apiKey;
-  // AI Assistant
-  const proxyUrl = document.getElementById('proxyUrl')?.value;
-  if (proxyUrl !== undefined) DATA.proxyUrl = proxyUrl;
-  // aiEnabled already set by toggleAI()
-  saveHeaderFooter();
-  saveData();
+// ── AI TOGGLE ─────────────────────────────────
+function toggleAI(){DATA.aiEnabled=!DATA.aiEnabled;updateAIUI();}
+function updateAIUI(){
+  var track=document.getElementById('aiToggleTrack');
+  var config=document.getElementById('aiConfigSection');
+  if(DATA.aiEnabled){track.classList.add('on');if(config)config.style.display='block';}
+  else{track.classList.remove('on');if(config)config.style.display='none';}
 }
 
 // ── PASSWORD ──────────────────────────────────
-async function changePassword() {
-  const curr = document.getElementById('currPass').value;
-  const nw = document.getElementById('newPass').value;
-  const conf = document.getElementById('confPass').value;
-  const msg = document.getElementById('passMsg');
-  const stored = localStorage.getItem('kn_pass_hash');
-  const currHash = await hashStr(curr);
-  const valid = stored ? currHash === stored : curr === 'KrishAdmin2026!';
-  if (!valid) { msg.style.color='var(--red)'; msg.textContent='Current password is incorrect.'; return; }
-  if (nw.length < 8) { msg.style.color='var(--red)'; msg.textContent='New password must be at least 8 characters.'; return; }
-  if (nw !== conf) { msg.style.color='var(--red)'; msg.textContent='Passwords do not match.'; return; }
-  const newHash = await hashStr(nw);
-  localStorage.setItem('kn_pass_hash', newHash);
-  msg.style.color='var(--green)'; msg.textContent='✓ Password updated successfully!';
-  document.getElementById('currPass').value=''; document.getElementById('newPass').value=''; document.getElementById('confPass').value='';
+async function changePassword(){
+  var curr=document.getElementById('currPass').value;
+  var nw=document.getElementById('newPass').value;
+  var conf=document.getElementById('confPass').value;
+  var msg=document.getElementById('passMsg');
+  var stored=localStorage.getItem('kn_pass_hash');
+  var currHash=await hashStr(curr);
+  var valid=stored?currHash===stored:curr==='KrishAdmin2026!';
+  if(!valid){msg.style.color='var(--red)';msg.textContent='Current password is incorrect.';return;}
+  if(nw.length<8){msg.style.color='var(--red)';msg.textContent='New password must be at least 8 characters.';return;}
+  if(nw!==conf){msg.style.color='var(--red)';msg.textContent='Passwords do not match.';return;}
+  localStorage.setItem('kn_pass_hash',await hashStr(nw));
+  msg.style.color='#6ee7b7';msg.textContent='✓ Password updated!';
+  document.getElementById('currPass').value='';document.getElementById('newPass').value='';document.getElementById('confPass').value='';
 }
 
-// ── EXPORT / PREVIEW ──────────────────────────
-function previewSite() {
-  alert('Preview: Open your index.html file in a browser to see your site. After exporting, drag the file into Chrome/Firefox.');
-}
-
-function exportData() {
-  const blob = new Blob([JSON.stringify(DATA, null, 2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'krishnukala-data.json';
-  a.click();
-}
-
-function resetData() {
-  if(confirm('Reset ALL data to defaults? This cannot be undone.')) {
-    DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
-    saveData();
-    initAdmin();
-  }
-}
-
-function exportSite() {
-  saveAll();
-  // Generate the site HTML with current data
-  const html = generateSiteHTML();
-  const blob = new Blob([html], {type:'text/html'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'index.html';
-  a.click();
-  setTimeout(() => {
-    alert('✓ index.html downloaded!\n\nNext steps:\n1. Go to github.com\n2. Open your krishnukala.github.io repository\n3. Click index.html → Edit (pencil icon)\n4. Select All → Paste the new content\n5. Commit changes\n\nYour live site updates in ~2 minutes!');
-  }, 500);
-}
-
-function generateSiteHTML() {
-  const d = DATA;
-  const a = d.about || {};
-  const c = d.contact || {};
-  const theme = d.theme || DEFAULT_DATA.theme;
-  const firstName = a.firstName || 'Krish';
-  const lastName = a.lastName || 'Nukala';
-
-  const expHTML = (d.experience || DEFAULT_DATA.experience).map(e => `
-    <div class="exp-item reveal">
-      <div class="exp-date">${e.dateFrom}<br/>${e.dateTo}</div>
-      <div>
-        <div class="exp-title">${e.title} · ${e.company} <svg class="arrow-icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-        <div class="exp-company">${e.location} · ${e.type}</div>
-        <div class="exp-desc">${e.desc}</div>
-        <div class="tags">${e.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      </div>
-    </div>`).join('');
-
-  const projHTML = (d.projects || DEFAULT_DATA.projects).map(p => `
-    <div class="project-item reveal">
-      <div class="project-year">${p.year}</div>
-      <div>
-        <div class="project-title">${p.link ? `<a href="${p.link}" target="_blank">${p.title}</a>` : p.title} <svg class="arrow-icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-        <div class="project-type">${p.type}</div>
-        <div class="project-desc">${p.desc}</div>
-        <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-        ${p.link ? `<a href="${p.link}" target="_blank" class="project-link">${p.link.replace('https://','').replace('http://','')} ↗</a>` : ''}
-      </div>
-    </div>`).join('');
-
-  const skillsHTML = (d.skills || DEFAULT_DATA.skills).map((g,i) => `
-    <div class="reveal${i>0?' reveal-delay-'+Math.min(i,3):''}">
-      <div class="skill-group-title">${g.group}</div>
-      <ul class="skill-list">${g.items.map(s=>`<li>${s}</li>`).join('')}</ul>
-    </div>`).join('');
-
-  const certsHTML = (d.certifications || DEFAULT_DATA.certifications).map((c,i) => `
-    <div class="cert-card ${c.status} reveal${i>0?' reveal-delay-'+Math.min(i,3):''}">
-      <div class="cert-org">${c.org}</div>
-      <div class="cert-name">${c.name}</div>
-      <div class="cert-status"><span class="cert-dot${c.status==='progress'?' pulse':''}"></span>${c.status==='earned'?'Earned · '+c.year:c.status==='progress'?'In Progress':'Planned'}</div>
-    </div>`).join('');
-
-  const pubsHTML = (d.publications || DEFAULT_DATA.publications).map(p => `
-    <div class="pub-item reveal">
-      <div class="pub-top"><div class="pub-icon">§</div>
-        <div><div class="pub-title">${p.title}</div><div class="pub-meta">${p.journal} · ${p.year} · ${p.org}</div></div>
-      </div>
-      <div class="pub-desc">${p.desc}</div>
-      <a href="${p.link}" target="_blank" class="pub-link">Read Publication ↗</a>
-    </div>`).join('');
-
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>${a.metaTitle||firstName+' '+lastName+' — BI & AI Engineer'}</title>
-<meta name="description" content="${a.metaDesc||'Sr. Application Engineer specializing in Business Intelligence and AI Engineering.'}"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=${(d.font||'Syne').replace(' ','+')}:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-/* Generated by krishnukala.com Admin Panel */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:${theme.bg};--bg2:${theme.bg2};--bg3:#1c2230;
-  --gold:${theme.gold};--gold2:#fbbf24;--goldlt:rgba(230,168,23,0.1);
-  --white:${theme.white};--muted:${theme.muted};--dim:#44475a;
-  --border:rgba(230,168,23,0.1);--border2:rgba(255,255,255,0.06);
-  --font-sans:'DM Sans',sans-serif;--font-head:'${d.font||'Syne'}',sans-serif;--font-mono:'DM Mono',monospace;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--font-sans);background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}::selection{background:rgba(230,168,23,0.2)}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#44475a}
-.layout{display:flex;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 2rem;gap:4rem}
-.left{width:340px;flex-shrink:0;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:5rem 0}
-.photo-wrap{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
-.photo-ring{width:72px;height:72px;border-radius:50%;border:2px solid var(--gold);padding:3px;flex-shrink:0;overflow:hidden}
-.photo-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
-.photo-placeholder{width:100%;height:100%;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.4rem;font-weight:700;color:var(--gold)}
-.photo-badge{font-family:var(--font-mono);font-size:0.58rem;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.2rem}
-.photo-location{font-size:0.75rem;color:var(--muted)}
-.l-name{font-family:var(--font-head);font-size:2rem;font-weight:800;line-height:1.05;letter-spacing:-0.02em;color:#fff;margin-bottom:0.3rem}
-.l-name span{color:var(--gold)}
-.l-title{font-size:0.82rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.5}
-.l-bio{font-size:0.8rem;color:var(--muted);line-height:1.8;max-width:280px;margin-bottom:2rem}
-.l-bio strong{color:var(--white);font-weight:500}
-.l-nav{list-style:none;margin-bottom:2rem}
-.l-nav li{margin-bottom:0.1rem}
-.l-nav a{display:flex;align-items:center;gap:0.75rem;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:0.35rem 0;transition:color 0.2s ease}
-.nav-line{width:20px;height:1px;background:#44475a;transition:width 0.3s,background 0.3s;flex-shrink:0}
-.l-nav a:hover,.l-nav a.active{color:var(--gold)}
-.l-nav a:hover .nav-line,.l-nav a.active .nav-line{width:44px;background:var(--gold)}
-.l-socials{display:flex;gap:1rem}
-.social-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid #44475a;color:var(--muted);transition:all 0.25s ease}
-.social-link:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.social-link svg{width:15px;height:15px;fill:currentColor}
-.right{flex:1;padding:5rem 0 8rem;min-width:0}
-section{margin-bottom:5.5rem;scroll-margin-top:5rem}
-.section-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.75rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);padding:1rem 0 0.5rem;z-index:10}
-.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(230,168,23,0.1),transparent)}
-.about-text p{font-size:0.88rem;color:var(--muted);line-height:1.85;margin-bottom:1rem}
-.about-text a{color:var(--gold);border-bottom:1px solid transparent;transition:border-color 0.2s}
-.about-text a:hover{border-color:var(--gold)}
-.about-text strong{color:var(--white);font-weight:500}
-.exp-item,.project-item{display:grid;grid-template-columns:90px 1fr;gap:0 1.5rem;padding:1.1rem;border:1px solid transparent;transition:all 0.25s ease;position:relative;margin-bottom:0.4rem}
-.exp-item::before,.project-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s ease}
-.exp-item:hover,.project-item:hover{background:var(--bg2);border-color:rgba(230,168,23,0.1)}
-.exp-item:hover::before,.project-item:hover::before{transform:scaleY(1)}
-.exp-date,.project-year{font-family:var(--font-mono);font-size:0.62rem;color:#44475a;letter-spacing:0.06em;text-transform:uppercase;padding-top:3px;white-space:nowrap}
-.exp-title,.project-title{font-family:var(--font-head);font-size:0.92rem;font-weight:600;color:var(--white);margin-bottom:0.12rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
-.exp-title a:hover,.project-title a:hover{color:var(--gold)}
-.arrow-icon{width:13px;height:13px;fill:none;stroke:var(--gold);stroke-width:2;opacity:0;transform:translateX(-4px);transition:all 0.25s ease;flex-shrink:0}
-.exp-item:hover .arrow-icon,.project-item:hover .arrow-icon{opacity:1;transform:translateX(0) rotate(-45deg)}
-.exp-company,.project-type{font-size:0.75rem;color:var(--muted);margin-bottom:0.6rem}
-.exp-desc,.project-desc{font-size:0.8rem;color:var(--muted);line-height:1.72;margin-bottom:0.7rem}
-.tags{display:flex;flex-wrap:wrap;gap:0.35rem}
-.tag{font-family:var(--font-mono);font-size:0.6rem;color:var(--gold);background:rgba(230,168,23,0.1);padding:0.18rem 0.55rem}
-.resume-link{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.7rem;color:var(--gold);letter-spacing:0.08em;margin-top:1.25rem;border-bottom:1px solid transparent;transition:all 0.2s;padding-bottom:2px}
-.resume-link:hover{border-color:var(--gold)}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem}
-.skill-group-title{font-family:var(--font-mono);font-size:0.6rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.65rem;padding-bottom:0.35rem;border-bottom:1px solid rgba(230,168,23,0.1)}
-.skill-list{list-style:none}
-.skill-list li{font-size:0.8rem;color:var(--muted);padding:0.18rem 0;display:flex;align-items:center;gap:0.45rem;transition:color 0.2s}
-.skill-list li:hover{color:var(--white)}
-.skill-list li::before{content:'▸';color:var(--gold);font-size:0.65rem;flex-shrink:0}
-.project-link{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--font-mono);font-size:0.62rem;color:var(--gold);border-bottom:1px solid transparent;transition:all 0.2s;margin-top:0.2rem}
-.project-link:hover{border-color:var(--gold)}
-.pub-item{padding:1.5rem;border:1px solid rgba(230,168,23,0.1);background:var(--bg2);position:relative;overflow:hidden;transition:border-color 0.25s ease;margin-bottom:0.75rem}
-.pub-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease}
-.pub-item:hover{border-color:rgba(230,168,23,0.3)}
-.pub-item:hover::after{transform:scaleX(1)}
-.pub-top{display:flex;align-items:flex-start;gap:1rem;margin-bottom:0.75rem}
-.pub-icon{font-family:var(--font-head);font-size:2.2rem;color:var(--gold);opacity:0.2;line-height:1;flex-shrink:0}
-.pub-title{font-family:var(--font-head);font-size:0.95rem;font-weight:600;color:var(--white);margin-bottom:0.25rem;line-height:1.4}
-.pub-meta{font-family:var(--font-mono);font-size:0.62rem;color:var(--muted)}
-.pub-desc{font-size:0.8rem;color:var(--muted);line-height:1.72;margin-bottom:0.9rem}
-.pub-link{display:inline-flex;align-items:center;gap:0.45rem;font-family:var(--font-mono);font-size:0.63rem;color:var(--gold);border-bottom:1px solid rgba(230,168,23,0.1);padding-bottom:2px;transition:border-color 0.2s}
-.pub-link:hover{border-color:var(--gold)}
-.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.cert-card{padding:1.1rem 1.3rem;border:1px solid rgba(255,255,255,0.07);background:var(--bg2);transition:all 0.25s ease;position:relative;overflow:hidden}
-.cert-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s ease}
-.cert-card:hover{border-color:rgba(230,168,23,0.1);background:var(--bg3)}
-.cert-card:hover::before{transform:scaleY(1)}
-.cert-org{font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem}
-.cert-name{font-family:var(--font-head);font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;line-height:1.3}
-.cert-status{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem}
-.cert-card.earned .cert-status{color:var(--gold)}
-.cert-card.progress .cert-status{color:#6ee7b7}
-.cert-card.planned .cert-status{color:var(--muted)}
-.cert-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
-.cert-dot.pulse{animation:pulse 2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.ai-card{border:1px solid rgba(230,168,23,0.1);background:var(--bg2);overflow:hidden;position:relative}
-.ai-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.ai-header{padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:1rem}
-.ai-avatar{width:36px;height:36px;border-radius:50%;background:rgba(230,168,23,0.1);border:1px solid rgba(230,168,23,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ai-avatar svg{width:18px;height:18px;fill:var(--gold)}
-.ai-header-name{font-family:var(--font-head);font-size:0.9rem;font-weight:600;color:var(--white)}
-.ai-header-sub{font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em}
-.ai-status{margin-left:auto;display:flex;align-items:center;gap:0.4rem;font-family:var(--font-mono);font-size:0.6rem;color:#6ee7b7}
-.ai-status-dot{width:6px;height:6px;border-radius:50%;background:#6ee7b7;animation:pulse 2s infinite}
-.ai-messages{height:320px;overflow-y:auto;padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:1rem;scrollbar-width:thin;scrollbar-color:#44475a transparent}
-.msg{display:flex;gap:0.75rem;align-items:flex-start}
-.msg.user{flex-direction:row-reverse}
-.msg-bubble{max-width:78%;padding:0.7rem 1rem;font-size:0.82rem;line-height:1.65;border-radius:2px}
-.msg.assistant .msg-bubble{background:var(--bg3);color:var(--white);border:1px solid rgba(255,255,255,0.06);border-left:2px solid var(--gold)}
-.msg.user .msg-bubble{background:rgba(230,168,23,0.1);color:var(--white);border:1px solid rgba(230,168,23,0.1)}
-.msg-icon{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.7rem;background:var(--bg3)}
-.msg-icon.ai-icon{background:rgba(230,168,23,0.1);border-color:rgba(230,168,23,0.1)}
-.msg-icon.ai-icon svg{width:13px;height:13px;fill:var(--gold)}
-.msg-icon.user-icon{font-family:var(--font-head);color:var(--gold);font-weight:700;font-size:0.65rem}
-.typing-indicator{display:flex;gap:4px;align-items:center;padding:4px 0}
-.typing-dot{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:typing 1.2s ease infinite}
-.typing-dot:nth-child(2){animation-delay:0.2s}.typing-dot:nth-child(3){animation-delay:0.4s}
-@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-5px);opacity:1}}
-.ai-suggestions{padding:0.75rem 1.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0.5rem;flex-wrap:wrap}
-.suggestion-btn{font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);border:1px solid #44475a;padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s;background:transparent;white-space:nowrap}
-.suggestion-btn:hover{color:var(--gold);border-color:var(--gold)}
-.ai-input-row{padding:1rem 1.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0.75rem;align-items:center}
-.ai-input{flex:1;background:var(--bg3);border:1px solid #44475a;color:var(--white);font-family:var(--font-sans);font-size:0.82rem;padding:0.65rem 1rem;outline:none;transition:border-color 0.2s}
-.ai-input::placeholder{color:#44475a}
-.ai-input:focus{border-color:var(--gold)}
-.ai-send{width:38px;height:38px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s}
-.ai-send:hover{background:#fbbf24}
-.ai-send:disabled{opacity:0.4;cursor:not-allowed}
-.ai-send svg{width:16px;height:16px;fill:var(--bg)}
-.ai-footer{padding:0.6rem 1.5rem;border-top:1px solid rgba(255,255,255,0.06);font-family:var(--font-mono);font-size:0.58rem;color:#44475a;letter-spacing:0.08em;display:flex;align-items:center;gap:0.5rem}
-.ai-footer::before{content:'⚡';font-size:0.65rem}
-.contact-heading{font-family:var(--font-head);font-size:1.9rem;font-weight:700;color:var(--white);margin-bottom:0.9rem;line-height:1.2}
-.contact-heading span{color:var(--gold)}
-.contact-text{font-size:0.85rem;color:var(--muted);line-height:1.8;margin-bottom:1.75rem;max-width:520px}
-.contact-items{display:flex;flex-direction:column;gap:0.7rem;margin-bottom:1.75rem}
-.contact-item{display:flex;align-items:center;gap:1rem;font-size:0.85rem;color:var(--muted)}
-.contact-item svg{width:15px;height:15px;fill:var(--gold);flex-shrink:0}
-.contact-item a:hover{color:var(--gold)}
-.contact-btn{display:inline-flex;align-items:center;gap:0.6rem;padding:0.8rem 1.8rem;border:1px solid var(--gold);color:var(--gold);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.25s ease}
-.contact-btn:hover{background:rgba(230,168,23,0.1)}
-.footer{font-family:var(--font-mono);font-size:0.62rem;color:#44475a;letter-spacing:0.07em;margin-top:3.5rem;padding-top:1.75rem;border-top:1px solid rgba(230,168,23,0.1);line-height:1.9}
-.footer a{color:var(--muted);transition:color 0.2s}
-.footer a:hover{color:var(--gold)}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
-@media(max-width:768px){.layout{flex-direction:column;padding:0 1.25rem;gap:0}.left{width:100%;height:auto;position:static;padding:3rem 0 2rem}.l-bio{max-width:100%}.l-nav{display:none}.right{padding:2rem 0 5rem}.exp-item,.project-item{grid-template-columns:1fr}.section-label{position:static}.certs-grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<div class="layout">
-<aside class="left">
-  <div>
-    <div class="photo-wrap">
-      <div class="photo-ring"><div class="photo-placeholder">${firstName[0]}${lastName[0]}</div></div>
-      <div><div class="photo-badge">${a.availBadge||'Open to Work'}</div><div class="photo-location">📍 ${a.location||'Brentwood, TN'}</div></div>
-    </div>
-    <h1 class="l-name">${firstName}<br/><span>${lastName}</span></h1>
-    <p class="l-title">${a.titleLine1||'Sr. Application Engineer'}<br/>${a.titleLine2||'BI & AI Engineering'}</p>
-    <p class="l-bio" style="font-size:0.8rem;color:var(--muted);line-height:1.8;max-width:280px;margin-bottom:2rem">${(a.sidebarBio||'Building enterprise data systems and BI platforms.').split('·').map(s=>`<strong style="color:var(--white);font-weight:500">${s.trim()}</strong>`).join(' · ')}</p>
-    <nav><ul class="l-nav">
-      <li><a href="#about" class="nav-link active"><span class="nav-line"></span>About</a></li>
-      <li><a href="#experience" class="nav-link"><span class="nav-line"></span>Experience</a></li>
-      <li><a href="#skills" class="nav-link"><span class="nav-line"></span>Skills</a></li>
-      <li><a href="#projects" class="nav-link"><span class="nav-line"></span>Projects</a></li>
-      <li><a href="#publications" class="nav-link"><span class="nav-line"></span>Publications</a></li>
-      <li><a href="#certifications" class="nav-link"><span class="nav-line"></span>Certifications</a></li>
-      <li><a href="#ai-assistant" class="nav-link"><span class="nav-line"></span>AI Assistant</a></li>
-      <li><a href="#contact" class="nav-link"><span class="nav-line"></span>Contact</a></li>
-    </ul></nav>
-  </div>
-  <div class="l-socials">
-    <a href="${c.linkedin||'#'}" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-    <a href="${c.github||'#'}" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-    <a href="mailto:${c.email||'vamshinukala@gmail.com'}" class="social-link"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 10.87 21.615 3.82h.749c.904 0 1.636.732 1.636 1.636z"/></svg></a>
-  </div>
-</aside>
-<main class="right">
-<section id="about">
-  <div class="section-label">About</div>
-  <div class="about-text">
-    ${[a.bio1,a.bio2,a.bio3,a.bio4].filter(Boolean).map(b=>`<p class="reveal">${b}</p>`).join('')}
-  </div>
-</section>
-<section id="experience"><div class="section-label">Experience</div>${expHTML}<a href="/Vamshi_Krish_Nukala_Resume_v2.docx" class="resume-link reveal">View Full Résumé →</a></section>
-<section id="skills"><div class="section-label">Skills</div><div class="skills-grid">${skillsHTML}</div></section>
-<section id="projects"><div class="section-label">Projects</div>${projHTML}</section>
-<section id="publications"><div class="section-label">Publications</div>${pubsHTML}</section>
-<section id="certifications"><div class="section-label">Certifications</div><div class="certs-grid">${certsHTML}</div></section>
-<section id="ai-assistant">
-  <div class="section-label">AI Assistant</div>
-  <div class="ai-card">
-    <div class="ai-header">
-      <div class="ai-avatar"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
-      <div><div class="ai-header-name">Krish's Portfolio Assistant</div><div class="ai-header-sub">Powered by Claude AI · Ask me anything about Krish</div></div>
-      <div class="ai-status"><span class="ai-status-dot"></span>Online</div>
-    </div>
-    <div class="ai-messages" id="chatMessages">
-      <div class="msg assistant">
-        <div class="msg-icon ai-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
-        <div class="msg-bubble">Hi! I'm Krish's AI portfolio assistant. Ask me about his experience, skills, or background. What would you like to know?</div>
-      </div>
-    </div>
-    <div class="ai-suggestions">
-      <button class="suggestion-btn" onclick="sendSuggestion(this)">What's Krish's BI experience?</button>
-      <button class="suggestion-btn" onclick="sendSuggestion(this)">Tell me about his HCA work</button>
-      <button class="suggestion-btn" onclick="sendSuggestion(this)">What AI skills does he have?</button>
-      <button class="suggestion-btn" onclick="sendSuggestion(this)">Is he open to relocation?</button>
-    </div>
-    <div class="ai-input-row">
-      <input class="ai-input" id="chatInput" type="text" placeholder="Ask about Krish's experience..." maxlength="300"/>
-      <button class="ai-send" id="sendBtn" onclick="sendMessage()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-    </div>
-    <div class="ai-footer">Powered by Anthropic Claude · Responses generated by AI</div>
-  </div>
-</section>
-<section id="contact">
-  <div class="section-label">Contact</div>
-  <div class="reveal">
-    <h2 class="contact-heading">${(c.heading||'Let\'s work together.').replace(/together\./,'<span>together.</span>')}</h2>
-    <p class="contact-text">${c.text||'I am currently open to new opportunities.'}</p>
-    <div class="contact-items">
-      <div class="contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:${c.email}">${c.email}</a></div>
-      <div class="contact-item"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>${c.phone}</span></div>
-      <div class="contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>${c.location}</span></div>
-    </div>
-    <a href="mailto:${c.email}" class="contact-btn">Say Hello →</a>
-  </div>
-</section>
-<footer class="footer">
-  <p>Designed & built by <a href="#">${firstName} ${lastName}</a> · Inspired by <a href="https://brittanychiang.com" target="_blank">Brittany Chiang</a></p>
-  <p>Built with HTML · CSS · Vanilla JS · Hosted on GitHub Pages · AI powered by <a href="https://anthropic.com" target="_blank">Anthropic Claude</a></p>
-</footer>
-</main></div>
-<script>
-const ANTHROPIC_API_KEY = '${DATA.apiKey||'YOUR_API_KEY_HERE'}';
-const SYSTEM_PROMPT = \`You are a professional portfolio assistant for ${a.fullName||'Krish Nukala'}. Answer questions about his experience, skills, and background concisely in 2-4 sentences. Only state facts you know. If unsure, direct them to ${c.email||'vamshinukala@gmail.com'}.\`;
-const chatMessages=document.getElementById('chatMessages'),chatInput=document.getElementById('chatInput'),sendBtn=document.getElementById('sendBtn');
-const history=[];
-function addMessage(role,text){const m=document.createElement('div');m.className='msg '+role;const isAI=role==='assistant';m.innerHTML=\`<div class="msg-icon \${isAI?'ai-icon':'user-icon'}">\${isAI?'<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>':'You'}</div><div class="msg-bubble">\${text}</div>\`;chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;}
-function addTyping(){const e=document.createElement('div');e.className='msg assistant';e.id='typing';e.innerHTML='<div class="msg-icon ai-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div><div class="msg-bubble"><div class="typing-indicator"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div>';chatMessages.appendChild(e);chatMessages.scrollTop=chatMessages.scrollHeight;}
-function removeTyping(){const e=document.getElementById('typing');if(e)e.remove();}
-async function sendMessage(){const text=chatInput.value.trim();if(!text)return;if(ANTHROPIC_API_KEY==='YOUR_API_KEY_HERE'){addMessage('assistant','⚠️ API key needed. Add your Anthropic API key to enable the AI assistant.');return;}chatInput.value='';sendBtn.disabled=true;addMessage('user',text);history.push({role:'user',content:text});addTyping();try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,system:SYSTEM_PROMPT,messages:history})});const data=await res.json();const reply=data.content?.[0]?.text||'Connection issue. Please email directly.';removeTyping();history.push({role:'assistant',content:reply});addMessage('assistant',reply);}catch(e){removeTyping();addMessage('assistant','Connection error. Please try again.');}sendBtn.disabled=false;chatInput.focus();}
-function sendSuggestion(btn){chatInput.value=btn.textContent;sendMessage();}
-chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage();});
-const sections=document.querySelectorAll('section[id]'),navLinks=document.querySelectorAll('.nav-link');
-sections.forEach(s=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));});},{rootMargin:'-35% 0px -55% 0px'}).observe(s));
-navLinks.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});}));
-document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08}).observe(el));
-<\/script></body></html>`;
+// ── SAVE ALL ──────────────────────────────────
+function saveAll(){
+  // About
+  DATA.header={
+    firstName:document.getElementById('firstName')?.value||'Krish',
+    lastName:document.getElementById('lastName')?.value||'Nukala',
+    title1:document.getElementById('titleLine1')?.value||'',
+    title2:document.getElementById('titleLine2')?.value||'',
+    badge:document.getElementById('availBadge')?.value||'Open to Work',
+    badgeVisible:document.getElementById('badgeOn')?.checked!==false,
+    location:document.getElementById('locationField')?.value||''
+  };
+  DATA.sidebar={
+    bio:document.getElementById('sidebarBio')?.value||'',
+    linkedin:document.getElementById('linkedinUrl')?.value||'',
+    github:document.getElementById('githubUrl')?.value||'',
+    email:document.getElementById('emailField')?.value||'',
+    phone:document.getElementById('phoneField')?.value||''
+  };
+  var bios=[document.getElementById('bio1')?.value,document.getElementById('bio2')?.value,document.getElementById('bio3')?.value].filter(function(b){return b&&b.trim();});
+  if(bios.length)DATA.about=bios;
+  // HF
+  DATA.hf={
+    pageTitle:document.getElementById('hf-pageTitle')?.value,
+    metaDesc:document.getElementById('hf-metaDesc')?.value,
+    footer1:document.getElementById('hf-footer1')?.value,
+    footer2:document.getElementById('hf-footer2')?.value,
+    footerVisible:document.getElementById('footerOn')?.checked!==false,
+    nameColors:{dark:document.getElementById('nc-dark')?.value||'#ffffff',light:document.getElementById('nc-light')?.value||'#1a1f35',ocean:document.getElementById('nc-ocean')?.value||'#e8f8f5',sunset:document.getElementById('nc-sunset')?.value||'#fdecea'}
+  };
+  DATA.footer={line1:document.getElementById('hf-footer1')?.value||'Designed & built by Krish Nukala',line2:document.getElementById('hf-footer2')?.value||'HTML · CSS · JS · GitHub Pages',visible:document.getElementById('footerOn')?.checked!==false};
+  DATA.defaultTheme=document.getElementById('defaultTheme')?.value||'dark';
+  DATA.theme={defaultTheme:DATA.defaultTheme,enabledThemes:DATA.enabledThemes||['dark','light','ocean','sunset']};
+  // AI
+  var pu=document.getElementById('proxyUrl')?.value;if(pu!==undefined)DATA.proxyUrl=pu;
+  saveData();
 }
 
 // ── INIT ──────────────────────────────────────
-function initAdmin() {
+function initAdmin(){
   loadData();
-  renderExp();
-  renderProj();
-  renderSkills();
-  renderCerts();
-  renderPubs();
-  renderColors();
-  loadHeaderFooter();
+  renderExp();renderSkills();renderProj();renderCerts();renderPubs();
+  renderThemeToggles();renderNavToggles();loadPhotoPreview();
   // Fill about fields
-  const a = DATA.about || {};
-  const fields = {firstName:'Krish',lastName:'Nukala',fullName:'Vamshi (Krish) Nukala',titleLine1:'Sr. Application Engineer',titleLine2:'BI & AI Engineering',location:'Nashville, TN',availBadge:'Open to Work',bio1:'',bio2:'',bio3:'',bio4:'',sidebarBio:''};
-  Object.keys(fields).forEach(k => { const el = document.getElementById(k); if(el) el.value = a[k] || el.value || fields[k]; });
-  const c = DATA.contact || {};
-  const cFields = {contactEmail:'vamshinukala@gmail.com',contactPhone:'(203) 543-2452',contactLocation:'Nashville, TN 37027',contactLinkedIn:'https://www.linkedin.com/in/krish-nukala-8bb5b729',contactGitHub:'https://github.com/krishnukala',contactHeading:"Let's work together.",contactText:''};
-  Object.keys(cFields).forEach(k => { const el = document.getElementById(k); if(el) el.value = c[k.replace('contact','').toLowerCase()] || c[k] || el.value || cFields[k]; });
-  if(DATA.apiKey) { const ak = document.getElementById('apiKey'); if(ak) ak.value = DATA.apiKey; }
-  // AI Assistant toggle
-  if(DATA.aiEnabled === undefined) DATA.aiEnabled = false;
-  updateAIToggleUI();
-  // Proxy URL
-  const pu = document.getElementById('proxyUrl');
-  if(pu && DATA.proxyUrl) pu.value = DATA.proxyUrl;
-  // Update stats
-  document.getElementById('stat-exp').textContent = DATA.experience ? DATA.experience.length : 4;
-  document.getElementById('stat-proj').textContent = DATA.projects ? DATA.projects.length : 4;
-  document.getElementById('stat-skills').textContent = DATA.skills ? DATA.skills.length : 6;
-  document.getElementById('stat-certs').textContent = DATA.certifications ? DATA.certifications.length : 6;
+  if(DATA.header){
+    var sv=function(id,v){var el=document.getElementById(id);if(el&&v)el.value=v;};
+    sv('firstName',DATA.header.firstName);sv('lastName',DATA.header.lastName);
+    sv('titleLine1',DATA.header.title1);sv('titleLine2',DATA.header.title2);
+    sv('availBadge',DATA.header.badge);sv('locationField',DATA.header.location);
+    if(DATA.header.badgeVisible===false){var bo=document.getElementById('badgeOff');if(bo)bo.checked=true;}
+  }
+  if(DATA.sidebar){
+    var sv2=function(id,v){var el=document.getElementById(id);if(el&&v)el.value=v;};
+    sv2('sidebarBio',DATA.sidebar.bio);sv2('linkedinUrl',DATA.sidebar.linkedin);
+    sv2('githubUrl',DATA.sidebar.github);sv2('emailField',DATA.sidebar.email);sv2('phoneField',DATA.sidebar.phone);
+  }
+  if(DATA.about&&DATA.about.length){
+    var bios=['bio1','bio2','bio3'];
+    bios.forEach(function(id,i){var el=document.getElementById(id);if(el&&DATA.about[i])el.value=DATA.about[i];});
+  }
+  if(DATA.hf){
+    var sv3=function(id,v){var el=document.getElementById(id);if(el&&v!==undefined)el.value=v;};
+    sv3('hf-pageTitle',DATA.hf.pageTitle);sv3('hf-metaDesc',DATA.hf.metaDesc);
+    sv3('hf-footer1',DATA.hf.footer1||DATA.footer?.line1);sv3('hf-footer2',DATA.hf.footer2||DATA.footer?.line2);
+    if(DATA.hf.footerVisible===false){var fo=document.getElementById('footerOff');if(fo)fo.checked=true;}
+    var nc=DATA.hf.nameColors||{};
+    var sc=function(id,v,vid){var el=document.getElementById(id);if(el&&v)el.value=v;var vel=document.getElementById(vid);if(vel&&v)vel.textContent=v;};
+    sc('nc-dark',nc.dark,'nc-dark-val');sc('nc-light',nc.light,'nc-light-val');sc('nc-ocean',nc.ocean,'nc-ocean-val');sc('nc-sunset',nc.sunset,'nc-sunset-val');
+  }
+  if(DATA.proxyUrl){var pu=document.getElementById('proxyUrl');if(pu)pu.value=DATA.proxyUrl;}
+  updateAIUI();
+  document.getElementById('stat-exp').textContent=DATA.experience.length;
+  document.getElementById('stat-proj').textContent=DATA.projects.length;
+  document.getElementById('stat-skills').textContent=DATA.skills.length;
+  document.getElementById('stat-certs').textContent=DATA.certifications.length;
+  showPanel('dashboard');
 }
 
-// ── Enter key on login ────────────────────────
-document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key === 'Enter') doLogin(); });
-// Check lockout state on page load
+// ── START ────────────────────────────────────
+document.getElementById('loginPass').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
 checkLockoutOnLoad();
 </script>
 </body>
