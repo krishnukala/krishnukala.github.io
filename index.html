@@ -315,119 +315,370 @@ const STORAGE_KEY = 'kn_site_data';
 // ══════════════════════════════════════════════════
 // DEFAULT DATA — from Krish's resume
 const DEFAULTS = {
-  header:{firstName:'Krish',lastName:'Nukala',title1:'Sr. Application Engineer',title2:'Business Intelligence | AI & Data Analytics',badge:'Open to Work',badgeVisible:true,location:'Nashville, TN 37203'},
-  sidebar:{bio:'Sr. Application Engineer with 9+ years building enterprise BI platforms and data systems in healthcare. Power BI · MicroStrategy · Tableau · GCP · BigQuery. I-140 approved · H-1B transfer ready.',linkedin:'https://www.linkedin.com/in/krish-nukala-8bb5b729',github:'https://github.com/krishnukala',email:'vamshinukala@gmail.com',phone:'(203) 543-2452'},
-  about:[
-    'Results-driven <strong>Sr. Application Engineer</strong> with <strong>9+ years of experience</strong> spanning Business Intelligence, data engineering, and enterprise application development. Deep expertise in BI platforms (Power BI, MicroStrategy, Tableau), cloud data infrastructure (GCP, BigQuery, Teradata), and end-to-end ETL pipeline management in large-scale healthcare environments.',
-    'Actively transitioning toward <strong>AI/ML engineering</strong> — with hands-on experience building AI-native full-stack applications and applying data science concepts to real-world products. Proven ability to independently lead complex technical migrations, platform upgrades, and cross-functional implementations from inception to production.',
-    'Outside of work I maintain the <a href="https://nukalafamily.com" target="_blank">Nukala Family Archive</a> — a personal passion project preserving our family\'s heritage and genealogy history.'
-  ],
-  experience:[
-    {
-      title:'Sr. Application Engineer',company:'HCA Healthcare',location:'Nashville, TN',type:'Healthcare Enterprise',dateFrom:'Oct 2022',dateTo:'Present',
-      bullets:[
-        'Led end-to-end solo migration of the Mobile Heartbeat (MHB) project from Tableau to Power BI, rebuilding all dashboards from scratch and delivering a fully functional BI solution serving clinical operations teams across the enterprise.',
-        'Architected Power BI data models including table relationships, DAX measures, and Power Query transformations to ensure accurate, performant reporting across large-scale healthcare datasets.',
-        'Actively contributing to the enterprise-wide Teradata-to-GCP migration, replatforming critical data pipelines and validating data integrity across Google BigQuery environments.',
-        'Supporting and enhancing multiple MicroStrategy projects — building enhanced cubes, Data Marts, optimizing cube performances, new reports, optimizing existing dossiers, managing subscriptions and providing production support to business stakeholders.',
-        'Participated in major MicroStrategy platform upgrades and contributed to the large-scale MicroStrategy-to-Cloud transition, ensuring continuity of reporting and analytics capabilities.',
-        'Collaborated cross-functionally with data engineering, analytics, and IT teams to align BI deliverables with enterprise architecture standards and business priorities.'
-      ],
-      tags:['Power BI','MicroStrategy','BigQuery','GCP','Teradata','DAX','Power Query'],logoData:''
-    },
-    {
-      title:'Data Engineer',company:'CareBridge',location:'Nashville, TN',type:'Healthcare Analytics',dateFrom:'Feb 2022',dateTo:'Oct 2022',
-      bullets:[
-        'Monitored receipt and successful processing of all incoming daily files from managed care organizations within the ETL pipeline.',
-        'Reviewed automated SFTP notifications and PostgreSQL-generated analytic alerts in Mattermost for daily ETL failures, ensuring SLA compliance.',
-        'Troubleshot and resolved data processing errors across ETL pipeline stages using DataGrip and PostgreSQL stored procedures and functions.',
-        'Coordinated with analytics team members on new automated scheduled jobs, improving operational data flow reliability.'
-      ],
-      tags:['PostgreSQL','DataGrip','ETL','SFTP','Mattermost','Managed Care'],logoData:''
-    },
-    {
-      title:'System Engineer',company:'HCA Parallon',location:'St. Louis, MO',type:'Revenue Cycle',dateFrom:'Jan 2018',dateTo:'Jan 2022',
-      bullets:[
-        'Technical Lead for a cloud-based application called Gameffective — a KPI gamification platform scaled to 300+ internal users with roadmap to 1,000+.',
-        'Data Center Technology: Cross functional Data Center Sites in various locations with seamless continuity.',
-        'Business Intelligence & Data Modeling: Application data modeling, KPIs, creating report data needed for application growth and/or expansion.',
-        'Design and build web-based CTI applications, IVR design and development and highly advanced ACD call routing for national Contact Center, with a focus on Healthcare Services.',
-        'Orchestrate and lead problem triage to resolution efforts with the vendor, team and our users independently.',
-        'Enhance and support the automated dialer (Noble) that is highly integrated with our Enterprise-Wide business application (Debt Manager).',
-        'Support of a Speech Analytics (SAIA) tool that analyzes call recordings based on specific use cases.',
-        'Support and enhance a screen scrapper application which freed up resources in our payment posting organization and providing great results daily to meet Service Level Agreement (SLA).'
-      ],
-      tags:['Gameffective','IVR','CTI','ACD','Speech Analytics','Noble Dialer','SAIA','Linux'],logoData:''
-    },
-    {
-      title:'Junior Software Developer / Rhapsody Developer',company:'State of Tennessee – Dept. of Health',location:'Nashville, TN',type:'Public Health IT',dateFrom:'May 2017',dateTo:'Jan 2018',
-      bullets:[
-        'Designed and implemented HL7 clinical interface solutions using Rhapsody IDE in collaboration with technical teams and business stakeholders.',
-        'Maintained, monitored, and provided production support for clinical interfaces and coded logic within the interface engine.',
-        'Oversaw interface development lifecycle through deliverables completion, engine monitoring, and performance validation.'
-      ],
-      tags:['HL7','Rhapsody IDE','Clinical Interfaces','Healthcare IT'],logoData:''
-    }
-  ],
-  skills:[
-    {group:'BI & Visualization',items:['Power BI','MicroStrategy','Tableau','DAX','Power Query','Report Builder','Power BI Copilot','Web Reports']},
-    {group:'AI & Data Science',items:['Python','APIs','BigQuery ML','Prompt Engineering','AI-native App Development']},
-    {group:'Databases & Cloud',items:['Teradata','Google BigQuery','GCP','SQL Server','PostgreSQL','AWS']},
-    {group:'Data Engineering',items:['ETL/ELT Pipelines','SFTP Automation','DataGrip','Stored Procedures','Scheduled Jobs','Query Optimization']},
-    {group:'Languages & Frameworks',items:['SQL','Python','JavaScript','Java','C/C++','VB.Net','XML','HTML/CSS']},
-    {group:'Platforms & Tools',items:['GitHub','Linux','SDLC','Agile','Rhapsody IDE','Eclipse','Visio','HL7/EMR','ServiceNow','Jira','Speech Analytics']}
-  ],
-  projects:[
-    {
-      title:'Gamification Platform — Technical Lead',year:'2018 – 2022',type:'Cloud Platform · HCA Parallon, St. Louis, MO',
-      bullets:[
-        'Achieved 300 internal users with plans of going to 1,000+ as Technical Lead for Gameffective project from Pilot to Go-live.',
-        'Collaborated with ETL team to set up SFTP transfer protocol ensuring hourly data sync to vendor.',
-        'Engaged in SSO (Single Sign-On) app functionality.',
-        'Implemented call transferring system between Qualifying Agents and Closing Agents by building an integrated solution.'
-      ],
-      tags:['Gameffective','SFTP','SSO','ETL','IVR'],link:'',imageData:'',pdfFile:''
-    },
-    {
-      title:'Nukala Family Archive',year:'2023 – Present',type:'Personal Project · Live',
-      bullets:[
-        'Built and maintain a private family archive and genealogy website as a personal passion project.',
-        'Features full admin panel, 14-page navigation, localStorage + published data sync, and rich interactive content.',
-        'Hosted on GitHub Pages with cross-device support.'
-      ],
-      tags:['HTML/CSS/JS','GitHub Pages','Admin Panel','localStorage'],link:'https://nukalafamily.com',imageData:'',pdfFile:''
-    }
-  ],
-  publications:[
-    {
-      title:'Creation of a Technical Tool to Improve Syndromic Surveillance Onboarding in Tennessee',
-      journal:'Online Journal of Public Health Informatics (OJPHI)',year:'2018',org:'State of Tennessee, Dept. of Health',
-      desc:'Improved Department of Health syndromic surveillance onboarding efficiency through a custom-built software tool. Published peer-reviewed research on clinical interface development and public health informatics.',
-      link:'https://ojphi.jmir.org/2018/1/e62247/',pdfFile:'',imageData:''
-    }
-  ],
-  certifications:[
-    {org:'MicroStrategy',name:'MicroStrategy Departmental Analyst',status:'earned',year:''},
-    {org:'Institute of Management Studies',name:'Model-Netics Leadership & Management',status:'earned',year:''},
-    {org:'Microsoft',name:'Power BI Training',status:'earned',year:''},
-    {org:'Alvaria / Noble Systems',name:'IVR Certification',status:'earned',year:'2019'},
-    {org:'Alvaria / Noble Systems',name:'Composer Designer, Composer Agent & Harmony',status:'earned',year:'2019'},
-    {org:'Alvaria / Noble Systems',name:'Maestro, Web Reports & Query Builder',status:'earned',year:'2019'},
-    {org:'Google Cloud / AWS',name:'AWS, GCP & AI Trainings',status:'earned',year:''}
-  ],
-  education:[
-    {degree:'Master of Science, Computer Science',school:'Kent State University',location:'Kent, OH',year:'Dec 2016'},
-    {degree:'Bachelor of Engineering, Computer Science & Engineering',school:'JNTU Hyderabad',location:'India',year:'May 2015'}
-  ],
-  contact:{
-    heading:"Let's work together.",
-    text:"I'm currently open to Sr. BI Engineer, AI Application Engineer, and Data Engineering roles. I-140 approved — H-1B transfer only, no lottery needed. If you have an opportunity or want to connect, I'd love to hear from you.",
-    email:'vamshinukala@gmail.com',phone:'(203) 543-2452',location:'Nashville, TN 37203'
+  "header": {
+    "firstName": "Krish",
+    "lastName": "Nukala",
+    "title1": "Sr. Application Engineer",
+    "title2": "Business Intelligence | AI & Data Analytics",
+    "badge": "Open to Work",
+    "badgeVisible": true,
+    "location": "Nashville, TN 37203"
   },
-  footer:{line1:'Designed & built by Krish Nukala',line2:'HTML · CSS · JS · GitHub Pages',visible:true},
-  theme:{defaultTheme:'dark',enabledThemes:['dark','light','ocean','sunset']},
-  hiddenSections:[],aiEnabled:false,proxyUrl:'',hf:{}
-};
+  "sidebar": {
+    "bio": "Sr. Application Engineer with 9+ years building Enterprise BI Platforms and Data Systems in Healthcare.",
+    "linkedin": "https://www.linkedin.com/in/krish-nukala-8bb5b729",
+    "github": "https://github.com/krishnukala",
+    "email": "vamshinukala@gmail.com",
+    "phone": "(203) 543-2452"
+  },
+  "about": [
+    "Results-driven <strong>Sr. Application Engineer</strong> with <strong>9+ years of experience</strong> spanning Business Intelligence, data engineering, and enterprise application development.",
+    "Actively transitioning toward <strong>AI/ML engineering</strong> \u2014 with hands-on experience building AI-native full-stack applications.",
+    "Outside of work I maintain the <a href=\"https://nukalafamily.com\" target=\"_blank\">Nukala Family Archive</a> \u2014 a personal passion project."
+  ],
+  "experience": [
+    {
+      "title": "Sr. Application Engineer",
+      "company": "HCA Healthcare",
+      "location": "Nashville, TN",
+      "type": "Healthcare Enterprise",
+      "dateFrom": "Oct 2022",
+      "dateTo": "Present",
+      "bullets": [
+        "Led end-to-end solo migration of the Mobile Heartbeat (MHB) project from Tableau to Power BI, rebuilding all dashboards from scratch and delivering a fully functional BI solution serving clinical operations teams across the enterprise.",
+        "Architected Power BI data models including table relationships, DAX measures, and Power Query transformations to ensure accurate, performant reporting across large-scale healthcare datasets.",
+        "Actively contributing to the enterprise-wide Teradata-to-GCP migration, replatforming critical data pipelines and validating data integrity across Google BigQuery environments.",
+        "Supporting and enhancing multiple MicroStrategy projects \u2014 building enhanced cubes, Data Marts, optimizing cube performances, new reports, optimizing existing dossiers, managing subscriptions and providing production support to business stakeholders.",
+        "Participated in major MicroStrategy platform upgrades and contributed to the large-scale MicroStrategy-to-Cloud transition, ensuring continuity of reporting and analytics capabilities.",
+        "Collaborated cross-functionally with data engineering, analytics, and IT teams to align BI deliverables with enterprise architecture standards and business priorities."
+      ],
+      "tags": [
+        "Power BI",
+        "MicroStrategy",
+        "BigQuery",
+        "GCP",
+        "Teradata",
+        "DAX",
+        "Power Query"
+      ],
+      "logoData": ""
+    },
+    {
+      "title": "Data Engineer",
+      "company": "CareBridge",
+      "location": "Nashville, TN",
+      "type": "Healthcare Analytics",
+      "dateFrom": "Feb 2022",
+      "dateTo": "Oct 2022",
+      "bullets": [
+        "Monitored receipt and successful processing of all incoming daily files from managed care organizations within the ETL pipeline.",
+        "Reviewed automated SFTP notifications and PostgreSQL-generated analytic alerts in Mattermost for daily ETL failures, ensuring SLA compliance.",
+        "Troubleshot and resolved data processing errors across ETL pipeline stages using DataGrip and PostgreSQL stored procedures and functions.",
+        "Coordinated with analytics team members on new automated scheduled jobs, improving operational data flow reliability."
+      ],
+      "tags": [
+        "PostgreSQL",
+        "DataGrip",
+        "ETL",
+        "SFTP",
+        "Mattermost"
+      ],
+      "logoData": ""
+    },
+    {
+      "title": "System Engineer",
+      "company": "HCA Parallon",
+      "location": "St. Louis, MO",
+      "type": "Revenue Cycle",
+      "dateFrom": "Jan 2018",
+      "dateTo": "Jan 2022",
+      "bullets": [
+        "Technical Lead for a cloud-based application called Gameffective \u2014 a KPI gamification platform scaled to 300+ internal users with roadmap to 1,000+.",
+        "Data Center Technology: Cross functional Data Center Sites in various locations with seamless continuity.",
+        "Business Intelligence & Data Modeling: Application data modeling, KPIs, creating report data needed for application growth and/or expansion.",
+        "Design and build web-based CTI applications, IVR design and development and highly advanced ACD call routing for national Contact Center, with a focus on Healthcare Services.",
+        "Orchestrate and lead problem triage to resolution efforts with the vendor, team and our users independently.",
+        "Enhance and support the automated dialer (Noble) that is highly integrated with our Enterprise-Wide business application (Debt Manager).",
+        "Support of a Speech Analytics (SAIA) tool that analyzes call recordings based on specific use cases.",
+        "Support and enhance a screen scrapper application which freed up resources in our payment posting organization and providing great results daily to meet Service Level Agreement (SLA)."
+      ],
+      "tags": [
+        "Gameffective",
+        "IVR",
+        "CTI",
+        "ACD",
+        "Noble Dialer",
+        "SAIA",
+        "Linux"
+      ],
+      "logoData": ""
+    },
+    {
+      "title": "Junior Software Developer / Rhapsody Developer",
+      "company": "State of Tennessee \u2013 Dept. of Health",
+      "location": "Nashville, TN",
+      "type": "Public Health IT",
+      "dateFrom": "May 2017",
+      "dateTo": "Jan 2018",
+      "bullets": [
+        "Designed and implemented HL7 clinical interface solutions using Rhapsody IDE in collaboration with technical teams and business stakeholders.",
+        "Maintained, monitored, and provided production support for clinical interfaces and coded logic within the interface engine.",
+        "Oversaw interface development lifecycle through deliverables completion, engine monitoring, and performance validation."
+      ],
+      "tags": [
+        "HL7",
+        "Rhapsody IDE",
+        "Clinical Interfaces"
+      ],
+      "logoData": ""
+    }
+  ],
+  "skills": [
+    {
+      "group": "BI & Visualization",
+      "items": [
+        "Power BI",
+        "MicroStrategy",
+        "Tableau",
+        "DAX",
+        "Power Query",
+        "Report Builder",
+        "Power BI Copilot",
+        "Web Reports"
+      ]
+    },
+    {
+      "group": "AI & Data Science",
+      "items": [
+        "Python",
+        "APIs",
+        "BigQuery ML",
+        "Prompt Engineering",
+        "AI-native App Development"
+      ]
+    },
+    {
+      "group": "Databases & Cloud",
+      "items": [
+        "Teradata",
+        "Google BigQuery",
+        "GCP",
+        "SQL Server",
+        "PostgreSQL",
+        "AWS"
+      ]
+    },
+    {
+      "group": "Data Engineering",
+      "items": [
+        "ETL/ELT Pipelines",
+        "SFTP Automation",
+        "DataGrip",
+        "Stored Procedures",
+        "Scheduled Jobs",
+        "Query Optimization"
+      ]
+    },
+    {
+      "group": "Languages & Frameworks",
+      "items": [
+        "SQL",
+        "Python",
+        "JavaScript",
+        "Java",
+        "C/C++",
+        "VB.Net",
+        "XML",
+        "HTML/CSS"
+      ]
+    },
+    {
+      "group": "Platforms & Tools",
+      "items": [
+        "GitHub",
+        "Linux",
+        "SDLC",
+        "Agile",
+        "Rhapsody IDE",
+        "Eclipse",
+        "Visio",
+        "HL7/EMR",
+        "ServiceNow",
+        "Jira",
+        "Speech Analytics"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Gamification Platform \u2014 Technical Lead",
+      "year": "2018 \u2013 2022",
+      "type": "Cloud Platform \u00b7 HCA Parallon, St. Louis, MO",
+      "bullets": [
+        "Achieved 300 internal users with plans of going to 1,000+ as Technical Lead for Gameffective project from Pilot to Go-live.",
+        "Collaborated with ETL team to set up SFTP transfer protocol ensuring hourly data sync to vendor.",
+        "Engaged in SSO (Single Sign-On) app functionality.",
+        "Implemented call transferring system between Qualifying Agents and Closing Agents by building an integrated solution."
+      ],
+      "tags": [
+        "Gameffective",
+        "SFTP",
+        "SSO",
+        "ETL",
+        "IVR"
+      ],
+      "link": "",
+      "imageData": "",
+      "pdfFile": ""
+    },
+    {
+      "title": "Nukala Family Archive",
+      "year": "2025 \u2013 Present",
+      "type": "Personal Project \u00b7 Live",
+      "bullets": [
+        "Built and maintain a private family archive and genealogy website as a personal passion project.",
+        "Features full admin panel, 14-page navigation, and rich interactive content hosted on GitHub Pages."
+      ],
+      "tags": [
+        "HTML/CSS/JS",
+        "GitHub Pages",
+        "Admin Panel"
+      ],
+      "link": "https://nukalafamily.com",
+      "imageData": "",
+      "pdfFile": ""
+    }
+  ],
+  "publications": [
+    {
+      "title": "Creation of a Technical Tool to Improve Syndromic Surveillance Onboarding in Tennessee",
+      "journal": "Online Journal of Public Health Informatics (OJPHI)",
+      "year": "2018",
+      "org": "State of Tennessee, Dept. of Health",
+      "desc": "Improved Department of Health syndromic surveillance onboarding efficiency through a custom-built software tool. Published peer-reviewed research on clinical interface development and public health informatics.",
+      "link": "https://ojphi.jmir.org/2018/1/e62247/",
+      "pdfFile": "",
+      "imageData": ""
+    }
+  ],
+  "certifications": [
+    {
+      "org": "MicroStrategy",
+      "name": "MicroStrategy Departmental Analyst",
+      "status": "earned",
+      "year": "",
+      "imageData": "",
+      "pdfFile": "",
+      "verifyUrl": ""
+    },
+    {
+      "org": "Institute of Management Studies",
+      "name": "Model-Netics Leadership & Management",
+      "status": "earned",
+      "year": "",
+      "imageData": "",
+      "pdfFile": "",
+      "verifyUrl": ""
+    },
+    {
+      "org": "Microsoft",
+      "name": "Power BI Training",
+      "status": "earned",
+      "year": "",
+      "imageData": "",
+      "pdfFile": "",
+      "verifyUrl": ""
+    },
+    {
+      "org": "Alvaria / Noble Systems",
+      "name": "IVR Certification",
+      "status": "earned",
+      "year": "2019",
+      "imageData": "",
+      "pdfFile": "",
+      "verifyUrl": ""
+    },
+    {
+      "org": "Alvaria / Noble Systems",
+      "name": "Composer Designer, Composer Agent & Harmony",
+      "status": "earned",
+      "year": "2019",
+      "imageData": "",
+      "pdfFile": "",
+      "verifyUrl": ""
+    },
+    {
+      "org": "Alvaria / Noble Systems",
+      "name": "Maestro, Web Reports & Query Builder",
+      "status": "earned",
+      "year": "2019",
+      "imageData": "",
+      "pdfFile": "",
+      "verifyUrl": ""
+    },
+    {
+      "org": "Google Cloud / AWS",
+      "name": "AWS, GCP & AI Trainings",
+      "status": "earned",
+      "year": "",
+      "imageData": "",
+      "pdfFile": "",
+      "verifyUrl": ""
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science, Computer Science",
+      "school": "Kent State University",
+      "location": "Kent, OH",
+      "year": "Dec 2016"
+    },
+    {
+      "degree": "Bachelor of Engineering, Computer Science & Engineering",
+      "school": "JNTU Hyderabad",
+      "location": "India",
+      "year": "May 2015"
+    }
+  ],
+  "contact": {
+    "heading": "Let's work together.",
+    "text": "I'm currently open to Sr. BI Engineer, AI Application Engineer, and Data Engineering roles. I-140 approved \u2014 H-1B transfer only, no lottery needed.",
+    "email": "vamshinukala@gmail.com",
+    "phone": "(203) 543-2452",
+    "location": "Nashville, TN 37203"
+  },
+  "footer": {
+    "line1": "Designed & built by Krish Nukala",
+    "line2": "HTML \u00b7 CSS \u00b7 JS \u00b7 GitHub Pages",
+    "visible": true
+  },
+  "theme": {
+    "defaultTheme": "dark",
+    "enabledThemes": [
+      "dark",
+      "light",
+      "ocean",
+      "sunset"
+    ]
+  },
+  "hiddenSections": [],
+  "aiEnabled": false,
+  "proxyUrl": "",
+  "hf": {
+    "pageTitle": "Krish Nukala \u2014 BI & AI Engineer",
+    "metaDesc": "Sr. Application Engineer specializing in Business Intelligence and AI Engineering.",
+    "footer1": "Designed & built by Krish Nukala",
+    "footer2": "HTML \u00b7 CSS \u00b7 JS \u00b7 GitHub Pages",
+    "footerVisible": true,
+    "nameColors": {
+      "dark": "#ffffff",
+      "light": "#1a1f35",
+      "ocean": "#e8f8f5",
+      "sunset": "#fdecea"
+    }
+  },
+  "defaultTheme": "dark"
+};;
 
 // ── LOAD DATA ────────────────────────────────
 function loadData(){
