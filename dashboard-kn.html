@@ -151,7 +151,9 @@ select{cursor:pointer}
     <a onclick="showPanel('about')" id="nav-about"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>About & Bio</a>
     <a onclick="showPanel('experience')" id="nav-experience"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.86.18-1 0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .14.11.56.18 1H8c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6-3c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm6 17H8V8h12v12z"/></svg>Experience</a>
     <a onclick="showPanel('skills')" id="nav-skills"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>Skills</a>
+    <a onclick="showPanel('architecture')" id="nav-architecture"><svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z"/></svg>Architecture</a>
     <a onclick="showPanel('projects')" id="nav-projects"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Projects</a>
+    <a onclick="showPanel('notes')" id="nav-notes"><svg viewBox="0 0 24 24"><path d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"/></svg>Technical Notes</a>
     <a onclick="showPanel('publications')" id="nav-publications"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Publications</a>
     <a onclick="showPanel('certifications')" id="nav-certifications"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Certifications</a>
     <div class="nav-section-label">Appearance</div>
@@ -305,6 +307,33 @@ select{cursor:pointer}
 </div>
 
 <!-- ── PROJECTS ── -->
+<!-- ── ARCHITECTURE ── -->
+<div class="admin-content" id="panel-architecture">
+  <div class="page-head">
+    <div class="page-title">Architecture Diagram</div>
+    <div style="display:flex;gap:.75rem">
+      <button class="btn btn-secondary" onclick="addArchStage()">+ Add Stage</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.1rem">
+        <div style="flex:1;min-width:240px">
+          <div class="card-title">Interactive Pipeline Diagram</div>
+          <div class="card-sub" style="margin-bottom:0">An animated, clickable data-flow diagram that shows how you architect systems end-to-end. Each stage becomes a node visitors can explore.</div>
+        </div>
+        <div onclick="toggleArch()" id="archToggleTrack" class="toggle-track"><div class="toggle-thumb"></div></div>
+      </div>
+      <div class="field"><label class="field-label">Diagram Title</label><input type="text" id="archTitle" placeholder="e.g. Enterprise Healthcare Data Pipeline"/></div>
+      <div class="field"><label class="field-label">Intro / Subtitle</label><textarea id="archSubtitle" rows="2" placeholder="One or two sentences describing the pipeline..."></textarea></div>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem">Pipeline Stages — Left to Right</div>
+    <div id="archStageList"></div>
+  </div>
+</div>
+
+<!-- ── PROJECTS ── -->
 <div class="admin-content" id="panel-projects">
   <div class="page-head">
     <div class="page-title">Projects</div>
@@ -314,6 +343,23 @@ select{cursor:pointer}
     </div>
   </div>
   <div class="page-body"><div id="projList"></div></div>
+</div>
+
+<!-- ── TECHNICAL NOTES ── -->
+<div class="admin-content" id="panel-notes">
+  <div class="page-head">
+    <div class="page-title">Technical Notes</div>
+    <div style="display:flex;gap:.75rem">
+      <button class="btn btn-secondary" onclick="addNote()">+ Add Note</button>
+      <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="card" style="background:var(--glt);border-color:var(--border-gold);margin-bottom:1.25rem">
+      <div style="font-size:.82rem;color:var(--white)">💡 <strong>Technical Notes</strong> are short writeups that show how you think and communicate — a strong senior signal. Add a title, summary, and optionally a link to a full post (Medium, GitHub README, LinkedIn article). Leave the section empty to hide it from your site.</div>
+    </div>
+    <div id="notesList"></div>
+  </div>
 </div>
 
 <!-- ── PUBLICATIONS ── -->
@@ -337,7 +383,19 @@ select{cursor:pointer}
       <button class="btn btn-primary" onclick="saveAll()">💾 Save</button>
     </div>
   </div>
-  <div class="page-body"><div id="certsList"></div></div>
+  <div class="page-body">
+    <div class="card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <div class="card-title">✨ Credentials Spotlight</div>
+          <div class="card-sub" style="margin-bottom:0">Show an animated showcase of your earned certifications when visitors first open the site. Appears once per visit. Earned credentials display as professional badge medallions throughout.</div>
+        </div>
+        <div onclick="toggleSpotlight()" id="spotToggleTrack" class="toggle-track"><div class="toggle-thumb"></div></div>
+      </div>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem">Manage Certifications — Add, Edit, or Remove</div>
+    <div id="certsList"></div>
+  </div>
 </div>
 
 <!-- ── HEADER & FOOTER ── -->
@@ -355,8 +413,6 @@ select{cursor:pointer}
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
         <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>🌙</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">DARK</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-dark" value="#ffffff" class="color-swatch" oninput="document.getElementById('nc-dark-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-dark-val">#ffffff</span></div></div></div>
         <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>☀️</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">LIGHT</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-light" value="#1a1f35" class="color-swatch" oninput="document.getElementById('nc-light-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-light-val">#1a1f35</span></div></div></div>
-        <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>🌊</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">OCEAN</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-ocean" value="#e8f8f5" class="color-swatch" oninput="document.getElementById('nc-ocean-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-ocean-val">#e8f8f5</span></div></div></div>
-        <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem;background:var(--bg3);border:1px solid var(--border)"><span>🌅</span><div style="flex:1"><div style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);margin-bottom:.25rem">SUNSET</div><div style="display:flex;align-items:center;gap:.5rem"><input type="color" id="nc-sunset" value="#fdecea" class="color-swatch" oninput="document.getElementById('nc-sunset-val').textContent=this.value"/><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--white)" id="nc-sunset-val">#fdecea</span></div></div></div>
       </div>
     </div>
     <div class="card">
@@ -391,8 +447,6 @@ select{cursor:pointer}
         <select id="defaultTheme">
           <option value="dark">🌙 Dark (Navy & Gold)</option>
           <option value="light">☀️ Light (Clean White)</option>
-          <option value="ocean">🌊 Ocean (Deep Teal)</option>
-          <option value="sunset">🌅 Sunset (Dark Red)</option>
         </select>
       </div>
     </div>
@@ -414,6 +468,16 @@ select{cursor:pointer}
         <div class="field"><label class="field-label">Proxy URL <span class="optional">Cloudflare Worker — hides your API key</span></label><input type="url" id="proxyUrl" placeholder="https://your-worker.workers.dev"/></div>
         <div style="font-size:.75rem;color:var(--muted)">Set up a free Cloudflare Worker at workers.cloudflare.com to proxy your Gemini API key securely.</div>
       </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Site Analytics</div>
+      <div class="card-sub">Track how many people visit your portfolio with Google Analytics 4. Free. Leave blank to disable.</div>
+      <div class="field"><label class="field-label">Google Analytics ID (GA4) <span class="optional">Format: G-XXXXXXXXXX</span></label><input type="text" id="gaId" placeholder="G-XXXXXXXXXX"/></div>
+      <div style="font-size:.75rem;color:var(--muted);line-height:1.6">Get a free ID at analytics.google.com → create a property → copy the "Measurement ID". Paste it here and save. You'll see visitor counts, locations, and what they view.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🎨 Tech Stack Logos</div>
+      <div class="card-sub" style="margin-bottom:0">Your Skills section automatically shows professional brand logos for recognized technologies (Power BI, Python, GCP, AWS, etc.). Just add a skill by its standard name in the Skills tab and its logo appears in the "Core Tech Stack" grid — no extra setup needed.</div>
     </div>
     <div class="card">
       <div class="card-title">Change Admin Password</div>
@@ -660,6 +724,9 @@ const DEFAULT_DATA = {
         "IVR"
       ],
       "link": "",
+      "repo": "",
+      "featured": false,
+      "images": [],
       "imageData": "",
       "pdfFile": ""
     },
@@ -677,6 +744,9 @@ const DEFAULT_DATA = {
         "Admin Panel"
       ],
       "link": "https://nukalafamily.com",
+      "repo": "",
+      "featured": true,
+      "images": [],
       "imageData": "",
       "pdfFile": ""
     }
@@ -788,13 +858,31 @@ const DEFAULT_DATA = {
     "defaultTheme": "dark",
     "enabledThemes": [
       "dark",
-      "light",
-      "ocean",
-      "sunset"
+      "light"
     ]
   },
   "hiddenSections": [],
   "aiEnabled": false,
+  "spotlightEnabled": true,
+  "architecture": {
+    "enabled": true,
+    "title": "Enterprise Healthcare Data Pipeline",
+    "subtitle": "A reference architecture from my work at HCA Healthcare \u2014 ingesting clinical and financial data at enterprise scale and serving it to BI and analytics teams. Click any stage to explore.",
+    "stages": [
+      {"icon": "\ud83c\udfe5", "title": "Source Systems", "tags": ["EHR", "HL7", "Claims", "Billing"], "desc": "Clinical and financial source systems across 180+ facilities emit data continuously \u2014 patient admissions and discharges, lab results, charges, and insurance claims."},
+      {"icon": "\ud83d\udd04", "title": "Ingestion", "tags": ["Kafka", "Pub/Sub", "SFTP", "ETL"], "desc": "Real-time event streams flow through Kafka / Pub/Sub topics while batch files land via SFTP. Both paths feed the warehouse with schema validation and SLA monitoring on every load."},
+      {"icon": "\u2601\ufe0f", "title": "Cloud Warehouse", "tags": ["BigQuery", "GCP", "Teradata\u2192GCP"], "desc": "Migrated from on-prem Teradata to Google BigQuery \u2014 petabyte-scale storage with partitioning and clustering tuned for fast analytical queries across the enterprise."},
+      {"icon": "\u2699\ufe0f", "title": "Transformation", "tags": ["SQL", "Dataflow", "Data Modeling"], "desc": "Raw data is cleaned, conformed, and modeled into star schemas \u2014 surrogate keys, conformed dimensions, and slowly-changing dimensions for accurate, consistent reporting."},
+      {"icon": "\ud83d\udcca", "title": "Semantic Layer", "tags": ["MicroStrategy", "Power BI", "DAX"], "desc": "MicroStrategy cubes and Power BI datasets sit on top of the warehouse, with DAX measures and optimized aggregations delivering sub-second dashboard performance."},
+      {"icon": "\ud83d\udc65", "title": "Consumption", "tags": ["Dashboards", "Reports", "Clinical Ops"], "desc": "Clinical operations, revenue cycle, and leadership teams consume governed dashboards and reports \u2014 turning data into decisions across the organization."}
+    ]
+  },
+  "notes": [
+    {"title": "Migrating 100+ Dashboards from Tableau to Power BI", "date": "2024", "readTime": "6 min read", "tags": ["Power BI", "Migration", "DAX"], "summary": "How I rebuilt the Mobile Heartbeat reporting suite end-to-end \u2014 reverse-engineering Tableau logic, decluttering queries, redesigning the data model, and validating parity before cutover.", "link": ""},
+    {"title": "Building a Real-Time Healthcare Streaming Pipeline with Kafka", "date": "2025", "readTime": "8 min read", "tags": ["Kafka", "Confluent", "Python", "ksqlDB"], "summary": "A hands-on Confluent Cloud project streaming synthetic patient events through Kafka topics, with Python producers/consumers and ksqlDB doing real-time aggregations and stream joins.", "link": ""},
+    {"title": "From BI Developer to Data Engineer: Bridging Batch and Streaming", "date": "2025", "readTime": "5 min read", "tags": ["Data Engineering", "Architecture"], "summary": "Notes on how nine years at the BI layer translate to owning data pipelines \u2014 the concepts that carry over, and the new ones (event streaming, exactly-once semantics) worth learning.", "link": ""}
+  ],
+  "gaId": "",
   "proxyUrl": "",
   "hf": {
     "pageTitle": "Krish Nukala \u2014 BI & AI Engineer",
@@ -804,9 +892,7 @@ const DEFAULT_DATA = {
     "footerVisible": true,
     "nameColors": {
       "dark": "#ffffff",
-      "light": "#1a1f35",
-      "ocean": "#e8f8f5",
-      "sunset": "#fdecea"
+      "light": "#1a1f35"
     }
   },
   "defaultTheme": "dark"
@@ -826,6 +912,7 @@ function loadData(){
     if(!DATA.certifications)DATA.certifications=DEFAULT_DATA.certifications;
     if(!DATA.education)DATA.education=DEFAULT_DATA.education;
     if(DATA.aiEnabled===undefined)DATA.aiEnabled=false;
+    if(DATA.spotlightEnabled===undefined)DATA.spotlightEnabled=true;
   }catch(e){DATA=JSON.parse(JSON.stringify(DEFAULT_DATA));}
 }
 function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(DATA));showToast();}
@@ -986,31 +1073,115 @@ function addSkillGroup(){DATA.skills.push({group:'New Skill Group',items:['Skill
 function delSkillGroup(i){if(confirm('Delete this skill group?')){DATA.skills.splice(i,1);renderSkills();}}
 
 // ── PROJECTS ──────────────────────────────────
+function projGallery(i,images){
+  var thumbs=images.map(function(src,gi){
+    return'<div style="position:relative;display:inline-block">'+
+      '<img src="'+src+'" style="width:84px;height:60px;object-fit:cover;border:1px solid var(--border);border-radius:5px;display:block"/>'+
+      (gi===0?'<span style="position:absolute;bottom:2px;left:2px;font-family:var(--font-mono);font-size:.45rem;background:var(--gold);color:var(--bg);padding:1px 4px;border-radius:3px;font-weight:700">COVER</span>':'')+
+      '<button onclick="removeProjImg('+i+','+gi+')" title="Remove" style="position:absolute;top:-7px;right:-7px;width:19px;height:19px;border-radius:50%;background:var(--red);color:#fff;border:2px solid var(--bg2);cursor:pointer;font-size:.7rem;line-height:1;padding:0">×</button>'+
+    '</div>';
+  }).join('');
+  return'<div class="img-upload-box">'+
+    '<div class="img-upload-box-label">Project Screenshots — Gallery</div>'+
+    '<div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:.7rem">'+(thumbs||'<div style="font-size:.75rem;color:var(--muted)">No screenshots yet. The first image you add becomes the card cover; visitors can click to view the full gallery.</div>')+'</div>'+
+    '<label class="upload-label-btn">📷 Add Screenshot(s)<input type="file" accept="image/*" multiple style="display:none" onchange="handleProjImgs('+i+',this.files)"/></label>'+
+    '<div style="font-size:.72rem;color:var(--muted);margin-top:.5rem">Tip: add multiple — they become a swipeable gallery on the card. Max 5MB each.</div>'+
+  '</div>';
+}
+function handleProjImgs(i,files){
+  if(!files||!files.length)return;
+  if(!DATA.projects[i].images)DATA.projects[i].images=[];
+  Array.from(files).forEach(function(file){
+    if(file.size>5*1024*1024){alert(file.name+' is too large (max 5MB).');return;}
+    resizeImg(file,1100,750,function(data){DATA.projects[i].images.push(data);renderProj();});
+  });
+}
+function removeProjImg(i,gi){DATA.projects[i].images.splice(gi,1);renderProj();}
+function toggleProjFeatured(i){DATA.projects[i].featured=!DATA.projects[i].featured;renderProj();}
+
 function renderProj(){
   var list=document.getElementById('projList');
   list.innerHTML=DATA.projects.map(function(p,i){
     var bullets=(p.bullets||[]).join('\n');
+    // Seed gallery from legacy single image
+    if((!p.images||!p.images.length)&&p.imageData){p.images=[p.imageData];p.imageData='';}
+    if(!p.images)p.images=[];
+    var feat=p.featured?' on':'';
     return'<div class="list-item">'+
-      '<div class="list-item-header"><div class="list-item-title">'+p.title+'</div><div class="list-item-actions"><button class="icon-btn del" onclick="delProj('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div></div>'+
+      '<div class="list-item-header"><div class="list-item-title">'+(p.featured?'★ ':'')+p.title+'</div><div class="list-item-actions"><button class="icon-btn del" onclick="delProj('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div></div>'+
       '<div class="list-item-body">'+
         '<div class="field-row"><div class="field"><label class="field-label">Title</label><input type="text" value="'+p.title+'" oninput="DATA.projects['+i+'].title=this.value"/></div><div class="field"><label class="field-label">Year</label><input type="text" value="'+p.year+'" oninput="DATA.projects['+i+'].year=this.value"/></div></div>'+
-        '<div class="field"><label class="field-label">Type / Context</label><input type="text" value="'+p.type+'" oninput="DATA.projects['+i+'].type=this.value"/></div>'+
-        '<div class="field"><label class="field-label">Bullet Points <span class="optional">One per line</span></label><textarea rows="5" oninput="DATA.projects['+i+'].bullets=this.value.split(\'\\n\').filter(function(s){return s.trim();})">'+bullets+'</textarea></div>'+
-        '<div class="field"><label class="field-label">Live URL <span class="optional">Optional</span></label><input type="url" value="'+(p.link||'')+'" placeholder="https://..." oninput="DATA.projects['+i+'].link=this.value"/></div>'+
+        '<div class="field"><label class="field-label">Type / Context <span class="optional">e.g. Full-Stack Web App, Data Analytics</span></label><input type="text" value="'+p.type+'" oninput="DATA.projects['+i+'].type=this.value"/></div>'+
+        '<div style="display:flex;align-items:center;gap:.75rem;padding:.65rem .85rem;background:var(--bg3);border:1px solid var(--border);border-radius:6px;margin-bottom:1rem"><div onclick="toggleProjFeatured('+i+')" class="toggle-track'+feat+'" style="width:38px;height:20px"><div class="toggle-thumb" style="width:16px;height:16px;'+(p.featured?'left:20px':'')+'"></div></div><div><div style="font-size:.82rem;color:var(--white);font-weight:600">★ Featured Project</div><div style="font-size:.72rem;color:var(--muted)">Adds a gold "Featured" badge to the card</div></div></div>'+
+        '<div class="field"><label class="field-label">Bullet Points <span class="optional">One per line · first 3 show on card</span></label><textarea rows="5" oninput="DATA.projects['+i+'].bullets=this.value.split(\'\\n\').filter(function(s){return s.trim();})">'+bullets+'</textarea></div>'+
+        '<div class="field-row"><div class="field"><label class="field-label">Live URL <span class="optional">Optional</span></label><input type="url" value="'+(p.link||'')+'" placeholder="https://..." oninput="DATA.projects['+i+'].link=this.value"/></div><div class="field"><label class="field-label">GitHub Repo URL <span class="optional">Shows a "Code" button</span></label><input type="url" value="'+(p.repo||'')+'" placeholder="https://github.com/..." oninput="DATA.projects['+i+'].repo=this.value"/></div></div>'+
         '<div class="field"><label class="field-label">Tech Tags <span class="optional">Press Enter</span></label><div class="tags-input-wrap">'+
           p.tags.map(function(t,ti){return'<span class="tag-chip">'+t+'<button onclick="delProjTag('+i+','+ti+')">×</button></span>';}).join('')+
           '<input type="text" placeholder="Add tag..." onkeydown="addProjTag(event,'+i+')"/>'+
         '</div></div>'+
-        imgWidget('proj',i,p.imageData||'',p.pdfFile||'','Project Screenshot / PDF',800,500,true)+
+        projGallery(i,p.images)+
+        '<div class="field" style="margin-top:1rem"><label class="field-label">PDF File <span class="optional">Optional — upload to GitHub, enter filename</span></label><input type="text" value="'+(p.pdfFile||'')+'" placeholder="e.g. case-study.pdf" oninput="DATA.projects['+i+'].pdfFile=this.value"/></div>'+
       '</div>'+
     '</div>';
   }).join('');
   document.getElementById('stat-proj').textContent=DATA.projects.length;
 }
-function addProjItem(){DATA.projects.push({title:'New Project',year:'2025',type:'Project Type',bullets:['Describe this project and its impact.'],tags:[],link:'',imageData:'',pdfFile:''});renderProj();}
+function addProjItem(){DATA.projects.push({title:'New Project',year:'2025',type:'Project Type',bullets:['Describe this project and its impact.'],tags:[],link:'',repo:'',featured:false,images:[],imageData:'',pdfFile:''});renderProj();}
 function delProj(i){if(confirm('Delete this project?')){DATA.projects.splice(i,1);renderProj();}}
 function addProjTag(e,i){if(e.key==='Enter'&&e.target.value.trim()){DATA.projects[i].tags.push(e.target.value.trim());renderProj();}}
 function delProjTag(i,ti){DATA.projects[i].tags.splice(ti,1);renderProj();}
+
+// ── ARCHITECTURE EDITOR ───────────────────────
+function ensureArch(){if(!DATA.architecture)DATA.architecture={enabled:true,title:'',subtitle:'',stages:[]};if(!DATA.architecture.stages)DATA.architecture.stages=[];}
+function toggleArch(){ensureArch();DATA.architecture.enabled=!DATA.architecture.enabled;updateArchUI();}
+function updateArchUI(){var t=document.getElementById('archToggleTrack');if(!t)return;if(DATA.architecture&&DATA.architecture.enabled!==false)t.classList.add('on');else t.classList.remove('on');}
+function renderArchStages(){
+  ensureArch();
+  var list=document.getElementById('archStageList');
+  list.innerHTML=DATA.architecture.stages.map(function(st,i){
+    var tags=(st.tags||[]).map(function(t,ti){return'<span class="tag-chip">'+t+'<button onclick="delArchTag('+i+','+ti+')">×</button></span>';}).join('');
+    return'<div class="list-item">'+
+      '<div class="list-item-header"><div class="list-item-title">'+(st.icon||'●')+' &nbsp;'+(st.title||'Stage')+'</div><div class="list-item-actions">'+
+        (i>0?'<button class="icon-btn" onclick="moveArch('+i+',-1)" title="Move left">←</button>':'')+
+        (i<DATA.architecture.stages.length-1?'<button class="icon-btn" onclick="moveArch('+i+',1)" title="Move right">→</button>':'')+
+        '<button class="icon-btn del" onclick="delArchStage('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>'+
+      '</div></div>'+
+      '<div class="list-item-body">'+
+        '<div class="field-row"><div class="field" style="max-width:110px"><label class="field-label">Icon <span class="optional">emoji</span></label><input type="text" value="'+(st.icon||'')+'" maxlength="4" oninput="DATA.architecture.stages['+i+'].icon=this.value;renderArchStages()"/></div><div class="field"><label class="field-label">Stage Title</label><input type="text" value="'+(st.title||'')+'" oninput="DATA.architecture.stages['+i+'].title=this.value"/></div></div>'+
+        '<div class="field"><label class="field-label">Description</label><textarea rows="3" oninput="DATA.architecture.stages['+i+'].desc=this.value">'+(st.desc||'')+'</textarea></div>'+
+        '<div class="field"><label class="field-label">Tech Tags <span class="optional">Press Enter · up to 4 show on the node</span></label><div class="tags-input-wrap">'+tags+'<input type="text" placeholder="Add tag..." onkeydown="addArchTag(event,'+i+')"/></div></div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+function addArchStage(){ensureArch();DATA.architecture.stages.push({icon:'●',title:'New Stage',tags:[],desc:'Describe what happens at this stage of the pipeline.'});renderArchStages();}
+function delArchStage(i){if(confirm('Delete this stage?')){DATA.architecture.stages.splice(i,1);renderArchStages();}}
+function moveArch(i,dir){var s=DATA.architecture.stages;var j=i+dir;if(j<0||j>=s.length)return;var tmp=s[i];s[i]=s[j];s[j]=tmp;renderArchStages();}
+function addArchTag(e,i){if(e.key==='Enter'&&e.target.value.trim()){if(!DATA.architecture.stages[i].tags)DATA.architecture.stages[i].tags=[];DATA.architecture.stages[i].tags.push(e.target.value.trim());renderArchStages();}}
+function delArchTag(i,ti){DATA.architecture.stages[i].tags.splice(ti,1);renderArchStages();}
+
+// ── NOTES EDITOR ──────────────────────────────
+function renderNotesList(){
+  if(!DATA.notes)DATA.notes=[];
+  var list=document.getElementById('notesList');
+  list.innerHTML=DATA.notes.map(function(n,i){
+    var tags=(n.tags||[]).map(function(t,ti){return'<span class="tag-chip">'+t+'<button onclick="delNoteTag('+i+','+ti+')">×</button></span>';}).join('');
+    return'<div class="list-item">'+
+      '<div class="list-item-header"><div class="list-item-title">'+(n.title||'Untitled').substring(0,52)+'</div><div class="list-item-actions"><button class="icon-btn del" onclick="delNote('+i+')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></div></div>'+
+      '<div class="list-item-body">'+
+        '<div class="field"><label class="field-label">Title</label><input type="text" value="'+(n.title||'')+'" oninput="DATA.notes['+i+'].title=this.value"/></div>'+
+        '<div class="field-row"><div class="field"><label class="field-label">Date <span class="optional">e.g. 2025</span></label><input type="text" value="'+(n.date||'')+'" oninput="DATA.notes['+i+'].date=this.value"/></div><div class="field"><label class="field-label">Read Time <span class="optional">optional</span></label><input type="text" value="'+(n.readTime||'')+'" placeholder="6 min read" oninput="DATA.notes['+i+'].readTime=this.value"/></div></div>'+
+        '<div class="field"><label class="field-label">Summary</label><textarea rows="3" oninput="DATA.notes['+i+'].summary=this.value">'+(n.summary||'')+'</textarea></div>'+
+        '<div class="field"><label class="field-label">Link <span class="optional">optional — Medium, GitHub, LinkedIn article</span></label><input type="url" value="'+(n.link||'')+'" placeholder="https://..." oninput="DATA.notes['+i+'].link=this.value"/></div>'+
+        '<div class="field"><label class="field-label">Tags <span class="optional">Press Enter</span></label><div class="tags-input-wrap">'+tags+'<input type="text" placeholder="Add tag..." onkeydown="addNoteTag(event,'+i+')"/></div></div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+function addNote(){if(!DATA.notes)DATA.notes=[];DATA.notes.push({title:'New Technical Note',date:'2025',readTime:'',tags:[],summary:'A short summary of what this writeup covers.',link:''});renderNotesList();}
+function delNote(i){if(confirm('Delete this note?')){DATA.notes.splice(i,1);renderNotesList();}}
+function addNoteTag(e,i){if(e.key==='Enter'&&e.target.value.trim()){if(!DATA.notes[i].tags)DATA.notes[i].tags=[];DATA.notes[i].tags.push(e.target.value.trim());renderNotesList();}}
+function delNoteTag(i,ti){DATA.notes[i].tags.splice(ti,1);renderNotesList();}
 
 // ── PUBLICATIONS ──────────────────────────────
 function renderPubs(){
@@ -1074,9 +1245,9 @@ function removePhoto(){if(!confirm('Remove photo?'))return;localStorage.removeIt
 function loadPhotoPreview(){var s=localStorage.getItem('kn_profile_photo');if(s){document.getElementById('photoPreview').innerHTML='<img src="'+s+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block" alt="Photo"/>';document.getElementById('removePhotoBtn').style.display='inline-flex';}}
 
 // ── THEME TOGGLES ─────────────────────────────
-var ALL_THEMES=[{id:'dark',emoji:'🌙',label:'Dark',desc:'Navy & Gold — default'},{id:'light',emoji:'☀️',label:'Light',desc:'Clean white'},{id:'ocean',emoji:'🌊',label:'Ocean',desc:'Deep teal'},{id:'sunset',emoji:'🌅',label:'Sunset',desc:'Dark red'}];
+var ALL_THEMES=[{id:'dark',emoji:'🌙',label:'Dark',desc:'Navy & Gold — default'},{id:'light',emoji:'☀️',label:'Light',desc:'Clean white'}];
 function renderThemeToggles(){
-  var enabled=DATA.enabledThemes||['dark','light','ocean','sunset'];
+  var enabled=DATA.enabledThemes||['dark','light'];
   document.getElementById('themeToggles').innerHTML=ALL_THEMES.map(function(t){
     var on=enabled.includes(t.id);
     return'<div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:var(--bg3);border:1px solid '+(on?'var(--border-gold)':'var(--border)')+'">'+
@@ -1087,7 +1258,7 @@ function renderThemeToggles(){
   var def=document.getElementById('defaultTheme');if(def)def.value=DATA.defaultTheme||'dark';
 }
 function toggleThemeOpt(id){
-  if(!DATA.enabledThemes)DATA.enabledThemes=['dark','light','ocean','sunset'];
+  if(!DATA.enabledThemes)DATA.enabledThemes=['dark','light'];
   var idx=DATA.enabledThemes.indexOf(id);
   if(idx>=0){if(DATA.enabledThemes.length<=1){alert('At least one theme must stay enabled.');return;}DATA.enabledThemes.splice(idx,1);}
   else DATA.enabledThemes.push(id);
@@ -1095,7 +1266,7 @@ function toggleThemeOpt(id){
 }
 
 // ── NAV TOGGLES ───────────────────────────────
-var NAV_SECS=[{id:'about',l:'About'},{id:'experience',l:'Experience'},{id:'skills',l:'Skills'},{id:'projects',l:'Projects'},{id:'publications',l:'Publications'},{id:'certifications',l:'Certifications'},{id:'resume',l:'Resume'},{id:'contact',l:'Contact'}];
+var NAV_SECS=[{id:'about',l:'About'},{id:'experience',l:'Experience'},{id:'skills',l:'Skills'},{id:'architecture',l:'Architecture'},{id:'projects',l:'Projects'},{id:'notes',l:'Technical Notes'},{id:'publications',l:'Publications'},{id:'certifications',l:'Certifications'},{id:'resume',l:'Resume'},{id:'contact',l:'Contact'}];
 function renderNavToggles(){
   var hidden=DATA.hiddenSections||[];
   document.getElementById('navToggles').innerHTML=NAV_SECS.map(function(s){
@@ -1115,6 +1286,13 @@ function updateAIUI(){
   var config=document.getElementById('aiConfigSection');
   if(DATA.aiEnabled){track.classList.add('on');if(config)config.style.display='block';}
   else{track.classList.remove('on');if(config)config.style.display='none';}
+}
+function toggleSpotlight(){DATA.spotlightEnabled=(DATA.spotlightEnabled===false)?true:false;updateSpotlightUI();}
+function updateSpotlightUI(){
+  var track=document.getElementById('spotToggleTrack');
+  if(!track)return;
+  if(DATA.spotlightEnabled!==false)track.classList.add('on');
+  else track.classList.remove('on');
 }
 
 // ── PASSWORD ──────────────────────────────────
@@ -1162,13 +1340,19 @@ function saveAll(){
     footer1:document.getElementById('hf-footer1')?.value,
     footer2:document.getElementById('hf-footer2')?.value,
     footerVisible:document.getElementById('footerOn')?.checked!==false,
-    nameColors:{dark:document.getElementById('nc-dark')?.value||'#ffffff',light:document.getElementById('nc-light')?.value||'#1a1f35',ocean:document.getElementById('nc-ocean')?.value||'#e8f8f5',sunset:document.getElementById('nc-sunset')?.value||'#fdecea'}
+    nameColors:{dark:document.getElementById('nc-dark')?.value||'#ffffff',light:document.getElementById('nc-light')?.value||'#1a1f35'}
   };
   DATA.footer={line1:document.getElementById('hf-footer1')?.value||'Designed & built by Krish Nukala',line2:document.getElementById('hf-footer2')?.value||'HTML · CSS · JS · GitHub Pages',visible:document.getElementById('footerOn')?.checked!==false};
   DATA.defaultTheme=document.getElementById('defaultTheme')?.value||'dark';
-  DATA.theme={defaultTheme:DATA.defaultTheme,enabledThemes:DATA.enabledThemes||['dark','light','ocean','sunset']};
+  DATA.theme={defaultTheme:DATA.defaultTheme,enabledThemes:DATA.enabledThemes||['dark','light']};
   // AI
   var pu=document.getElementById('proxyUrl')?.value;if(pu!==undefined)DATA.proxyUrl=pu;
+  // Analytics
+  var ga=document.getElementById('gaId')?.value;if(ga!==undefined)DATA.gaId=ga.trim();
+  // Architecture text fields
+  ensureArch();
+  var at=document.getElementById('archTitle');if(at)DATA.architecture.title=at.value;
+  var asub=document.getElementById('archSubtitle');if(asub)DATA.architecture.subtitle=asub.value;
   saveData();
 }
 
@@ -1201,10 +1385,17 @@ function initAdmin(){
     if(DATA.hf.footerVisible===false){var fo=document.getElementById('footerOff');if(fo)fo.checked=true;}
     var nc=DATA.hf.nameColors||{};
     var sc=function(id,v,vid){var el=document.getElementById(id);if(el&&v)el.value=v;var vel=document.getElementById(vid);if(vel&&v)vel.textContent=v;};
-    sc('nc-dark',nc.dark,'nc-dark-val');sc('nc-light',nc.light,'nc-light-val');sc('nc-ocean',nc.ocean,'nc-ocean-val');sc('nc-sunset',nc.sunset,'nc-sunset-val');
+    sc('nc-dark',nc.dark,'nc-dark-val');sc('nc-light',nc.light,'nc-light-val');
   }
   if(DATA.proxyUrl){var pu=document.getElementById('proxyUrl');if(pu)pu.value=DATA.proxyUrl;}
+  if(DATA.gaId){var ga=document.getElementById('gaId');if(ga)ga.value=DATA.gaId;}
+  // Architecture + Notes
+  ensureArch();
+  var at=document.getElementById('archTitle');if(at)at.value=DATA.architecture.title||'';
+  var asub=document.getElementById('archSubtitle');if(asub)asub.value=DATA.architecture.subtitle||'';
+  updateArchUI();renderArchStages();renderNotesList();
   updateAIUI();
+  updateSpotlightUI();
   document.getElementById('stat-exp').textContent=DATA.experience.length;
   document.getElementById('stat-proj').textContent=DATA.projects.length;
   document.getElementById('stat-skills').textContent=DATA.skills.length;
